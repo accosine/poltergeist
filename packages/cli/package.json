@@ -1,0 +1,39 @@
+{
+  "name": "odysseus",
+  "version": "0.0.0",
+  "description": "A CLI for firebase projects",
+  "main": "index.js",
+  "bin": {
+    "odysseus": "index.js"
+  },
+  "dependencies": {
+    "commander": "^2.11.0",
+    "inquirer": "^3.2.2"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/accosine/odysseus.git"
+  },
+  "keywords": [
+    "CLI",
+    "scaffold",
+    "scaffolder",
+    "firebase"
+  ],
+  "author": "accosine",
+  "contributors": [
+    "Simon Bugert <simon.bugert@gmail.com>",
+    "Duncan Kolba <duncankolba@gmail.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/accosine/odysseus/issues"
+  },
+  "homepage": "https://github.com/accosine/odysseus#readme"
+}

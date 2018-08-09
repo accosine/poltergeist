@@ -1,0 +1,3078 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Components AdContainer 1`] = `
+<div
+  className="a b c d"
+>
+  <amp-ad
+    data-aax_pubname="test123"
+    data-aax_size="300x250"
+    data-aax_src="302"
+    height={250}
+    type="a9"
+    width={300}
+  />
+</div>
+`;
+
+exports[`Storyshots Components Footer 1`] = `
+Array [
+  <footer>
+    <div
+      className="a b"
+    >
+      <a
+        href="#main"
+      >
+        <div
+          className="c d e f g"
+        >
+          <amp-img
+            alt="Gurl you know it's true, uh uh uh, I love you!"
+            attribution="All Rights Reserved"
+            height="3"
+            layout="responsive"
+            src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nausika-gurl.min.svg?alt=media"
+            width="3"
+          />
+        </div>
+      </a>
+      <a
+        href="#main"
+      >
+        <svg
+          className="h i j k l m g"
+        >
+          <use
+            xlinkHref="#nausika--logotext-use"
+          />
+        </svg>
+      </a>
+    </div>
+    <ul
+      className="a b n o p q g r s t u"
+    >
+      <li
+        className="v"
+      >
+        <a
+          className="w x"
+          href="/impressum/"
+        >
+          Impressum
+        </a>
+      </li>
+      <li
+        className="v"
+      >
+        <a
+          className="w x"
+          href="/datenschutz/"
+        >
+          Datenschutz
+        </a>
+      </li>
+      <li
+        className="v"
+      >
+        <a
+          className="w x"
+          href="/agb/"
+        >
+          AGB
+        </a>
+      </li>
+      <li
+        className="v"
+      >
+        <a
+          className="w x"
+          href="/rss/"
+        >
+          RSS
+        </a>
+      </li>
+      <li
+        className="v"
+      >
+        <a
+          className="w x"
+          href="https://www.facebook.com/nausikade"
+        >
+          Facebook
+        </a>
+      </li>
+      <li
+        className="v"
+      >
+        <a
+          className="w x"
+          href="https://www.twitter.com/nausikade"
+        >
+          Twitter
+        </a>
+      </li>
+    </ul>
+  </footer>,
+  <amp-user-notification
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "nausika nutzt Cookies in deinem Browser. Wir speichern darin allerlei Daten - aber keine Sorge, nichts Wildes. Mehr langweiliges bla bla über Cookies kannst du <a href=\\"/datenschutz/\\">hier lesen...</a> <button on=\\"tap:amp-user-notification1.dismiss\\"> Cookies finde ich ganz ok </button>",
+      }
+    }
+    id="amp-user-notification1"
+    layout="nodisplay"
+  />,
+]
+`;
+
+exports[`Storyshots Components Listing 1`] = `
+Array [
+  <h1
+    className="a b c d e f g h i j k l"
+  />,
+  <div>
+    <section>
+      <a
+        href="/undefined/darum-solltest-du-game-of-thrones-kaufen"
+      >
+        <div
+          className="m n o p q r s t u v"
+        >
+          <figure
+            className="w"
+          >
+            <amp-img
+              alt="Darum solltest Du Serien kaufen!"
+              attribution="Stefan Schreier"
+              class={undefined}
+              height={3}
+              layout="responsive"
+              src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-m.jpg?alt=media"
+              srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-s.jpg?alt=media 320w"
+              width={4}
+            />
+            <figcaption
+              className="x a y z a0 a1 a2 a3 a4"
+            >
+              Stefan Schreier
+            </figcaption>
+          </figure>
+          <h2
+            className="a5 a a6 a7 a8 a0 a9 a2 aa ab ac ad"
+          >
+            Raubkopierern gehört die digitale Hand abgehackt!
+          </h2>
+          <h3
+            className="ae a af a7 a8 a0 a2 ag ah l ac ai"
+          >
+            Darum solltest Du „Game Of Thrones“ & Co. kaufen statt illegal herunterzuladen!
+          </h3>
+        </div>
+      </a>
+    </section>
+    <section>
+      <a
+        href="/undefined/findet-dorie-rezension"
+      >
+        <div
+          className="m n o p q r s t u v"
+        >
+          <figure
+            className="w"
+          >
+            <amp-img
+              alt="you see nothing"
+              attribution=""
+              class={undefined}
+              height={3}
+              layout="responsive"
+              src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-m.jpg?alt=media"
+              srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-s.jpg?alt=media 320w"
+              width={4}
+            />
+            <figcaption
+              className="x a y z a0 a1 a2 a3 a4"
+            >
+              
+            </figcaption>
+          </figure>
+          <h2
+            className="a5 a a6 a7 a8 a0 a9 a2 aa ab ac ad"
+          >
+            Rezension - Findet Dorie
+          </h2>
+          <h3
+            className="ae a af a7 a8 a0 a2 ag ah l ac ai"
+          >
+            Frische Gedanken zum Film
+          </h3>
+        </div>
+      </a>
+    </section>
+    <section>
+      <a
+        href="/undefined/kritik-zu-tote-maedchen-luegen-nicht"
+      >
+        <div
+          className="m n o p q r s t u v"
+        >
+          <figure
+            className="w"
+          >
+            <amp-img
+              alt="Kritik Tote Mädchen lügen nicht"
+              attribution="unsplash.com / Xavier Sotomayor"
+              class={undefined}
+              height={3}
+              layout="responsive"
+              src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-m.jpg?alt=media"
+              srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-s.jpg?alt=media 320w"
+              width={4}
+            />
+            <figcaption
+              className="x a y z a0 a1 a2 a3 a4"
+            >
+              unsplash.com / Xavier Sotomayor
+            </figcaption>
+          </figure>
+          <h2
+            className="a5 a a6 a7 a8 a0 a9 a2 aa ab ac ad"
+          >
+            Kritik zu Tote Mädchen lügen nicht
+          </h2>
+          <h3
+            className="ae a af a7 a8 a0 a2 ag ah l ac ai"
+          >
+            Warum die Netflix-Serie schlecht und gleichzeitig großartig ist!
+          </h3>
+        </div>
+      </a>
+    </section>
+  </div>,
+]
+`;
+
+exports[`Storyshots Components Pager 1`] = `
+<div
+  className="a b c d e f g h i j k"
+>
+  <a
+    className="l h m n"
+  >
+    |
+    &lt;
+  </a>
+  <a
+    className="l h m n"
+  >
+    |
+    &lt;
+  </a>
+  1
+   von 
+  3
+  <a
+    className="l h o n"
+    href="/tv/2"
+  >
+    &gt;
+  </a>
+  <a
+    className="l h o n"
+    href="/tv/3"
+  >
+    &gt;
+    |
+  </a>
+</div>
+`;
+
+exports[`Storyshots Pages Portal 1`] = `
+Array [
+  <amp-sidebar
+    class="f g h i"
+    id="menu"
+    layout="nodisplay"
+  >
+    <nav>
+      <svg
+        className="a b c d e"
+      >
+        <use
+          xlinkHref="#nausika--logotext-use"
+        />
+      </svg>
+      <ul
+        className="j k l m n o"
+      >
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/"
+          >
+            Start
+          </a>
+        </li>
+        <hr />
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/tv"
+          >
+            Fernsehen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/essen"
+          >
+            Essen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/gefuehle"
+          >
+            Herz
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/lachen"
+          >
+            Lustig
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/musik"
+          >
+            Musik
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/studieren"
+          >
+            Studium
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/damals"
+          >
+            Nostalgie
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/gadgets"
+          >
+            Technologie
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/reise"
+          >
+            Reisen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/nachhaltig"
+          >
+            Natur
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/zukunft"
+          >
+            Zukunft
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/sex"
+          >
+            Sex
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/sport"
+          >
+            Sport
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/spiele"
+          >
+            Games
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </amp-sidebar>,
+  <amp-analytics
+    id="analytics1"
+    type="googleanalytics"
+  >
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "{\\"vars\\":{\\"account\\":\\"UA-75780658-1\\"},\\"triggers\\":{\\"trackPageview\\":{\\"on\\":\\"visible\\",\\"request\\":\\"pageview\\"}}}",
+        }
+      }
+      type="application/json"
+    />
+  </amp-analytics>,
+  <div
+    className="v w f x"
+  >
+    <svg
+      height="0"
+      version="1.1"
+      width="0"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <defs>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--facebook-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            facebook
+          </title>
+          <path
+            d="M608 192h160v-192h-160c-123.514 0-224 100.486-224 224v96h-128v192h128v512h192v-512h160l32-192h-192v-96c0-17.346 14.654-32 32-32z"
+          />
+        </symbol>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--whatsapp-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            whatsapp
+          </title>
+          <path
+            d="M873 148.8c-95.8-96-223.2-148.8-359-148.8-279.6 0-507.2 227.6-507.2 507.4 0 89.4 23.4 176.8 67.8 253.6l-72 263 269-70.6c74.2 40.4 157.6 61.8 242.4 61.8h0.2c0 0 0 0 0 0 279.6 0 507.4-227.6 507.4-507.4 0-135.6-52.8-263-148.6-359zM514.2 929.6v0c-75.8 0-150-20.4-214.8-58.8l-15.4-9.2-159.6 41.8 42.6-155.6-10-16c-42.4-67-64.6-144.6-64.6-224.4 0-232.6 189.2-421.8 422-421.8 112.6 0 218.6 44 298.2 123.6 79.6 79.8 123.4 185.6 123.4 298.4-0.2 232.8-189.4 422-421.8 422zM745.4 613.6c-12.6-6.4-75-37-86.6-41.2s-20-6.4-28.6 6.4c-8.4 12.6-32.8 41.2-40.2 49.8-7.4 8.4-14.8 9.6-27.4 3.2s-53.6-19.8-102-63c-37.6-33.6-63.2-75.2-70.6-87.8s-0.8-19.6 5.6-25.8c5.8-5.6 12.6-14.8 19-22.2s8.4-12.6 12.6-21.2c4.2-8.4 2.2-15.8-1-22.2s-28.6-68.8-39-94.2c-10.2-24.8-20.8-21.4-28.6-21.8-7.4-0.4-15.8-0.4-24.2-0.4s-22.2 3.2-33.8 15.8c-11.6 12.6-44.4 43.4-44.4 105.8s45.4 122.6 51.8 131.2c6.4 8.4 89.4 136.6 216.6 191.4 30.2 13 53.8 20.8 72.2 26.8 30.4 9.6 58 8.2 79.8 5 24.4-3.6 75-30.6 85.6-60.2s10.6-55 7.4-60.2c-3-5.6-11.4-8.8-24.2-15.2z"
+          />
+        </symbol>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--twitter-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            twitter
+          </title>
+          <path
+            d="M1024 226.4c-37.6 16.8-78.2 28-120.6 33 43.4-26 76.6-67.2 92.4-116.2-40.6 24-85.6 41.6-133.4 51-38.4-40.8-93-66.2-153.4-66.2-116 0-210 94-210 210 0 16.4 1.8 32.4 5.4 47.8-174.6-8.8-329.4-92.4-433-219.6-18 31-28.4 67.2-28.4 105.6 0 72.8 37 137.2 93.4 174.8-34.4-1-66.8-10.6-95.2-26.2 0 0.8 0 1.8 0 2.6 0 101.8 72.4 186.8 168.6 206-17.6 4.8-36.2 7.4-55.4 7.4-13.6 0-26.6-1.4-39.6-3.8 26.8 83.4 104.4 144.2 196.2 146-72 56.4-162.4 90-261 90-17 0-33.6-1-50.2-3 93.2 59.8 203.6 94.4 322.2 94.4 386.4 0 597.8-320.2 597.8-597.8 0-9.2-0.2-18.2-0.6-27.2 41-29.4 76.6-66.4 104.8-108.6z"
+          />
+        </symbol>
+        <symbol
+          className="c d"
+          id="nausika--logotext-use"
+          viewBox="0 0 157 86"
+        >
+          <title>
+            nausika
+          </title>
+          <path
+            d="M104.43 20.668c-.124 8.83-.242 16.688-.376 24.968-7.867 13.075-10.546 6.672-8.968-3.594.575-1.67-1.424-2.482-1.875-.812a49.234 49.234 0 0 0-.437 5c-1.607 3.157-4.497 7.21-8.564 6.982 1.597-.992 2.202-2.92 1.75-4.685.172-1.534-2.187-4.336-3.093-7.047.623-5.953-3.127-4.033-2.03.156-2.726 10.5-11.555 17.123-9.876 1.312.183-1.27-1.363-1.648-1.843-.53-.585 2.494-.244 5.574-1.313 7.53-.546 1.878-4.59 3.585-5.28.28-.533-2.716.315-5.11 1.687-7.217.774-.96-.494-2.33-1.406-1.374-.946 1.133-1.466 2.516-1.843 3.937-2.615 5.566-7.238 10.404-8.75 3.5.347-3.54-2.243-3.977-2.28-1.062-7.628 14.44-8.382-9.24 1.593-3.812.8.885 2.24-.417 1.438-1.313-3.282-3.562-8.208-1.153-10.03 2.625-12.53 17.314-5.29-2.968-9.476-3.33-3.498-2.08-7.418 7.104-8.706 9.346-.402-3.71 1.175-7.947.056-9.734-3.425-5.477-7.416 8.184-4.514 4.916 7.05-14.034-1.67 13.746 5.733 6.46.724-.715 1.76-4.323 4.05-7.21 7.792-10.324-3.633 19.15 12.203 4.6 1.234 6.927 6.075 4.777 8.466.484 2.15 5.684 7.54 2.86 9.812-.875 1.217 5.455 5.908 4.783 8.75.906 4.732 8.593 11.435-2.38 12.782-6.688 3.47 4.958 1.872 9.606-1.844 6.97-.67-.872-1.857.023-1.563 1 4.748 5.255 11.13 2.086 14.093-2.407 1.94 8.253 8.056 4.64 11.22-.375-.02 1.26-.045 2.383-.064 3.687-.44 1.614 2.418 2.253 2.863.575 2.016-15.97 13.086-10.97 4.824-5.418-8.423 5.66 5.652 9.908 10.344 1.906.355 2.405 2.293 3.93 4.032 3.937 2.04.022 3.72-1.985 4.704-3.41 1.922 5.98 8.62 2.714 8.077.692-.498-1.858-5.073 4.325-6.625-2.47.535-3.417-2.086-4.225-2.28-1.062-7.87 13.006-8.248-9.297 1.735-4.003.8.886 2.098-.227 1.295-1.122-3.16-3.372-8.31-1.104-10.03 2.594-2.998 5.906-8.28 10.05-12.117 5.38 8.982-2.585 6.317-12.76-.12-9.226-2.6 1.774-3.725 4.938-4.7 7.814.105-9.98.288-17.958.437-27.938-.174-1.77-1.26-1.98-1.938-.842zm-9.72 10.625c-.933-.05-1.904.44-2.28 1.343-.68 1.307.175 3.128 1.656 3.344 1.403.337 2.873-.868 2.812-2.312-.156-1.474-1.005-1.983-2.187-2.375zm-.25 1.5c.715.008.8.544 1 .875.01.837-1.21 1.203-1.656.468-.448-.696.082-1.25.657-1.343z"
+          />
+        </symbol>
+        <symbol
+          id="nausika--bubble-use"
+          viewBox="0 0 157 86"
+        >
+          <title>
+            nausika-bubbles
+          </title>
+          <path
+            className="a4 a5 a6 a7"
+            d="M82.973.714C55.417 1.59 25.126 9.5 7.566 32.184c-7.122 9.12-10.047 24.554-.062 32.75 12.354 9.138 28.724 9.52 43.464 11.504 19.646 2.386 39.453 2.03 59.16 1.14 7.98-.102 15.774 3.02 22.032 7.636 7.862 1.064 13.577-6.512 18.125-11.844 9.653-14.56 5.775-34.304-3.02-48.272C137.16 9.034 117.996 2.286 99.858 1.15 94.242.72 88.602.63 82.973.715z"
+          />
+          <path
+            className="a8 a9 aa"
+            d="M133.958 79.7c-6.795-7.32-20.047-8.543-31.69-7.988-10.753.284-21.79 1.622-32.228-.11-19.077-.877-39.5-1.77-55.642-9.145-8-3.53-9.05-13.093-5.528-20.356 4.944-10.755 15.752-20.373 28.923-25.68 21.823-9.58 45.645-11.762 69.753-8.242 17.197 2.4 31.184 11.71 36.794 23.77 3.608 7.543 5.29 15.686 5.595 23.844-.047 8.94-5.418 18.458-15.977 23.91z"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <header
+      className="v av aw ax ay az"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<div on=\\"tap:menu\\" role=\\"button\\" tabindex=\\"0\\" class=\\"ab ac ad ae af ag ah ai aj m ak al am\\"> <svg class=\\"an ao ap aq ar\\" viewBox=\\"0 0 250 250\\"> <path d=\\"M 0 0 L 0 45 L 250 45 L 250 0 L 0 0 z M 0 75 L 0 120 L 250 120 L 250 75 L 0 75 z M 0 150 L 0 195 L 250 195 L 250 150 L 0 150 z \\" /> </svg> </div> <div class=\\"as at\\"> <a href=\\"/\\"> <svg class=\\"a b au\\"> <use xlink:href=\\"#nausika--bubble-use\\" /> <use xlink:href=\\"#nausika--logotext-use\\" /> </svg> </a> </div>",
+        }
+      }
+    />
+    <main
+      className="b0 b1 b2 b3"
+      id="main"
+      role="main"
+    >
+      <div
+        className="v b4 ab b5"
+      >
+        <amp-ad
+          data-slot="/35289663/nausika.de_(Code)"
+          height={250}
+          type="doubleclick"
+          width={300}
+        />
+      </div>
+      <h1
+        className="b6 b7 c b8 b9 ba bb m bc bd be o"
+      >
+        Fernsehen
+      </h1>
+      <div>
+        <section>
+          <a
+            href="/tv/darum-solltest-du-game-of-thrones-kaufen"
+          >
+            <div
+              className="bf ab bg bh bi bj bk bl bm bn"
+            >
+              <figure
+                className="bo"
+              >
+                <amp-img
+                  alt="Darum solltest Du Serien kaufen!"
+                  attribution="Stefan Schreier"
+                  class={undefined}
+                  height={3}
+                  layout="responsive"
+                  src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-m.jpg?alt=media"
+                  srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-s.jpg?alt=media 320w"
+                  width={4}
+                />
+                <figcaption
+                  className="bp b6 bq br an bs bt bu bv"
+                >
+                  Stefan Schreier
+                </figcaption>
+              </figure>
+              <h2
+                className="bw b6 bx by bz an c0 bt c1 c2 c3 c4"
+              >
+                Raubkopierern gehört die digitale Hand abgehackt!
+              </h2>
+              <h3
+                className="c5 b6 c6 by bz an bt c7 c8 o c3 c9"
+              >
+                Darum solltest Du „Game Of Thrones“ & Co. kaufen statt illegal herunterzuladen!
+              </h3>
+            </div>
+          </a>
+        </section>
+        <section>
+          <a
+            href="/tv/findet-dorie-rezension"
+          >
+            <div
+              className="bf ab bg bh bi bj bk bl bm bn"
+            >
+              <figure
+                className="bo"
+              >
+                <amp-img
+                  alt="you see nothing"
+                  attribution=""
+                  class={undefined}
+                  height={3}
+                  layout="responsive"
+                  src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-m.jpg?alt=media"
+                  srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-s.jpg?alt=media 320w"
+                  width={4}
+                />
+                <figcaption
+                  className="bp b6 bq br an bs bt bu bv"
+                >
+                  
+                </figcaption>
+              </figure>
+              <h2
+                className="bw b6 bx by bz an c0 bt c1 c2 c3 c4"
+              >
+                Rezension - Findet Dorie
+              </h2>
+              <h3
+                className="c5 b6 c6 by bz an bt c7 c8 o c3 c9"
+              >
+                Frische Gedanken zum Film
+              </h3>
+            </div>
+          </a>
+        </section>
+        <section>
+          <a
+            href="/tv/kritik-zu-tote-maedchen-luegen-nicht"
+          >
+            <div
+              className="bf ab bg bh bi bj bk bl bm bn"
+            >
+              <figure
+                className="bo"
+              >
+                <amp-img
+                  alt="Kritik Tote Mädchen lügen nicht"
+                  attribution="unsplash.com / Xavier Sotomayor"
+                  class={undefined}
+                  height={3}
+                  layout="responsive"
+                  src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-m.jpg?alt=media"
+                  srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-s.jpg?alt=media 320w"
+                  width={4}
+                />
+                <figcaption
+                  className="bp b6 bq br an bs bt bu bv"
+                >
+                  unsplash.com / Xavier Sotomayor
+                </figcaption>
+              </figure>
+              <h2
+                className="bw b6 bx by bz an c0 bt c1 c2 c3 c4"
+              >
+                Kritik zu Tote Mädchen lügen nicht
+              </h2>
+              <h3
+                className="c5 b6 c6 by bz an bt c7 c8 o c3 c9"
+              >
+                Warum die Netflix-Serie schlecht und gleichzeitig großartig ist!
+              </h3>
+            </div>
+          </a>
+        </section>
+      </div>
+      <div
+        className="ca c b9 cb ba bb m bc bd be cc"
+      >
+        <a
+          className="cd bc ce cf"
+        >
+          |
+          &lt;
+        </a>
+        <a
+          className="cd bc ce cf"
+        >
+          |
+          &lt;
+        </a>
+        1
+         von 
+        3
+        <a
+          className="cd bc cg cf"
+          href="/tv/2"
+        >
+          &gt;
+        </a>
+        <a
+          className="cd bc cg cf"
+          href="/tv/3"
+        >
+          &gt;
+          |
+        </a>
+      </div>
+    </main>
+    <aside />
+    <footer>
+      <div
+        className="v w"
+      >
+        <a
+          href="#main"
+        >
+          <div
+            className="ch ci z cj ck"
+          >
+            <amp-img
+              alt="Gurl you know it's true, uh uh uh, I love you!"
+              attribution="All Rights Reserved"
+              height="3"
+              layout="responsive"
+              src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nausika-gurl.min.svg?alt=media"
+              width="3"
+            />
+          </div>
+        </a>
+        <a
+          href="#main"
+        >
+          <svg
+            className="d cl cm cn c co ck"
+          >
+            <use
+              xlinkHref="#nausika--logotext-use"
+            />
+          </svg>
+        </a>
+      </div>
+      <ul
+        className="v w cp cq cr cs ck ct b2 cu cv"
+      >
+        <li
+          className="cw"
+        >
+          <a
+            className="bc ca"
+            href="/impressum/"
+          >
+            Impressum
+          </a>
+        </li>
+        <li
+          className="cw"
+        >
+          <a
+            className="bc ca"
+            href="/datenschutz/"
+          >
+            Datenschutz
+          </a>
+        </li>
+        <li
+          className="cw"
+        >
+          <a
+            className="bc ca"
+            href="/agb/"
+          >
+            AGB
+          </a>
+        </li>
+        <li
+          className="cw"
+        >
+          <a
+            className="bc ca"
+            href="/rss/"
+          >
+            RSS
+          </a>
+        </li>
+        <li
+          className="cw"
+        >
+          <a
+            className="bc ca"
+            href="https://www.facebook.com/nausikade"
+          >
+            Facebook
+          </a>
+        </li>
+        <li
+          className="cw"
+        >
+          <a
+            className="bc ca"
+            href="https://www.twitter.com/nausikade"
+          >
+            Twitter
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <amp-user-notification
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "nausika nutzt Cookies in deinem Browser. Wir speichern darin allerlei Daten - aber keine Sorge, nichts Wildes. Mehr langweiliges bla bla über Cookies kannst du <a href=\\"/datenschutz/\\">hier lesen...</a> <button on=\\"tap:amp-user-notification1.dismiss\\"> Cookies finde ich ganz ok </button>",
+        }
+      }
+      id="amp-user-notification1"
+      layout="nodisplay"
+    />
+  </div>,
+]
+`;
+
+exports[`Storyshots Pages Publication 1`] = `
+Array [
+  <amp-sidebar
+    class="f g h i"
+    id="menu"
+    layout="nodisplay"
+  >
+    <nav>
+      <svg
+        className="a b c d e"
+      >
+        <use
+          xlinkHref="#nausika--logotext-use"
+        />
+      </svg>
+      <ul
+        className="j k l m n o"
+      >
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/"
+          >
+            Start
+          </a>
+        </li>
+        <hr />
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/tv"
+          >
+            Fernsehen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/essen"
+          >
+            Essen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/gefuehle"
+          >
+            Herz
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/lachen"
+          >
+            Lustig
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/musik"
+          >
+            Musik
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/studieren"
+          >
+            Studium
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/damals"
+          >
+            Nostalgie
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/gadgets"
+          >
+            Technologie
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/reise"
+          >
+            Reisen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/nachhaltig"
+          >
+            Natur
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/zukunft"
+          >
+            Zukunft
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/sex"
+          >
+            Sex
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/sport"
+          >
+            Sport
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/spiele"
+          >
+            Games
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </amp-sidebar>,
+  <amp-analytics
+    id="analytics1"
+    type="googleanalytics"
+  >
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "{\\"vars\\":{\\"account\\":\\"UA-75780658-1\\"},\\"triggers\\":{\\"trackPageview\\":{\\"on\\":\\"visible\\",\\"request\\":\\"pageview\\"}}}",
+        }
+      }
+      type="application/json"
+    />
+  </amp-analytics>,
+  <div
+    className="v w f x"
+  >
+    <svg
+      height="0"
+      version="1.1"
+      width="0"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <defs>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--facebook-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            facebook
+          </title>
+          <path
+            d="M608 192h160v-192h-160c-123.514 0-224 100.486-224 224v96h-128v192h128v512h192v-512h160l32-192h-192v-96c0-17.346 14.654-32 32-32z"
+          />
+        </symbol>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--whatsapp-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            whatsapp
+          </title>
+          <path
+            d="M873 148.8c-95.8-96-223.2-148.8-359-148.8-279.6 0-507.2 227.6-507.2 507.4 0 89.4 23.4 176.8 67.8 253.6l-72 263 269-70.6c74.2 40.4 157.6 61.8 242.4 61.8h0.2c0 0 0 0 0 0 279.6 0 507.4-227.6 507.4-507.4 0-135.6-52.8-263-148.6-359zM514.2 929.6v0c-75.8 0-150-20.4-214.8-58.8l-15.4-9.2-159.6 41.8 42.6-155.6-10-16c-42.4-67-64.6-144.6-64.6-224.4 0-232.6 189.2-421.8 422-421.8 112.6 0 218.6 44 298.2 123.6 79.6 79.8 123.4 185.6 123.4 298.4-0.2 232.8-189.4 422-421.8 422zM745.4 613.6c-12.6-6.4-75-37-86.6-41.2s-20-6.4-28.6 6.4c-8.4 12.6-32.8 41.2-40.2 49.8-7.4 8.4-14.8 9.6-27.4 3.2s-53.6-19.8-102-63c-37.6-33.6-63.2-75.2-70.6-87.8s-0.8-19.6 5.6-25.8c5.8-5.6 12.6-14.8 19-22.2s8.4-12.6 12.6-21.2c4.2-8.4 2.2-15.8-1-22.2s-28.6-68.8-39-94.2c-10.2-24.8-20.8-21.4-28.6-21.8-7.4-0.4-15.8-0.4-24.2-0.4s-22.2 3.2-33.8 15.8c-11.6 12.6-44.4 43.4-44.4 105.8s45.4 122.6 51.8 131.2c6.4 8.4 89.4 136.6 216.6 191.4 30.2 13 53.8 20.8 72.2 26.8 30.4 9.6 58 8.2 79.8 5 24.4-3.6 75-30.6 85.6-60.2s10.6-55 7.4-60.2c-3-5.6-11.4-8.8-24.2-15.2z"
+          />
+        </symbol>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--twitter-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            twitter
+          </title>
+          <path
+            d="M1024 226.4c-37.6 16.8-78.2 28-120.6 33 43.4-26 76.6-67.2 92.4-116.2-40.6 24-85.6 41.6-133.4 51-38.4-40.8-93-66.2-153.4-66.2-116 0-210 94-210 210 0 16.4 1.8 32.4 5.4 47.8-174.6-8.8-329.4-92.4-433-219.6-18 31-28.4 67.2-28.4 105.6 0 72.8 37 137.2 93.4 174.8-34.4-1-66.8-10.6-95.2-26.2 0 0.8 0 1.8 0 2.6 0 101.8 72.4 186.8 168.6 206-17.6 4.8-36.2 7.4-55.4 7.4-13.6 0-26.6-1.4-39.6-3.8 26.8 83.4 104.4 144.2 196.2 146-72 56.4-162.4 90-261 90-17 0-33.6-1-50.2-3 93.2 59.8 203.6 94.4 322.2 94.4 386.4 0 597.8-320.2 597.8-597.8 0-9.2-0.2-18.2-0.6-27.2 41-29.4 76.6-66.4 104.8-108.6z"
+          />
+        </symbol>
+        <symbol
+          className="c d"
+          id="nausika--logotext-use"
+          viewBox="0 0 157 86"
+        >
+          <title>
+            nausika
+          </title>
+          <path
+            d="M104.43 20.668c-.124 8.83-.242 16.688-.376 24.968-7.867 13.075-10.546 6.672-8.968-3.594.575-1.67-1.424-2.482-1.875-.812a49.234 49.234 0 0 0-.437 5c-1.607 3.157-4.497 7.21-8.564 6.982 1.597-.992 2.202-2.92 1.75-4.685.172-1.534-2.187-4.336-3.093-7.047.623-5.953-3.127-4.033-2.03.156-2.726 10.5-11.555 17.123-9.876 1.312.183-1.27-1.363-1.648-1.843-.53-.585 2.494-.244 5.574-1.313 7.53-.546 1.878-4.59 3.585-5.28.28-.533-2.716.315-5.11 1.687-7.217.774-.96-.494-2.33-1.406-1.374-.946 1.133-1.466 2.516-1.843 3.937-2.615 5.566-7.238 10.404-8.75 3.5.347-3.54-2.243-3.977-2.28-1.062-7.628 14.44-8.382-9.24 1.593-3.812.8.885 2.24-.417 1.438-1.313-3.282-3.562-8.208-1.153-10.03 2.625-12.53 17.314-5.29-2.968-9.476-3.33-3.498-2.08-7.418 7.104-8.706 9.346-.402-3.71 1.175-7.947.056-9.734-3.425-5.477-7.416 8.184-4.514 4.916 7.05-14.034-1.67 13.746 5.733 6.46.724-.715 1.76-4.323 4.05-7.21 7.792-10.324-3.633 19.15 12.203 4.6 1.234 6.927 6.075 4.777 8.466.484 2.15 5.684 7.54 2.86 9.812-.875 1.217 5.455 5.908 4.783 8.75.906 4.732 8.593 11.435-2.38 12.782-6.688 3.47 4.958 1.872 9.606-1.844 6.97-.67-.872-1.857.023-1.563 1 4.748 5.255 11.13 2.086 14.093-2.407 1.94 8.253 8.056 4.64 11.22-.375-.02 1.26-.045 2.383-.064 3.687-.44 1.614 2.418 2.253 2.863.575 2.016-15.97 13.086-10.97 4.824-5.418-8.423 5.66 5.652 9.908 10.344 1.906.355 2.405 2.293 3.93 4.032 3.937 2.04.022 3.72-1.985 4.704-3.41 1.922 5.98 8.62 2.714 8.077.692-.498-1.858-5.073 4.325-6.625-2.47.535-3.417-2.086-4.225-2.28-1.062-7.87 13.006-8.248-9.297 1.735-4.003.8.886 2.098-.227 1.295-1.122-3.16-3.372-8.31-1.104-10.03 2.594-2.998 5.906-8.28 10.05-12.117 5.38 8.982-2.585 6.317-12.76-.12-9.226-2.6 1.774-3.725 4.938-4.7 7.814.105-9.98.288-17.958.437-27.938-.174-1.77-1.26-1.98-1.938-.842zm-9.72 10.625c-.933-.05-1.904.44-2.28 1.343-.68 1.307.175 3.128 1.656 3.344 1.403.337 2.873-.868 2.812-2.312-.156-1.474-1.005-1.983-2.187-2.375zm-.25 1.5c.715.008.8.544 1 .875.01.837-1.21 1.203-1.656.468-.448-.696.082-1.25.657-1.343z"
+          />
+        </symbol>
+        <symbol
+          id="nausika--bubble-use"
+          viewBox="0 0 157 86"
+        >
+          <title>
+            nausika-bubbles
+          </title>
+          <path
+            className="a4 a5 a6 a7"
+            d="M82.973.714C55.417 1.59 25.126 9.5 7.566 32.184c-7.122 9.12-10.047 24.554-.062 32.75 12.354 9.138 28.724 9.52 43.464 11.504 19.646 2.386 39.453 2.03 59.16 1.14 7.98-.102 15.774 3.02 22.032 7.636 7.862 1.064 13.577-6.512 18.125-11.844 9.653-14.56 5.775-34.304-3.02-48.272C137.16 9.034 117.996 2.286 99.858 1.15 94.242.72 88.602.63 82.973.715z"
+          />
+          <path
+            className="a8 a9 aa"
+            d="M133.958 79.7c-6.795-7.32-20.047-8.543-31.69-7.988-10.753.284-21.79 1.622-32.228-.11-19.077-.877-39.5-1.77-55.642-9.145-8-3.53-9.05-13.093-5.528-20.356 4.944-10.755 15.752-20.373 28.923-25.68 21.823-9.58 45.645-11.762 69.753-8.242 17.197 2.4 31.184 11.71 36.794 23.77 3.608 7.543 5.29 15.686 5.595 23.844-.047 8.94-5.418 18.458-15.977 23.91z"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <header
+      className="v av aw ax ay az"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<div on=\\"tap:menu\\" role=\\"button\\" tabindex=\\"0\\" class=\\"ab ac ad ae af ag ah ai aj m ak al am\\"> <svg class=\\"an ao ap aq ar\\" viewBox=\\"0 0 250 250\\"> <path d=\\"M 0 0 L 0 45 L 250 45 L 250 0 L 0 0 z M 0 75 L 0 120 L 250 120 L 250 75 L 0 75 z M 0 150 L 0 195 L 250 195 L 250 150 L 0 150 z \\" /> </svg> </div> <div class=\\"as at\\"> <a href=\\"/\\"> <svg class=\\"a b au\\"> <use xlink:href=\\"#nausika--bubble-use\\" /> <use xlink:href=\\"#nausika--logotext-use\\" /> </svg> </a> </div>",
+        }
+      }
+    />
+    <main
+      className="b0 b1 b2 b3"
+      id="main"
+      role="main"
+    >
+      <figcaption
+        className="ab"
+      >
+        <amp-img
+          alt="test article cover"
+          attribution="Jon Doe"
+          class={undefined}
+          height={3}
+          layout="responsive"
+          src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/test-article-s.jpg?alt=media"
+          srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/test-article-l.jpg?alt=media 1280w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/test-article-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/test-article-s.jpg?alt=media 320w"
+          width={4}
+        />
+        <figcaption
+          className="b4 b5 b6 an b7 b8 b9 ba"
+        >
+          Jon Doe
+        </figcaption>
+      </figcaption>
+      <div
+        className="d bb bc ab bd be bf bg bh"
+      >
+        <p
+          className="bi bj bk"
+        >
+          <a
+            className="bl bj"
+            href="/"
+          >
+            Start
+          </a>
+           &gt; 
+          <a
+            className="bl bj"
+            href="/musik/"
+          >
+            Musik
+          </a>
+        </p>
+        <time
+          className="c bm bn bo"
+          dateTime="2016-10-25"
+        >
+          25. Oktober 2016
+        </time>
+        <h1
+          className="bi bn bp"
+        >
+          Article Headline!
+        </h1>
+        <h2
+          className="bq br bs bt bu o bv"
+        >
+          Test Article...
+        </h2>
+        <div
+          className="bw bx by d bz c0"
+        >
+          <amp-img
+            alt="test article cover"
+            attribution="Jon Doe"
+            class="c1 c2"
+            height={4}
+            layout="responsive"
+            src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/hund.jpg?alt=media"
+            width={4}
+          />
+        </div>
+        <span
+          className="c c3 m aw c4"
+        >
+          Hanni Hund
+        </span>
+      </div>
+      <div
+        className="v c5 c6 c7 ab c8 c9"
+      >
+        <a
+          className="bl"
+          href="https://facebook.com/sharer/sharer.php?u=https://nausika.de/musik/article-slug&title=Article%20Title"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="ca v cb c5 c6 cc"
+          >
+            <svg
+              className="y cd a0 a1 a2 a3"
+            >
+              <use
+                xlinkHref="#social-icon--facebook-use"
+              />
+            </svg>
+            <span
+              className="ce br cf cg c4 bv"
+            >
+              TEILEN
+            </span>
+          </div>
+        </a>
+        <a
+          className="bl"
+          data-action="share/whatsapp/share"
+          href="whatsapp://send?text=https://nausika.de/musik/article-slug Article%20Title"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="ca v cb c5 c6 ch ci"
+          >
+            <svg
+              className="y cd a0 a1 a2 a3"
+            >
+              <use
+                xlinkHref="#social-icon--whatsapp-use"
+              />
+            </svg>
+            <span
+              className="ce br cf cg c4 bv"
+              id="social-icon--whatsapp-text"
+            >
+              APPSEN
+            </span>
+          </div>
+        </a>
+        <a
+          className="bl"
+          href="https://twitter.com/intent/tweet?url=https://nausika.de/musik/article-slug&text=Article%20Title&via=nausika"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="ca v cb c5 c6 cj"
+          >
+            <svg
+              className="y cd a0 a1 a2 a3"
+            >
+              <use
+                xlinkHref="#social-icon--twitter-use"
+              />
+            </svg>
+            <span
+              className="ce br cf cg c4 bv"
+              id="social-icon--twitter-text"
+            >
+              TWEETEN
+            </span>
+          </div>
+        </a>
+      </div>
+      <div
+        className="v ck ab cl"
+      >
+        <amp-ad
+          data-slot="/35289663/nausika.de_(Code)"
+          height={250}
+          type="doubleclick"
+          width={300}
+        />
+      </div>
+      <article
+        className="ab"
+      >
+        <h2
+          className="bn cm cn"
+          id="1.-bob-dylan-–-knockin’-on-heaven’s-door"
+        >
+          1. Bob Dylan – Knockin’ On Heaven’s Door
+        </h2>
+        <p
+          className="co j cp cq cr cs ct cu cv cw cx"
+        >
+          First Song
+        </p>
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<div><amp-youtube data-videoid=\\"UtWhioqshtw\\" width=480 height=270 layout=\\"responsive\\"> </amp-youtube></div>
+
+
+",
+            }
+          }
+        />
+        <h2
+          className="bn cm cn"
+          id="1.-bob-dylan-–-knockin’-on-heaven’s-door-2.-bruce-springsteen-–-i’m-on-fire"
+        >
+          2. Bruce Springsteen – I’m On Fire
+        </h2>
+        <p
+          className="co j cp cq cr cs ct cu cv cw cx"
+        >
+          Second Song
+        </p>
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<div><amp-youtube data-videoid=\\"gntO-BadGk8\\" width=480 height=270 layout=\\"responsive\\"> </amp-youtube></div>
+
+
+",
+            }
+          }
+        />
+        <h2
+          className="bn cm cn"
+          id="1.-bob-dylan-–-knockin’-on-heaven’s-door-3.-nirvana-–-smells-like-teen-spirit"
+        >
+          3. Nirvana – Smells Like Teen Spirit
+        </h2>
+        <p
+          className="co j cp cq cr cs ct cu cv cw cx"
+        >
+          Third Song
+        </p>
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<div><amp-youtube data-videoid=\\"hTWKbfoikeg\\" width=480 height=270 layout=\\"responsive\\"> </amp-youtube></div>",
+            }
+          }
+        />
+      </article>
+      <div
+        className="v c5 c6 c7 ab c8 c9"
+      >
+        <a
+          className="bl"
+          href="https://facebook.com/sharer/sharer.php?u=https://nausika.de/musik/article-slug&title=Article%20Title"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="ca v cb c5 c6 cc"
+          >
+            <svg
+              className="y cd a0 a1 a2 a3"
+            >
+              <use
+                xlinkHref="#social-icon--facebook-use"
+              />
+            </svg>
+            <span
+              className="ce br cf cg c4 bv"
+            >
+              TEILEN
+            </span>
+          </div>
+        </a>
+        <a
+          className="bl"
+          data-action="share/whatsapp/share"
+          href="whatsapp://send?text=https://nausika.de/musik/article-slug Article%20Title"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="ca v cb c5 c6 ch ci"
+          >
+            <svg
+              className="y cd a0 a1 a2 a3"
+            >
+              <use
+                xlinkHref="#social-icon--whatsapp-use"
+              />
+            </svg>
+            <span
+              className="ce br cf cg c4 bv"
+              id="social-icon--whatsapp-text"
+            >
+              APPSEN
+            </span>
+          </div>
+        </a>
+        <a
+          className="bl"
+          href="https://twitter.com/intent/tweet?url=https://nausika.de/musik/article-slug&text=Article%20Title&via=nausika"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            className="ca v cb c5 c6 cj"
+          >
+            <svg
+              className="y cd a0 a1 a2 a3"
+            >
+              <use
+                xlinkHref="#social-icon--twitter-use"
+              />
+            </svg>
+            <span
+              className="ce br cf cg c4 bv"
+              id="social-icon--twitter-text"
+            >
+              TWEETEN
+            </span>
+          </div>
+        </a>
+      </div>
+    </main>
+    <aside />
+    <footer>
+      <div
+        className="v w"
+      >
+        <a
+          href="#main"
+        >
+          <div
+            className="cy cz z bz d0"
+          >
+            <amp-img
+              alt="Gurl you know it's true, uh uh uh, I love you!"
+              attribution="All Rights Reserved"
+              height="3"
+              layout="responsive"
+              src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nausika-gurl.min.svg?alt=media"
+              width="3"
+            />
+          </div>
+        </a>
+        <a
+          href="#main"
+        >
+          <svg
+            className="d d1 d2 d3 c d4 d0"
+          >
+            <use
+              xlinkHref="#nausika--logotext-use"
+            />
+          </svg>
+        </a>
+      </div>
+      <ul
+        className="v w d5 d6 d7 d8 d0 d9 b2 da db"
+      >
+        <li
+          className="dc"
+        >
+          <a
+            className="bl bn"
+            href="/impressum/"
+          >
+            Impressum
+          </a>
+        </li>
+        <li
+          className="dc"
+        >
+          <a
+            className="bl bn"
+            href="/datenschutz/"
+          >
+            Datenschutz
+          </a>
+        </li>
+        <li
+          className="dc"
+        >
+          <a
+            className="bl bn"
+            href="/agb/"
+          >
+            AGB
+          </a>
+        </li>
+        <li
+          className="dc"
+        >
+          <a
+            className="bl bn"
+            href="/rss/"
+          >
+            RSS
+          </a>
+        </li>
+        <li
+          className="dc"
+        >
+          <a
+            className="bl bn"
+            href="https://www.facebook.com/nausikade"
+          >
+            Facebook
+          </a>
+        </li>
+        <li
+          className="dc"
+        >
+          <a
+            className="bl bn"
+            href="https://www.twitter.com/nausikade"
+          >
+            Twitter
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <amp-user-notification
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "nausika nutzt Cookies in deinem Browser. Wir speichern darin allerlei Daten - aber keine Sorge, nichts Wildes. Mehr langweiliges bla bla über Cookies kannst du <a href=\\"/datenschutz/\\">hier lesen...</a> <button on=\\"tap:amp-user-notification1.dismiss\\"> Cookies finde ich ganz ok </button>",
+        }
+      }
+      id="amp-user-notification1"
+      layout="nodisplay"
+    />
+  </div>,
+]
+`;
+
+exports[`Storyshots Pages Start 1`] = `
+Array [
+  <amp-sidebar
+    class="f g h i"
+    id="menu"
+    layout="nodisplay"
+  >
+    <nav>
+      <svg
+        className="a b c d e"
+      >
+        <use
+          xlinkHref="#nausika--logotext-use"
+        />
+      </svg>
+      <ul
+        className="j k l m n o"
+      >
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/"
+          >
+            Start
+          </a>
+        </li>
+        <hr />
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/tv"
+          >
+            Fernsehen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/essen"
+          >
+            Essen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/gefuehle"
+          >
+            Herz
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/lachen"
+          >
+            Lustig
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/musik"
+          >
+            Musik
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/studieren"
+          >
+            Studium
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/damals"
+          >
+            Nostalgie
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/gadgets"
+          >
+            Technologie
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/reise"
+          >
+            Reisen
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/nachhaltig"
+          >
+            Natur
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/zukunft"
+          >
+            Zukunft
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/sex"
+          >
+            Sex
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/sport"
+          >
+            Sport
+          </a>
+        </li>
+        <li
+          className="p q r"
+        >
+          <a
+            className="s t u"
+            href="/spiele"
+          >
+            Games
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </amp-sidebar>,
+  <amp-analytics
+    id="analytics1"
+    type="googleanalytics"
+  >
+    <script
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "{\\"vars\\":{\\"account\\":\\"UA-75780658-1\\"},\\"triggers\\":{\\"trackPageview\\":{\\"on\\":\\"visible\\",\\"request\\":\\"pageview\\"}}}",
+        }
+      }
+      type="application/json"
+    />
+  </amp-analytics>,
+  <div
+    className="v w f x"
+  >
+    <svg
+      height="0"
+      version="1.1"
+      width="0"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <defs>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--facebook-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            facebook
+          </title>
+          <path
+            d="M608 192h160v-192h-160c-123.514 0-224 100.486-224 224v96h-128v192h128v512h192v-512h160l32-192h-192v-96c0-17.346 14.654-32 32-32z"
+          />
+        </symbol>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--whatsapp-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            whatsapp
+          </title>
+          <path
+            d="M873 148.8c-95.8-96-223.2-148.8-359-148.8-279.6 0-507.2 227.6-507.2 507.4 0 89.4 23.4 176.8 67.8 253.6l-72 263 269-70.6c74.2 40.4 157.6 61.8 242.4 61.8h0.2c0 0 0 0 0 0 279.6 0 507.4-227.6 507.4-507.4 0-135.6-52.8-263-148.6-359zM514.2 929.6v0c-75.8 0-150-20.4-214.8-58.8l-15.4-9.2-159.6 41.8 42.6-155.6-10-16c-42.4-67-64.6-144.6-64.6-224.4 0-232.6 189.2-421.8 422-421.8 112.6 0 218.6 44 298.2 123.6 79.6 79.8 123.4 185.6 123.4 298.4-0.2 232.8-189.4 422-421.8 422zM745.4 613.6c-12.6-6.4-75-37-86.6-41.2s-20-6.4-28.6 6.4c-8.4 12.6-32.8 41.2-40.2 49.8-7.4 8.4-14.8 9.6-27.4 3.2s-53.6-19.8-102-63c-37.6-33.6-63.2-75.2-70.6-87.8s-0.8-19.6 5.6-25.8c5.8-5.6 12.6-14.8 19-22.2s8.4-12.6 12.6-21.2c4.2-8.4 2.2-15.8-1-22.2s-28.6-68.8-39-94.2c-10.2-24.8-20.8-21.4-28.6-21.8-7.4-0.4-15.8-0.4-24.2-0.4s-22.2 3.2-33.8 15.8c-11.6 12.6-44.4 43.4-44.4 105.8s45.4 122.6 51.8 131.2c6.4 8.4 89.4 136.6 216.6 191.4 30.2 13 53.8 20.8 72.2 26.8 30.4 9.6 58 8.2 79.8 5 24.4-3.6 75-30.6 85.6-60.2s10.6-55 7.4-60.2c-3-5.6-11.4-8.8-24.2-15.2z"
+          />
+        </symbol>
+        <symbol
+          className="y z a0 a1 a2 a3"
+          id="social-icon--twitter-use"
+          viewBox="0 0 1024 1024"
+        >
+          <title>
+            twitter
+          </title>
+          <path
+            d="M1024 226.4c-37.6 16.8-78.2 28-120.6 33 43.4-26 76.6-67.2 92.4-116.2-40.6 24-85.6 41.6-133.4 51-38.4-40.8-93-66.2-153.4-66.2-116 0-210 94-210 210 0 16.4 1.8 32.4 5.4 47.8-174.6-8.8-329.4-92.4-433-219.6-18 31-28.4 67.2-28.4 105.6 0 72.8 37 137.2 93.4 174.8-34.4-1-66.8-10.6-95.2-26.2 0 0.8 0 1.8 0 2.6 0 101.8 72.4 186.8 168.6 206-17.6 4.8-36.2 7.4-55.4 7.4-13.6 0-26.6-1.4-39.6-3.8 26.8 83.4 104.4 144.2 196.2 146-72 56.4-162.4 90-261 90-17 0-33.6-1-50.2-3 93.2 59.8 203.6 94.4 322.2 94.4 386.4 0 597.8-320.2 597.8-597.8 0-9.2-0.2-18.2-0.6-27.2 41-29.4 76.6-66.4 104.8-108.6z"
+          />
+        </symbol>
+        <symbol
+          className="c d"
+          id="nausika--logotext-use"
+          viewBox="0 0 157 86"
+        >
+          <title>
+            nausika
+          </title>
+          <path
+            d="M104.43 20.668c-.124 8.83-.242 16.688-.376 24.968-7.867 13.075-10.546 6.672-8.968-3.594.575-1.67-1.424-2.482-1.875-.812a49.234 49.234 0 0 0-.437 5c-1.607 3.157-4.497 7.21-8.564 6.982 1.597-.992 2.202-2.92 1.75-4.685.172-1.534-2.187-4.336-3.093-7.047.623-5.953-3.127-4.033-2.03.156-2.726 10.5-11.555 17.123-9.876 1.312.183-1.27-1.363-1.648-1.843-.53-.585 2.494-.244 5.574-1.313 7.53-.546 1.878-4.59 3.585-5.28.28-.533-2.716.315-5.11 1.687-7.217.774-.96-.494-2.33-1.406-1.374-.946 1.133-1.466 2.516-1.843 3.937-2.615 5.566-7.238 10.404-8.75 3.5.347-3.54-2.243-3.977-2.28-1.062-7.628 14.44-8.382-9.24 1.593-3.812.8.885 2.24-.417 1.438-1.313-3.282-3.562-8.208-1.153-10.03 2.625-12.53 17.314-5.29-2.968-9.476-3.33-3.498-2.08-7.418 7.104-8.706 9.346-.402-3.71 1.175-7.947.056-9.734-3.425-5.477-7.416 8.184-4.514 4.916 7.05-14.034-1.67 13.746 5.733 6.46.724-.715 1.76-4.323 4.05-7.21 7.792-10.324-3.633 19.15 12.203 4.6 1.234 6.927 6.075 4.777 8.466.484 2.15 5.684 7.54 2.86 9.812-.875 1.217 5.455 5.908 4.783 8.75.906 4.732 8.593 11.435-2.38 12.782-6.688 3.47 4.958 1.872 9.606-1.844 6.97-.67-.872-1.857.023-1.563 1 4.748 5.255 11.13 2.086 14.093-2.407 1.94 8.253 8.056 4.64 11.22-.375-.02 1.26-.045 2.383-.064 3.687-.44 1.614 2.418 2.253 2.863.575 2.016-15.97 13.086-10.97 4.824-5.418-8.423 5.66 5.652 9.908 10.344 1.906.355 2.405 2.293 3.93 4.032 3.937 2.04.022 3.72-1.985 4.704-3.41 1.922 5.98 8.62 2.714 8.077.692-.498-1.858-5.073 4.325-6.625-2.47.535-3.417-2.086-4.225-2.28-1.062-7.87 13.006-8.248-9.297 1.735-4.003.8.886 2.098-.227 1.295-1.122-3.16-3.372-8.31-1.104-10.03 2.594-2.998 5.906-8.28 10.05-12.117 5.38 8.982-2.585 6.317-12.76-.12-9.226-2.6 1.774-3.725 4.938-4.7 7.814.105-9.98.288-17.958.437-27.938-.174-1.77-1.26-1.98-1.938-.842zm-9.72 10.625c-.933-.05-1.904.44-2.28 1.343-.68 1.307.175 3.128 1.656 3.344 1.403.337 2.873-.868 2.812-2.312-.156-1.474-1.005-1.983-2.187-2.375zm-.25 1.5c.715.008.8.544 1 .875.01.837-1.21 1.203-1.656.468-.448-.696.082-1.25.657-1.343z"
+          />
+        </symbol>
+        <symbol
+          id="nausika--bubble-use"
+          viewBox="0 0 157 86"
+        >
+          <title>
+            nausika-bubbles
+          </title>
+          <path
+            className="a4 a5 a6 a7"
+            d="M82.973.714C55.417 1.59 25.126 9.5 7.566 32.184c-7.122 9.12-10.047 24.554-.062 32.75 12.354 9.138 28.724 9.52 43.464 11.504 19.646 2.386 39.453 2.03 59.16 1.14 7.98-.102 15.774 3.02 22.032 7.636 7.862 1.064 13.577-6.512 18.125-11.844 9.653-14.56 5.775-34.304-3.02-48.272C137.16 9.034 117.996 2.286 99.858 1.15 94.242.72 88.602.63 82.973.715z"
+          />
+          <path
+            className="a8 a9 aa"
+            d="M133.958 79.7c-6.795-7.32-20.047-8.543-31.69-7.988-10.753.284-21.79 1.622-32.228-.11-19.077-.877-39.5-1.77-55.642-9.145-8-3.53-9.05-13.093-5.528-20.356 4.944-10.755 15.752-20.373 28.923-25.68 21.823-9.58 45.645-11.762 69.753-8.242 17.197 2.4 31.184 11.71 36.794 23.77 3.608 7.543 5.29 15.686 5.595 23.844-.047 8.94-5.418 18.458-15.977 23.91z"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <header
+      className="v av aw ax ay az"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<div on=\\"tap:menu\\" role=\\"button\\" tabindex=\\"0\\" class=\\"ab ac ad ae af ag ah ai aj m ak al am\\"> <svg class=\\"an ao ap aq ar\\" viewBox=\\"0 0 250 250\\"> <path d=\\"M 0 0 L 0 45 L 250 45 L 250 0 L 0 0 z M 0 75 L 0 120 L 250 120 L 250 75 L 0 75 z M 0 150 L 0 195 L 250 195 L 250 150 L 0 150 z \\" /> </svg> </div> <div class=\\"as at\\"> <a href=\\"/\\"> <svg class=\\"a b au\\"> <use xlink:href=\\"#nausika--bubble-use\\" /> <use xlink:href=\\"#nausika--logotext-use\\" /> </svg> </a> </div>",
+        }
+      }
+    />
+    <main
+      className="b0 b1 b2 b3"
+      id="main"
+      role="main"
+    >
+      <div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/tv"
+        >
+          Fernsehen
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/tv/darum-solltest-du-game-of-thrones-kaufen"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi bk"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Darum solltest Du Serien kaufen!"
+                    attribution="Stefan Schreier"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/darum-serien-kaufen-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Raubkopierern gehört die digitale Hand abgehackt!
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    Stefan Schreier
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/tv/findet-dorie-rezension"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi bk"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="you see nothing"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/mircoohl_findet_dorie-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Rezension - Findet Dorie
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/tv/kritik-zu-tote-maedchen-luegen-nicht"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi bk"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Kritik Tote Mädchen lügen nicht"
+                    attribution="unsplash.com / Xavier Sotomayor"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/tote-maedchen-luegen-nicht-160417-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Kritik zu Tote Mädchen lügen nicht
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    unsplash.com / Xavier Sotomayor
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/tv/la-la-land-rezension-vom-mut-zu-traeumen"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi bk"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Mia und Sebastian versuchen, in Los Angeles das große Glück zu finden."
+                    attribution="© Studiocanal"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/lalaland-1-20170125-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/lalaland-1-20170125-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/lalaland-1-20170125-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Vom Mut zu Träumen
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    © Studiocanal
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/tv/rezension-arrival-mit-ausserirdischen-sprechen"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi bk"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Die Linguistin Louise Banks (Amy Adams) nimmt im Raumschiff Kontakt zu den Außerirdischen auf."
+                    attribution="© Sony Pictures Releasing GmbH"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/arrival-2016-12-02-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/arrival-2016-12-02-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/arrival-2016-12-02-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Mit Außerirdischen sprechen
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    © Sony Pictures Releasing GmbH
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/essen"
+        >
+          Essen
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/essen/bestes-kaesekuchen-rezept"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c2"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="hier ist Käsekuchen zu sehen"
+                    attribution="Sabrina Kolba"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/bester-kaesekuchen-rezept-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/bester-kaesekuchen-rezept-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/bester-kaesekuchen-rezept-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Ultimatives Käsekuchenrezept
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    Sabrina Kolba
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/essen/sadfasdfasdfasdf"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c2"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="asdfasdf"
+                    attribution="asdfasdfadsf"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-s.?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    asdfasdfasdf
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    asdfasdfadsf
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/gefuehle"
+        >
+          Herz
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/gefuehle/asdfasdf"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c3"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="asdfasdf"
+                    attribution="asdfasdf"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.asdfadsf?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.asdfadsf?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-s.asdfadsf?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    sadf
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    asdfasdf
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/gefuehle/asdfasdfasdfasdf"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c3"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="asdf"
+                    attribution="asdfasdf"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-s.?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    asdfasdf
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    asdfasdf
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/gefuehle/hunde-wie-kinder-behandeln"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c3"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Hört endlich auf, euren Hund wie ein Kind zu behandeln!"
+                    attribution="unsplash.com / Simone Dalmeri"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161108_hund-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161108_hund-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161108_hund-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Hört endlich auf, euren Hund wie ein Kind zu behandeln!
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    unsplash.com / Simone Dalmeri
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/gefuehle/qwer-qwer-qwer-qwer"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c3"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="qwer"
+                    attribution="qwer"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-m.?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/-s.?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    qwer
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    qwer
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/gefuehle/vorteile-von-once-gegenueber-tinder"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c3"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Once im Vergleich zu Tinder"
+                    attribution="getonce.com / Pressebild"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161107_once_titel-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161107_once_titel-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161107_once_titel-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Meine Erfahrungen mit der Dating-App Once
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    getonce.com / Pressebild
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/lachen"
+        >
+          Lustig
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/lachen/erfolgreicher-als-jedes-katzenvideo"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c4"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Charly beißt in den Finger seines Bruders"
+                    attribution="CC BY 2.0 - Geoffrey Fairchild"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Charlie beißt in den Finger seines Bruders
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    CC BY 2.0 - Geoffrey Fairchild
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/musik"
+        >
+          Musik
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/musik/10-songs-die-du-gehoert-haben-musst-bevor-du-stirbst"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c5"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Schallplatten von Bob Marley und den Beatles"
+                    attribution="Kevin Baumann"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/schallplatten-bob-marley-the-beatles-20161027-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/schallplatten-bob-marley-the-beatles-20161027-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/schallplatten-bob-marley-the-beatles-20161027-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    10 Songs, die Du gehört haben musst, bevor Du stirbst!
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    Kevin Baumann
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/musik/besten-deutsch-rap-posse-cuts"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c5"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="TODO"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    TODO
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/musik/mega-man-retrospektive"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c5"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="TODO"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/charly-bit-my-finger-20161021-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    TODO
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/musik/qwer-qwer-qwer"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c5"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt=""
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/kassettenrekorder-20161124-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/kassettenrekorder-20161124-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/kassettenrekorder-20161124-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    qwerqwerqwe
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/studieren"
+        >
+          Studium
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/studieren/was-soll-ich-studieren"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c6"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Flow-Chart der dir der Auswahl deines Studiums hilft probieren"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/flow-chart-emoji-20161124-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/flow-chart-emoji-20161124-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/flow-chart-emoji-20161124-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    In fünf Minuten zum perfekten Studiengang
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/damals"
+        >
+          Nostalgie
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/damals/zeitreise-in-die-achtziger-jahre"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c7"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Kassetten"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/kassetten-20161124-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/kassetten-20161124-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/kassetten-20161124-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Das hattest du in den Achtzigern besser griffbereit
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/gadgets"
+        >
+          Technologie
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/gadgets/ueberlebst-du-wenn-eine-atombombe-explodiert"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c8"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Überlebst Du eine Atombombenexplosion in Deiner Stadt?"
+                    attribution="unsplash.com / Dawn Arnfield"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161111_explosion-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161111_explosion-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/161111_explosion-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Diese Karte zeigt Dir, ob Du eine Atombombe überlebst!
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    unsplash.com / Dawn Arnfield
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/gadgets/wie-urmenschen-das-smartphone-erfunden-haben"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c8"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt=""
+                    attribution="CC BY 2.0 -"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/platzhalter-m.png?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/platzhalter-m.png?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/platzhalter-s.png?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Handys sind primitive Technologie
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    CC BY 2.0 -
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/reise"
+        >
+          Reisen
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/reise/rundreise-durch-kalifornien-auf-pacific-coast-highway-one"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi c9"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Carmel by the Sea"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/carmel-by-the-sea-01-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/carmel-by-the-sea-01-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/carmel-by-the-sea-01-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Auf dieser Traumstraße Amerikas ist der Weg das Ziel
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/nachhaltig"
+        >
+          Natur
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/nachhaltig/honigdachse-sind-die-besseren-menschen"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi ca"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Ein Honigdachs, dem alles egal ist"
+                    attribution="CC BY 2.0 - Anup Shah"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/honey-badger-20160122-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/honey-badger-20160122-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/honey-badger-20160122-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Warum der Honigdachs ein cooles Tier ist
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    CC BY 2.0 - Anup Shah
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/zukunft"
+        >
+          Zukunft
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/zukunft/fashion-revolution-week-2017-who-made-my-clothes"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi cb"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Mehr Transparenz in der Fashionindustrie ist das Ziel der Fashion Revolution Week."
+                    attribution="Nina Noodt"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/fashion-revolution-week-2017-04-23-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/fashion-revolution-week-2017-04-23-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/fashion-revolution-week-2017-04-23-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Die Moderevolution
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    Nina Noodt
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/zukunft/gruselige-bilder-mit-deep-learning"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi cb"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Taj Mahal als Horrorvision per Deep Learning"
+                    attribution="CC BY-NC 2.0 Louis Vest"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/taj-mahal-horror-20161124-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/taj-mahal-horror-20161124-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/taj-mahal-horror-20161124-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    So sieht es aus, wenn ein Computer Alpträume hat
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    CC BY-NC 2.0 Louis Vest
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/zukunft/resistance-school-harvard-grabs-back"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi cb"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Der Widerstand gegen Trump wächst."
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/resistance-school-2017-04-04-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/resistance-school-2017-04-04-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/resistance-school-2017-04-04-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Wie man sich gegen Trump wehrt
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/sex"
+        >
+          Sex
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/sex/analsex-lieben-lernen"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi cc"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Po in sexy Lingerie"
+                    attribution="CC BY-NC-ND 2.0 Frederic Dewulf"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/analsex-lieben-lernen-20161102-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/analsex-lieben-lernen-20161102-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/analsex-lieben-lernen-20161102-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Analsex lieben lernen
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    CC BY-NC-ND 2.0 Frederic Dewulf
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/sport"
+        >
+          Sport
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/sport/groundhopping-fussball-stadion"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi cd"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Fußballstadion"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/groundblogging_2-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/groundblogging_2-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/groundblogging_2-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Da riecht es einfach nach Fußballgeschichte
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+          <section>
+            <a
+              href="/sport/voelkerball-ist-die-beste-sportart-der-welt"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi cd"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Völkerball"
+                    attribution=""
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/dodgeball-20160911-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/dodgeball-20160911-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/dodgeball-20160911-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Die beste Sportart der Welt
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+        <a
+          className="b4 c b5 b6 b7 b8 m b9 ba bb"
+          href="/spiele"
+        >
+          Games
+        </a>
+        <div
+          className="bc bd be bf bg bh bi"
+        >
+          <section>
+            <a
+              href="/spiele/nes-erfolgreicher-als-nintendo-switch"
+            >
+              <div
+                className="bj ab bc bd be bf bg bh bi bk"
+              >
+                <figure
+                  className="bl"
+                >
+                  <amp-img
+                    alt="Nintendo Classic Mini Nintendo Entertainment System -"
+                    attribution="Nintendo of Europe"
+                    class="bm"
+                    height={3}
+                    layout="responsive"
+                    src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nes-nintendo-classic-mini-nintendo-entertainment-system-20161112-m.jpg?alt=media"
+                    srcset="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nes-nintendo-classic-mini-nintendo-entertainment-system-20161112-m.jpg?alt=media 640w, https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nes-nintendo-classic-mini-nintendo-entertainment-system-20161112-s.jpg?alt=media 320w"
+                    width={4}
+                  />
+                  <h1
+                    className="bn bo bp bq br an bs bt bu bv"
+                  >
+                    Die beste Konsole ALLER Zeiten
+                  </h1>
+                  <figcaption
+                    className="bw bo bx by an bz bt c0 c1"
+                  >
+                    Nintendo of Europe
+                  </figcaption>
+                </figure>
+              </div>
+            </a>
+          </section>
+        </div>
+      </div>
+    </main>
+    <aside />
+    <footer>
+      <div
+        className="v w"
+      >
+        <a
+          href="#main"
+        >
+          <div
+            className="ce cf z cg ch"
+          >
+            <amp-img
+              alt="Gurl you know it's true, uh uh uh, I love you!"
+              attribution="All Rights Reserved"
+              height="3"
+              layout="responsive"
+              src="https://firebasestorage.googleapis.com/v0/b/nausika-5918e.appspot.com/o/nausika-gurl.min.svg?alt=media"
+              width="3"
+            />
+          </div>
+        </a>
+        <a
+          href="#main"
+        >
+          <svg
+            className="d ci cj ck c cl ch"
+          >
+            <use
+              xlinkHref="#nausika--logotext-use"
+            />
+          </svg>
+        </a>
+      </div>
+      <ul
+        className="v w cm cn co cp ch cq b2 cr cs"
+      >
+        <li
+          className="ct"
+        >
+          <a
+            className="b9 b4"
+            href="/impressum/"
+          >
+            Impressum
+          </a>
+        </li>
+        <li
+          className="ct"
+        >
+          <a
+            className="b9 b4"
+            href="/datenschutz/"
+          >
+            Datenschutz
+          </a>
+        </li>
+        <li
+          className="ct"
+        >
+          <a
+            className="b9 b4"
+            href="/agb/"
+          >
+            AGB
+          </a>
+        </li>
+        <li
+          className="ct"
+        >
+          <a
+            className="b9 b4"
+            href="/rss/"
+          >
+            RSS
+          </a>
+        </li>
+        <li
+          className="ct"
+        >
+          <a
+            className="b9 b4"
+            href="https://www.facebook.com/nausikade"
+          >
+            Facebook
+          </a>
+        </li>
+        <li
+          className="ct"
+        >
+          <a
+            className="b9 b4"
+            href="https://www.twitter.com/nausikade"
+          >
+            Twitter
+          </a>
+        </li>
+      </ul>
+    </footer>
+    <amp-user-notification
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "nausika nutzt Cookies in deinem Browser. Wir speichern darin allerlei Daten - aber keine Sorge, nichts Wildes. Mehr langweiliges bla bla über Cookies kannst du <a href=\\"/datenschutz/\\">hier lesen...</a> <button on=\\"tap:amp-user-notification1.dismiss\\"> Cookies finde ich ganz ok </button>",
+        }
+      }
+      id="amp-user-notification1"
+      layout="nodisplay"
+    />
+  </div>,
+]
+`;

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@google-cloud/storage": "^1.2.1",
+    "firebase-admin": "^5.0.0",
+    "gray-matter": "^2.1.1"
+  }
+}

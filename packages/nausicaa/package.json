@@ -1,0 +1,55 @@
+{
+  "name": "nausicaa",
+  "version": "0.0.14",
+  "description": "",
+  "main": "dist/index.js",
+  "dependencies": {
+    "common-tags": "^1.4.0",
+    "marksy": "^6.0.3",
+    "moment": "^2.21.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "styletron-react": "^3.0.4",
+    "styletron-server": "^3.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
+    "@babel/preset-es2015": "^7.0.0-beta.46",
+    "@babel/preset-react": "^7.0.0-beta.46",
+    "@storybook/addon-actions": "^3.4.3",
+    "@storybook/addon-info": "^3.4.3",
+    "@storybook/addon-links": "^3.4.3",
+    "@storybook/addon-storyshots": "^3.4.3",
+    "@storybook/addons": "^3.4.3",
+    "@storybook/react": "^3.4.3",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.47.1",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.8.2",
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.0"
+  },
+  "scripts": {
+    "prepare": "babel src -d dist",
+    "test": "jest",
+    "storybook": "start-storybook -p 3000",
+    "build-storybook": "build-storybook"
+  },
+  "jest": {
+    "rootDir": "src/",
+    "testPathIgnorePatterns": ["/__tests__/fixtures/"]
+  },
+  "files": ["dist"],
+  "author": "accosine",
+  "contributors": [
+    "Simon Bugert <simon.bugert@gmail.com>",
+    "Duncan Kolba <duncankolba@gmail.com>"
+  ],
+  "license": "BSD-2-Clause"
+}

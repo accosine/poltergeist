@@ -1,0 +1,16 @@
+{
+  "name": "@poltergeist/ectoplasm",
+  "version": "0.0.1",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "firebase-admin": "^5.11.0"
+  },
+  "author": "accosine",
+  "contributors": [
+    "Simon Bugert <simon.bugert@gmail.com>",
+    "Duncan Kolba <duncankolba@gmail.com>"
+  ],
+  "license": "BSD-2-Clause"
+}
