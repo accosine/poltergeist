@@ -1,6 +1,6 @@
 {
   "name": "@poltergeist/clairvoyance",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "@firebase/app": "^0.1.10",
     "@firebase/auth": "^0.3.4",

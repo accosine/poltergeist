@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
 const { join, resolve } = require('path');
-const { renameSync, copyFileSync, realpathSync } = require('fs');
-const { emptyDirSync, removeSync, copySync } = require('fs-extra');
+const {
+  renameSync,
+  copySync,
+  realpathSync,
+  emptyDirSync,
+  removeSync,
+} = require('fs-extra');
 const spawn = require('cross-spawn').sync;
 
 const args = process.argv.slice(2);
@@ -13,11 +18,11 @@ const resolveOwn = relativePath => resolve(__dirname, '..', relativePath);
 const prepareApp = cmd => {
   removeSync(resolveOwn('.poltergeist'));
   copySync(resolveOwn('.'), resolveApp('.poltergeist/'));
-  copyFileSync(
+  copySync(
     resolveApp('config.json'),
     resolveApp('.poltergeist/src/config.json')
   );
-  copyFileSync(resolveApp('.env'), resolveApp('.poltergeist/.env'));
+  copySync(resolveApp('.env'), resolveApp('.poltergeist/.env'));
   spawn('npm', ['--prefix', join(appDirectory, '.poltergeist'), 'run', cmd], {
     stdio: 'inherit',
   });

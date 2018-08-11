@@ -13,7 +13,7 @@ import { ConfigProvider } from './util/ConfigContext';
 import MarkdownComponents from './components/MarkdownComponents';
 import getAmpScripts from './util/getAmpScripts';
 
-import theme from './theme.js';
+import colors from './colors.js';
 
 const initializeStyletron = () => {
   const styletron = new StyletronServer();
@@ -36,7 +36,7 @@ const Layout = ({ styles, body, frontmatter, kind, ampScripts, config }) => {
       styles={styles}
       ampScripts={ampScripts}
       kind={kind}
-      theme={theme}
+      theme={colors}
     />
   );
 };
@@ -56,7 +56,7 @@ const article = (config, plugins) => ({ content, ...frontmatter }) => {
 
   const body = ReactDOMServer.renderToStaticMarkup(
     <StyletronProvider value={styletron}>
-      <ThemeProvider value={theme}>
+      <ThemeProvider value={colors}>
         <ConfigProvider value={config}>
           <Text
             styletron={styletron}
@@ -98,7 +98,7 @@ const page = (config, plugins) => ({ content, ...frontmatter }) => {
 
   const body = ReactDOMServer.renderToStaticMarkup(
     <StyletronProvider value={styletron}>
-      <ThemeProvider value={theme}>
+      <ThemeProvider value={colors}>
         <ConfigProvider value={config}>
           <Text
             styletron={styletron}
@@ -130,7 +130,7 @@ const portal = config => ({ articles, frontmatter }) => {
 
   const body = ReactDOMServer.renderToStaticMarkup(
     <StyletronProvider value={styletron}>
-      <ThemeProvider value={theme}>
+      <ThemeProvider value={colors}>
         <ConfigProvider value={config}>
           <Portal
             styletron={styletron}
@@ -161,7 +161,7 @@ const start = config => ({ articles, frontmatter }) => {
 
   const body = ReactDOMServer.renderToStaticMarkup(
     <StyletronProvider value={styletron}>
-      <ThemeProvider value={theme}>
+      <ThemeProvider value={colors}>
         <ConfigProvider value={config}>
           <Start
             styletron={styletron}
