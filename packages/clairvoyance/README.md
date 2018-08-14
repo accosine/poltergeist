@@ -1,10 +1,12 @@
-clairvoyance
-============
+# Clairvoyance
 
-# Configuration
-Editor config = config.json
-Function config = .runtimeconf.json
+The backend Firebase app of the Poltergeist web publishing system for managing articles and pages. Includes a split screen content editor with preview for AMP pages and a simple media manager.The preview can be injected with third party website themes from npm or local (proprietary) ones.
 
-Config instatiation = config.js
+## Tech
 
-
+* markdown
+* AMP
+* React
+* React Router
+* Material UI
+* Firebase

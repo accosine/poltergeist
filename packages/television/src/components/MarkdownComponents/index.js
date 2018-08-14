@@ -123,7 +123,7 @@ const BlockP = withTheme(
   }))
 );
 
-const Blockquote = ({ $context: { collection }, children }) => (
+const Blockquote = ({ context: { collection }, children }) => (
   <Block $collection={collection}>
     <BlockP>{children[1].props.children}</BlockP>
   </Block>
