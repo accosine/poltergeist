@@ -7,9 +7,9 @@ const program = require("commander");
 // Check whether config.json exists
 // If config.json exists, import it
 // Ask which categories in .runtimeconfig.json should be imported
-// Ask which new categories (names) should be created
-// Ask for the slug for each category
-// Add name/slug objects to .runtimeconfig.json
+//   - Ask which new categories (names) should be created
+//   - Ask for the slug for each category
+//   - Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
 const bootstrap = () => {
     // ask for the name of the new project

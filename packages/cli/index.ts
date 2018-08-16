@@ -7,9 +7,9 @@ import * as inquirer from 'inquirer';
 // Check whether config.json exists
 // If config.json exists, import it
 // Ask which categories in .runtimeconfig.json should be imported
-  // Ask which new categories (names) should be created
-  // Ask for the slug for each category
-  // Add name/slug objects to .runtimeconfig.json
+//   - Ask which new categories (names) should be created
+//   - Ask for the slug for each category
+//   - Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
 
 const bootstrap = () => {
@@ -21,8 +21,8 @@ const bootstrap = () => {
   // - database.rules.json
   // - firestore.indexes.json
   // - storage.rules
-  console.log('  - now bootstrapping 👢 🎀')
-}
+  console.log('  - now bootstrapping 👢 🎀');
+};
 
 const configure = () => {
   // check if this folder contains an already bootstrapped project
@@ -30,8 +30,8 @@ const configure = () => {
   // validate config.json
   // ask if config should be modified
   // walk config tree and ask questions
-  console.log('  - now configuring 👩🏿‍🎓')
-}
+  console.log('  - now configuring 👩🏿‍🎓');
+};
 
 program
   .version('0.0.0', '-v, --version')
@@ -43,16 +43,15 @@ console.log("Gettin' spooky 👻  with poltergeist:");
 if (program.bootstrap) bootstrap();
 if (program.configure) configure();
 
-
 // const OUTPUT = require('./config.json');
 
 // TODO
 // Check whether config.json exists
 // If .runtimeconfig.json exists, import it
 // Ask which categories in .runtimeconfig.json should be imported
-  // Ask which new categories (names) should be created
-  // Ask for the slug for each category
-  // Add name/slug objects to .runtimeconfig.json
+// Ask which new categories (names) should be created
+// Ask for the slug for each category
+// Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
 //
 
