@@ -1,55 +1,61 @@
 #!/usr/bin/env node
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const program = require("commander");
+import * as program from 'commander';
+import * as inquirer from 'inquirer';
+
 // TODO
 // bootstrap:
 // Check whether config.json exists
 // If config.json exists, import it
 // Ask which categories in .runtimeconfig.json should be imported
-// Ask which new categories (names) should be created
-// Ask for the slug for each category
-// Add name/slug objects to .runtimeconfig.json
+  // Ask which new categories (names) should be created
+  // Ask for the slug for each category
+  // Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
+
 const bootstrap = () => {
-    // ask for the name of the new project
-    // create the following files from templates:
-    // - package.json
-    // - firebase.json
-    // - firestore.rules
-    // - database.rules.json
-    // - firestore.indexes.json
-    // - storage.rules
-    console.log('  - now bootstrapping 👢 🎀');
-};
+  // ask for the name of the new project
+  // create the following files from templates:
+  // - package.json
+  // - firebase.json
+  // - firestore.rules
+  // - database.rules.json
+  // - firestore.indexes.json
+  // - storage.rules
+  console.log('  - now bootstrapping 👢 🎀')
+}
+
 const configure = () => {
-    // check if this folder contains an already bootstrapped project
-    // check if config.json exists
-    // validate config.json
-    // ask if config should be modified
-    // walk config tree and ask questions
-    console.log('  - now configuring 👩🏿‍🎓');
-};
+  // check if this folder contains an already bootstrapped project
+  // check if config.json exists
+  // validate config.json
+  // ask if config should be modified
+  // walk config tree and ask questions
+  console.log('  - now configuring 👩🏿‍🎓')
+}
+
 program
-    .version('0.0.0', '-v, --version')
-    .option('-b, --bootstrap', 'bootstrap project')
-    .option('-c, --configure', 'configure project')
-    .parse(process.argv);
+  .version('0.0.0', '-v, --version')
+  .option('-b, --bootstrap', 'bootstrap project')
+  .option('-c, --configure', 'configure project')
+  .parse(process.argv);
+
 console.log("Gettin' spooky 👻  with poltergeist:");
-if (program.bootstrap)
-    bootstrap();
-if (program.configure)
-    configure();
+if (program.bootstrap) bootstrap();
+if (program.configure) configure();
+
+
 // const OUTPUT = require('./config.json');
+
 // TODO
 // Check whether config.json exists
 // If .runtimeconfig.json exists, import it
 // Ask which categories in .runtimeconfig.json should be imported
-// Ask which new categories (names) should be created
-// Ask for the slug for each category
-// Add name/slug objects to .runtimeconfig.json
+  // Ask which new categories (names) should be created
+  // Ask for the slug for each category
+  // Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
 //
+
 // const INITIALIZECONFIG = (output, key) => {
 //   //Check whether
 //   output[key] =
@@ -117,4 +123,3 @@ if (program.configure)
 // };
 //
 // START(OUTPUT, CREATEMENU);
-//# sourceMappingURL=index.js.map

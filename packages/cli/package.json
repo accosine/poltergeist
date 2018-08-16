@@ -1,29 +1,34 @@
 {
-  "name": "odysseus",
+  "name": "poltergeist",
   "version": "0.0.0",
-  "description": "A CLI for firebase projects",
+  "description": "The Poltergeist CLI",
   "main": "index.js",
   "bin": {
-    "odysseus": "index.js"
+    "poltergeist": "index.js"
   },
   "dependencies": {
-    "commander": "^2.11.0",
-    "inquirer": "^3.2.2"
+    "commander": "^2.17.1",
+    "inquirer": "^6.1.0"
   },
   "devDependencies": {
-    "jest": "^21.2.1"
+    "@types/node": "^10.7.0",
+    "jest": "^23.5.0",
+    "typescript": "^3.0.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/accosine/odysseus.git"
+    "url": "git+https://github.com/accosine/poltergeist.git"
   },
   "keywords": [
     "CLI",
     "scaffold",
     "scaffolder",
+    "poltergeist",
     "firebase"
   ],
   "author": "accosine",
@@ -33,7 +38,7 @@
   ],
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/accosine/odysseus/issues"
+    "url": "https://github.com/accosine/poltergeist/issues"
   },
-  "homepage": "https://github.com/accosine/odysseus#readme"
+  "homepage": "https://github.com/accosine/poltergeist#readme"
 }
