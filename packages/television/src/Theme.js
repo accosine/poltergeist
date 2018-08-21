@@ -26,7 +26,7 @@ const compile = marksy({
 });
 
 const html = (head, body) =>
-  `<!doctype html><html ⚡ lang="de">${head}${body}</html>`;
+  `<!doctype html><html ⚡ lang="en">${head}${body}</html>`;
 
 const Layout = ({ styles, body, frontmatter, kind, ampScripts, config }) => {
   return (

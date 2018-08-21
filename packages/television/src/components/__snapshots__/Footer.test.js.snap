@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link changes the class when hovered 1`] = `
+Array [
+  <footer>
+    <div
+      data-style={
+        Object {
+          "display": "flex",
+          "flexDirection": "column",
+        }
+      }
+    >
+      <a
+        href="#main"
+      >
+        <svg
+          data-style={
+            Object {
+              "@media screen and (min-width: 1024px)": Object {
+                "height": "inherit",
+                "width": "22vw",
+              },
+              "display": "block",
+              "fill": "#333333",
+              "height": "26vw",
+              "margin": "0 auto",
+              "padding": "0 0 2vw 1vw",
+              "width": "54vw",
+            }
+          }
+          data-styleprop-theme={
+            Object {
+              "black": "#000000",
+              "collection": [Function],
+              "email": "rgb(211, 76, 66)",
+              "facebook": "#3C3CDE",
+              "github": "#24292e",
+              "gradientrotation": "135deg",
+              "grey": Object {
+                "100": "#F9FAFB",
+                "200": "#f1f1f1",
+                "400": "#C1C1C1",
+                "500": "#969696",
+                "700": "#585252",
+                "900": "#333333",
+              },
+              "instagram": "url(#instagram-gradient)",
+              "primary": "#FF6500",
+              "snapchat": "#fffc00",
+              "transparent": "rgba(255, 255, 255, 0)",
+              "transparentwhite": "rgba(255,255,255,0.64)",
+              "twitter": "#8FD6EC",
+              "whatsapp": "#06C34B",
+              "white": "#fff",
+            }
+          }
+        >
+          <use
+            xlinkHref="#biglogo"
+          />
+        </svg>
+      </a>
+    </div>
+    <ul
+      data-style={
+        Object {
+          "@media screen and (min-width: 1024px)": Object {
+            "flexDirection": "row",
+            "height": "inherit",
+            "justifyContent": "space-between",
+            "padding": "5vw 0 5vw 0",
+            "width": "50vw",
+          },
+          "display": "flex",
+          "flexDirection": "column",
+          "flexWrap": "wrap",
+          "height": "40vw",
+          "listStyleType": "none",
+          "padding": "5vw",
+        }
+      }
+    >
+      <li
+        data-style={
+          Object {
+            "paddingBottom": "3vw",
+          }
+        }
+      >
+        <a
+          data-style={
+            Object {
+              "color": "#585252",
+              "textDecoration": "none",
+            }
+          }
+          data-styleprop-theme={
+            Object {
+              "black": "#000000",
+              "collection": [Function],
+              "email": "rgb(211, 76, 66)",
+              "facebook": "#3C3CDE",
+              "github": "#24292e",
+              "gradientrotation": "135deg",
+              "grey": Object {
+                "100": "#F9FAFB",
+                "200": "#f1f1f1",
+                "400": "#C1C1C1",
+                "500": "#969696",
+                "700": "#585252",
+                "900": "#333333",
+              },
+              "instagram": "url(#instagram-gradient)",
+              "primary": "#FF6500",
+              "snapchat": "#fffc00",
+              "transparent": "rgba(255, 255, 255, 0)",
+              "transparentwhite": "rgba(255,255,255,0.64)",
+              "twitter": "#8FD6EC",
+              "whatsapp": "#06C34B",
+              "white": "#fff",
+            }
+          }
+          href="/imprint"
+        >
+          Imprint
+        </a>
+      </li>
+      <li
+        data-style={
+          Object {
+            "paddingBottom": "3vw",
+          }
+        }
+      >
+        <a
+          data-style={
+            Object {
+              "color": "#585252",
+              "textDecoration": "none",
+            }
+          }
+          data-styleprop-theme={
+            Object {
+              "black": "#000000",
+              "collection": [Function],
+              "email": "rgb(211, 76, 66)",
+              "facebook": "#3C3CDE",
+              "github": "#24292e",
+              "gradientrotation": "135deg",
+              "grey": Object {
+                "100": "#F9FAFB",
+                "200": "#f1f1f1",
+                "400": "#C1C1C1",
+                "500": "#969696",
+                "700": "#585252",
+                "900": "#333333",
+              },
+              "instagram": "url(#instagram-gradient)",
+              "primary": "#FF6500",
+              "snapchat": "#fffc00",
+              "transparent": "rgba(255, 255, 255, 0)",
+              "transparentwhite": "rgba(255,255,255,0.64)",
+              "twitter": "#8FD6EC",
+              "whatsapp": "#06C34B",
+              "white": "#fff",
+            }
+          }
+          href="/privacypolicy"
+        >
+          Privacy
+        </a>
+      </li>
+      <li
+        data-style={
+          Object {
+            "paddingBottom": "3vw",
+          }
+        }
+      >
+        <a
+          data-style={
+            Object {
+              "color": "#585252",
+              "textDecoration": "none",
+            }
+          }
+          data-styleprop-theme={
+            Object {
+              "black": "#000000",
+              "collection": [Function],
+              "email": "rgb(211, 76, 66)",
+              "facebook": "#3C3CDE",
+              "github": "#24292e",
+              "gradientrotation": "135deg",
+              "grey": Object {
+                "100": "#F9FAFB",
+                "200": "#f1f1f1",
+                "400": "#C1C1C1",
+                "500": "#969696",
+                "700": "#585252",
+                "900": "#333333",
+              },
+              "instagram": "url(#instagram-gradient)",
+              "primary": "#FF6500",
+              "snapchat": "#fffc00",
+              "transparent": "rgba(255, 255, 255, 0)",
+              "transparentwhite": "rgba(255,255,255,0.64)",
+              "twitter": "#8FD6EC",
+              "whatsapp": "#06C34B",
+              "white": "#fff",
+            }
+          }
+          href="mailto:yo@example.com"
+          target="_blank"
+        >
+          Email
+        </a>
+      </li>
+    </ul>
+  </footer>,
+  <amp-user-notification
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p> Let's have a cookie! They are not only delicious, they help us analyzing how you use this website. We use them so store some data in them (but not too much). Don't be afraid, we won't give this data to anyone (promise 🤞). If you like to read really boring stuff you can read all about it in <a href=\\"/privacypolicy\\">our privacy policy here...</a> </p> <button class=\\"ae af ag ah\\" on=\\"tap:amp-user-notification1.dismiss\\"> Yay cookies, nom nom nom </button>",
+      }
+    }
+    data-style={
+      Object {
+        "backgroundColor": "#f1f1f1",
+        "padding": "1vw",
+        "textAlign": "center",
+      }
+    }
+    data-styleprop-theme={
+      Object {
+        "black": "#000000",
+        "collection": [Function],
+        "email": "rgb(211, 76, 66)",
+        "facebook": "#3C3CDE",
+        "github": "#24292e",
+        "gradientrotation": "135deg",
+        "grey": Object {
+          "100": "#F9FAFB",
+          "200": "#f1f1f1",
+          "400": "#C1C1C1",
+          "500": "#969696",
+          "700": "#585252",
+          "900": "#333333",
+        },
+        "instagram": "url(#instagram-gradient)",
+        "primary": "#FF6500",
+        "snapchat": "#fffc00",
+        "transparent": "rgba(255, 255, 255, 0)",
+        "transparentwhite": "rgba(255,255,255,0.64)",
+        "twitter": "#8FD6EC",
+        "whatsapp": "#06C34B",
+        "white": "#fff",
+      }
+    }
+    id="amp-user-notification1"
+    layout="nodisplay"
+  />,
+]
+`;
