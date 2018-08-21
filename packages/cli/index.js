@@ -22,6 +22,14 @@ const bootstrap = () => {
     // - storage.rules
     console.log('  - now bootstrapping 👢 🎀');
 };
+const importIntoDB = () => {
+    // import content (articles/pages)
+    console.log('  - now importing');
+};
+const exportFromDB = () => {
+    // export content (articles/pages)
+    console.log('  - now exporting');
+};
 const configure = () => {
     // check if this folder contains an already bootstrapped project
     // check if config.json exists
@@ -34,12 +42,18 @@ program
     .version('0.0.0', '-v, --version')
     .option('-b, --bootstrap', 'bootstrap project')
     .option('-c, --configure', 'configure project')
+    .option('-i, --import', 'import data into database')
+    .option('-e, --export', 'export data form database')
     .parse(process.argv);
 console.log("Gettin' spooky 👻  with poltergeist:");
 if (program.bootstrap)
     bootstrap();
 if (program.configure)
     configure();
+if (program.import)
+    importIntoDB();
+if (program.export)
+    exportFromDB();
 // const OUTPUT = require('./config.json');
 // TODO
 // Check whether config.json exists
