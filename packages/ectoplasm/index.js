@@ -26,8 +26,6 @@ const ectoplasm = config => {
     plugins
   );
 
-  admin.initializeApp();
-
   const collections = config.application.article.collections;
   const caching = config.application.caching;
   const noindex = config.application.noindex;

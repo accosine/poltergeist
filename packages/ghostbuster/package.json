@@ -1,11 +1,9 @@
 {
-  "name": "@poltergeist/ectoplasm",
-  "version": "0.0.2",
+  "name": "@poltergeist/ghostbuster",
+  "version": "0.0.1",
   "dependencies": {
-    "cookie-parser": "^1.4.3",
-    "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "firebase-admin": "^5.11.0"
+    "firebase-admin": "^6.0.0",
+    "firebase-functions": "^2.0.5"
   },
   "author": "accosine",
   "contributors": [
