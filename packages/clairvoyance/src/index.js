@@ -16,7 +16,6 @@ const provider = new firebase.auth.FacebookAuthProvider();
 const auth = firebase.auth();
 
 const STORAGEKEY = 'KEY_FOR_LOCAL_STORAGE';
-
 function isAuthenticated() {
   return !!auth.currentUser || !!localStorage.getItem(STORAGEKEY);
 }

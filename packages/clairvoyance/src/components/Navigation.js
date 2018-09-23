@@ -42,6 +42,11 @@ const Navigation = props => {
                 Editor
               </Typography>
             </Route>
+            <Route path="/users">
+              <Typography variant="title" className={classes.flex}>
+                Users
+              </Typography>
+            </Route>
             <Route>
               <Typography variant="title" className={classes.flex}>
                 Home

@@ -44,6 +44,12 @@ class Dresser extends Component {
                 </ListItemIcon>
                 <ListItemText primary="Pages" />
               </ListItem>
+              <ListItem button component={Link} to="/users">
+                <ListItemIcon>
+                  <ListIcon />
+                </ListItemIcon>
+                <ListItemText primary="Users" />
+              </ListItem>
             </List>
           </div>
         </Drawer>

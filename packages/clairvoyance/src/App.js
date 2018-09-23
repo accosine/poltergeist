@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Home from './components/Home';
+// import Home from './components/Home';
 import SplitScreen from './components/SplitScreen';
+import Users from './components/Users';
 import Articles from './components/Articles';
 import Pages from './components/Pages';
 import Navigation from './components/Navigation';
@@ -83,6 +84,12 @@ class App extends Component {
             path="/pages"
             isAuthenticated={firebase.isAuthenticated}
             component={Pages}
+            redirectTo="/"
+          />
+          <PrivateRoute
+            path="/users"
+            isAuthenticated={firebase.isAuthenticated}
+            component={Users}
             redirectTo="/"
           />
         </div>
