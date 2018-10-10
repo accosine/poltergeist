@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TextField from 'material-ui/TextField';
-import { withStyles } from 'material-ui/styles';
-import Chip from 'material-ui/Chip';
-import IconButton from 'material-ui/IconButton';
-import AddCircleOutlineIcon from 'material-ui-icons/AddCircleOutline';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import IconButton from '@material-ui/core/IconButton';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const styles = theme => ({
   chip: {

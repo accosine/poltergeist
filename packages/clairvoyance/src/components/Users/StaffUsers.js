@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'material-ui/Table';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui-icons/Delete';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class StaffUsers extends Component {
   render() {

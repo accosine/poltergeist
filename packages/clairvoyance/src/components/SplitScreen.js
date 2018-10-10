@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import Divider from 'material-ui/Divider';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import ExpansionPanel, {
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-} from 'material-ui/ExpansionPanel';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import classnames from 'classnames';
 import Editor from './Editor';
 import FixedButton from './FixedButton';
-import SaveIcon from 'material-ui-icons/Save';
-import { CircularProgress } from 'material-ui/Progress';
+import SaveIcon from '@material-ui/icons/Save';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Preview from './Preview';
 import Shortcodes from './Shortcodes';
 import FrontMatter from './FrontMatter';
@@ -98,7 +97,12 @@ class SplitScreen extends Component {
   };
 
   subscribe = slug => {
-    const { firebase, match: { params: { kind } } } = this.props;
+    const {
+      firebase,
+      match: {
+        params: { kind },
+      },
+    } = this.props;
     this.setState({ loading: true });
     this.firestoreUnsubscribe = firebase.firestore
       .collection(kind === 'article' ? 'articles' : 'pages')
@@ -112,7 +116,11 @@ class SplitScreen extends Component {
   };
 
   componentDidMount() {
-    const { match: { params: { slug } } } = this.props;
+    const {
+      match: {
+        params: { slug },
+      },
+    } = this.props;
     if (slug) {
       this.subscribe(slug);
     }
@@ -138,7 +146,9 @@ class SplitScreen extends Component {
     const {
       history,
       firebase: { firestore },
-      match: { params: { kind } },
+      match: {
+        params: { kind },
+      },
     } = this.props;
     this.setState(
       {
@@ -179,7 +189,12 @@ class SplitScreen extends Component {
   handleFrontmatterChange = change => this.setState(change);
 
   render() {
-    const { classes, match: { params: { slug, kind } } } = this.props;
+    const {
+      classes,
+      match: {
+        params: { slug, kind },
+      },
+    } = this.props;
     const {
       caretPosition,
       isSaving,
@@ -209,7 +224,7 @@ class SplitScreen extends Component {
           </ExpansionPanel>
         </Grid>
         <Grid container className={classes.row} spacing={8}>
-          <Grid item xs={12}>
+          <Grid spacing={16} item xs={12}>
             <Paper>
               <Shortcodes onShortcode={this.onShortcode} />
             </Paper>
@@ -220,7 +235,7 @@ class SplitScreen extends Component {
           container
           spacing={8}
         >
-          <Grid item xs={6}>
+          <Grid spacing={16} item xs={6}>
             <Paper className={classes.paper}>
               <Typography
                 variant="body1"
@@ -242,7 +257,7 @@ class SplitScreen extends Component {
               )}
             </Paper>
           </Grid>
-          <Grid item xs={6}>
+          <Grid spacing={16} item xs={6}>
             <Paper className={classes.paper}>
               <Typography
                 variant="body1"

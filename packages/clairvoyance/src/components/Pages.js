@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import FixedButton from './FixedButton';
 import ArticleCard from './ArticleCard';
-import CreateIcon from 'material-ui-icons/Create';
+import CreateIcon from '@material-ui/icons/Create';
 import connectFirebase from '../util/connect-firebase';
 
 const styleSheet = theme => ({

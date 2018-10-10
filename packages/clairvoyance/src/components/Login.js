@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import connectFirebase from '../util/connect-firebase';
 
 const styleSheet = {
@@ -16,7 +16,11 @@ const styleSheet = {
 };
 
 const Login = props => {
-  const { classes, firebase: { isAuthenticated, authenticate }, user } = props;
+  const {
+    classes,
+    firebase: { isAuthenticated, authenticate },
+    user,
+  } = props;
   const authed = isAuthenticated();
 
   if (authed) {

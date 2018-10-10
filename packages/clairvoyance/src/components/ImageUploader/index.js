@@ -3,10 +3,10 @@ import { DragDropContext, DragDropContextProvider } from 'react-dnd';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import TargetBox from './TargetBox';
 import FileList from './FileList';
-import { CircularProgress } from 'material-ui/Progress';
-import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
-import SaveIcon from 'material-ui-icons/Save';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import SaveIcon from '@material-ui/icons/Save';
 import connectFirebase from '../../util/connect-firebase';
 
 const styleSheet = {
@@ -35,7 +35,9 @@ class ImageUploader extends Component {
   }
 
   uploadFiles = files => {
-    const { firebase: { firestore, storage } } = this.props;
+    const {
+      firebase: { firestore, storage },
+    } = this.props;
     this.setState({ isUploading: true });
     const timestamp = Date.now();
     const incrementUpload = cb =>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { FormControlLabel, FormLabel } from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
-import TextField from 'material-ui/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
 
 export default ({ carouselSettings, onCarouselSettings }) => (
   <div>

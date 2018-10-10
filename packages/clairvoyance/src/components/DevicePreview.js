@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import BottomNavigation, {
-  BottomNavigationAction,
-} from 'material-ui/BottomNavigation';
+import { withStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import './devices.min.css';
 

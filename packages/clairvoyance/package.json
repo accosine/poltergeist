@@ -6,20 +6,20 @@
     "@firebase/auth": "^0.3.4",
     "@firebase/firestore": "^0.3.4",
     "@firebase/storage": "^0.1.8",
+    "@material-ui/core": "^3.2.0",
+    "@material-ui/icons": "^3.0.1",
     "babel-plugin-codegen": "^1.2.1",
     "classnames": "^2.2.5",
     "common-tags": "^1.7.2",
     "cross-spawn": "^6.0.5",
     "fs-extra": "^7.0.0",
-    "material-ui": "^1.0.0-beta.37",
-    "material-ui-icons": "^1.0.0-beta.36",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4",
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^2.0.0-next.66cc7a90",
+    "react-scripts": "^2.0.4",
     "typeface-roboto": "^0.0.22"
   },
   "bin": {
@@ -56,17 +56,10 @@
     "Duncan Kolba <duncankolba@gmail.com>"
   ],
   "license": "BSD-2-Clause",
-  "browserslist": {
-    "development": [
-      "last 2 chrome versions",
-      "last 2 firefox versions",
-      "last 2 edge versions"
-    ],
-    "production": [
-      ">1%",
-      "last 4 versions",
-      "Firefox ESR",
-      "not ie < 11"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

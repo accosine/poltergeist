@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Card, { CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import { CircularProgress } from 'material-ui/Progress';
-import Input from 'material-ui/Input';
-import { withStyles } from 'material-ui/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Input from '@material-ui/core/Input';
+import { withStyles } from '@material-ui/core/styles';
 
 import ChipInput from '../FrontMatter/ChipInput';
 

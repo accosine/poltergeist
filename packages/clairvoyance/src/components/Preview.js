@@ -1,10 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import FixedButton from './FixedButton';
-import Dialog from 'material-ui/Dialog';
-import FullscreenIcon from 'material-ui-icons/Fullscreen';
-import FullscreenExitIcon from 'material-ui-icons/FullscreenExit';
+import Dialog from '@material-ui/core/Dialog';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 import Theme from '../theme';
 import config from '../config.js';
 import plugins from '../plugins';
