@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FixedButton from './FixedButton';
 import { CircularProgress } from 'material-ui/Progress';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from 'material-ui/Table';
 import Typography from 'material-ui/Typography';
-import { withStyles } from 'material-ui/styles';
-import connectFirebase from '../util/connect-firebase';
 import CreateIcon from 'material-ui-icons/Create';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
@@ -25,6 +16,13 @@ import { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
+import { withStyles } from 'material-ui/styles';
+
+import StaffUsers from './StaffUsers';
+import WaitingUsers from './WaitingUsers';
+import PendingUsers from './PendingUsers';
+import FixedButton from '../FixedButton';
+import connectFirebase from '../../util/connect-firebase';
 
 class WaitingUserDialog extends Component {
   state = {
@@ -166,6 +164,31 @@ class Users extends Component {
       });
   };
 
+  handleStaffUserChange = async ({ id, ...user }) => {
+    await this.props.firebase.firestore
+      .collection('staffusers')
+      .doc(id)
+      .set(user);
+  };
+
+  handleDeleteStaffUser = async ({ id }) => {
+    await this.props.firebase.firestore
+      .collection('staffusers')
+      .doc(id)
+      .delete();
+  };
+
+  handleAcceptUser = async ({ id, email }) => {
+    await this.props.firebase.firestore
+      .collection('staffusers')
+      .doc(id)
+      .set({ email, role: 'editor' });
+    await this.props.firebase.firestore
+      .collection('pendingusers')
+      .doc(id)
+      .delete();
+  };
+
   componentWillUnmount() {
     // Remove database change listeners
     this.firestoreUnsubscribeStaffusers();
@@ -202,28 +225,13 @@ class Users extends Component {
             {loadingStaff ? (
               <CircularProgress />
             ) : staffusers.length ? (
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>Role</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {staffusers.map(user => {
-                    return (
-                      <TableRow key={user.id}>
-                        <TableCell>{user.id}</TableCell>
-                        <TableCell>{user.email}</TableCell>
-                        <TableCell>{user.role}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
+              <StaffUsers
+                users={staffusers}
+                onUserChange={this.handleStaffUserChange}
+                onDeleteUser={this.handleDeleteStaffUser}
+              />
             ) : (
-              <Typography>No users.</Typography>
+              <Typography>No users. Impossible. Who are you?</Typography>
             )}
           </TabContainer>
         ) : null}
@@ -233,24 +241,7 @@ class Users extends Component {
             {loadingWaiting ? (
               <CircularProgress />
             ) : waitingusers.length ? (
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Email</TableCell>
-                    <TableCell>Role</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {waitingusers.map(user => {
-                    return (
-                      <TableRow key={user.id}>
-                        <TableCell>{user.id}</TableCell>
-                        <TableCell>{user.role}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
+              <WaitingUsers users={waitingusers} />
             ) : (
               <Typography>No waiting users.</Typography>
             )}
@@ -261,8 +252,13 @@ class Users extends Component {
           <TabContainer>
             {loadingPending ? (
               <CircularProgress />
+            ) : pendingusers.length ? (
+              <PendingUsers
+                users={pendingusers}
+                onAcceptUser={this.handleAcceptUser}
+              />
             ) : (
-              <pre>{JSON.stringify(pendingusers, null, 2)}</pre>
+              <Typography>No pending users.</Typography>
             )}
           </TabContainer>
         ) : null}
