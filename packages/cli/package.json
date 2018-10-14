@@ -4,15 +4,20 @@
   "description": "The Poltergeist CLI",
   "main": "index.js",
   "bin": {
-    "poltergeist": "index.js"
+    "poltergeist": "build/dist/index.js"
   },
   "dependencies": {
+    "@types/fs-extra": "^5.0.4",
     "commander": "^2.17.1",
+    "fs-extra": "^7.0.0",
     "inquirer": "^6.1.0"
   },
   "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/inquirer": "0.0.43",
     "@types/node": "^10.7.0",
     "jest": "^23.5.0",
+    "tslint": "^5.11.0",
     "typescript": "^3.0.1"
   },
   "scripts": {

@@ -1,7 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "baseUrl": ".",
+    "outDir": "build/dist",
     "module": "commonjs",
-    "sourceMap": true
-  }
+    "target": "es5",
+    "lib": ["es6", "esnext"],
+    "sourceMap": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true
+  },
+  "exclude": ["node_modules", "build", "template"]
 }
