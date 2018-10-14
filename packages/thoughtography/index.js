@@ -17,66 +17,74 @@ const streamAsPromise = stream =>
     stream.on('finish', resolve).on('error', reject)
   );
 
-module.exports = config => ({
-  metadata: fileMetadata,
-  bucket: fileBucket,
-  name: filePath,
-  contentType,
-}) => {
-  const imageSizes = config.application.images;
+module.exports = (exp, functions, admin) => {
+  const config = functions.config();
 
-  // Exit if this is triggered on a file that is not an image.
-  if (!contentType.startsWith('image/')) {
-    console.log('This is not an image.');
-    return null;
-  }
+  exp.thoughtography = functions.storage
+    .object()
+    .onFinalize(
+      ({
+        metadata: fileMetadata,
+        bucket: fileBucket,
+        name: filePath,
+        contentType,
+      }) => {
+        const imageSizes = config.application.images;
 
-  // Get the file name.
-  const fileName = path.basename(filePath);
+        // Exit if this is triggered on a file that is not an image.
+        if (!contentType.startsWith('image/')) {
+          console.log('This is not an image.');
+          return null;
+        }
 
-  // Exit if the image is already a thumbnail.
-  if (fileMetadata.isResized) {
-    console.log('Already resized.');
-    return null;
-  }
+        // Get the file name.
+        const fileName = path.basename(filePath);
 
-  // Download file from bucket.
-  const bucket = gcs.bucket(fileBucket);
+        // Exit if the image is already a thumbnail.
+        if (fileMetadata.isResized) {
+          console.log('Already resized.');
+          return null;
+        }
 
-  const metadata = {
-    metadata: {
-      contentType,
-      metadata: {
-        isResized: true,
-      },
-    },
-  };
+        // Download file from bucket.
+        const bucket = gcs.bucket(fileBucket);
 
-  const pipeline = sharp();
-  const promises = Promise.all(
-    Object.keys(imageSizes).map(key => {
-      const { width, suffix } = imageSizes[key];
-      const thumbFilePath = path.join(
-        path.dirname(filePath),
-        addSizeSuffix(fileName, suffix)
-      );
-      const uploadStream = bucket
-        .file(thumbFilePath)
-        .createWriteStream(metadata);
-      return streamAsPromise(
-        pipeline
-          .clone()
-          .resize(Number(width))
-          .pipe(uploadStream)
-      );
-    })
-  );
+        const metadata = {
+          metadata: {
+            contentType,
+            metadata: {
+              isResized: true,
+            },
+          },
+        };
 
-  // pipe file through pipelines
-  bucket
-    .file(filePath)
-    .createReadStream()
-    .pipe(pipeline);
+        const pipeline = sharp();
+        const promises = Promise.all(
+          Object.keys(imageSizes).map(key => {
+            const { width, suffix } = imageSizes[key];
+            const thumbFilePath = path.join(
+              path.dirname(filePath),
+              addSizeSuffix(fileName, suffix)
+            );
+            const uploadStream = bucket
+              .file(thumbFilePath)
+              .createWriteStream(metadata);
+            return streamAsPromise(
+              pipeline
+                .clone()
+                .resize(Number(width))
+                .pipe(uploadStream)
+            );
+          })
+        );
 
-  return promises;
+        // pipe file through pipelines
+        bucket
+          .file(filePath)
+          .createReadStream()
+          .pipe(pipeline);
+
+        return promises;
+      }
+    );
 };

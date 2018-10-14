@@ -1,9 +1,9 @@
-const admin = require('firebase-admin');
 const express = require('express');
 const cookieParser = require('cookie-parser')();
 const cors = require('cors')({ origin: true });
 
-const ectoplasm = config => {
+module.exports = (exp, functions, admin) => {
+  const config = functions.config();
   const app = express();
   const { Theme, Fetcher } = require(config.application.theme);
 
@@ -12,19 +12,25 @@ const ectoplasm = config => {
     require(plugin)
   );
   const theme = Theme(
-    config.application,
-    // {
-    // ...functions.config().application,
-    // ...(process.env.NODE_ENV !== 'production'
-    //   ? {
-    //       basename: `/${process.env.GCLOUD_PROJECT}/us-central1/${
-    //         process.env.FUNCTION_NAME
-    //       }`,
-    //     }
-    //   : {}),
-    // },
+    Object.assign(
+      {},
+      config.application,
+      process.env.NODE_ENV !== 'production'
+        ? {
+            basename: `/${process.env.GCLOUD_PROJECT}/us-central1/${
+              process.env.FUNCTION_NAME
+            }`,
+          }
+        : {}
+    ),
     plugins
   );
+
+  try {
+    admin.initializeApp(config.firebase);
+  } catch (e) {
+    // if it throws, it means it has already been initialized and can be ignored
+  }
 
   const collections = config.application.article.collections;
   const caching = config.application.caching;
@@ -108,7 +114,5 @@ const ectoplasm = config => {
       });
   });
 
-  return app;
+  exp.ectoplasm = functions.https.onRequest(app);
 };
-
-module.exports = config => ectoplasm(config);

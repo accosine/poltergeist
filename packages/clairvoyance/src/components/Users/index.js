@@ -24,6 +24,9 @@ import PendingUsers from './PendingUsers';
 import FixedButton from '../FixedButton';
 import connectFirebase from '../../util/connect-firebase';
 
+// TODO: confirmations for delete dialogs
+// TODO: create new entries via plus symbol in new line
+
 class WaitingUserDialog extends Component {
   state = {
     email: '',
@@ -178,6 +181,13 @@ class Users extends Component {
       .delete();
   };
 
+  handleDeleteWaitingUser = async ({ id }) => {
+    await this.props.firebase.firestore
+      .collection('waitingusers')
+      .doc(id)
+      .delete();
+  };
+
   handleAcceptUser = async ({ id, email }) => {
     await this.props.firebase.firestore
       .collection('staffusers')
@@ -241,7 +251,10 @@ class Users extends Component {
             {loadingWaiting ? (
               <CircularProgress />
             ) : waitingusers.length ? (
-              <WaitingUsers users={waitingusers} />
+              <WaitingUsers
+                users={waitingusers}
+                onDeleteUser={this.handleDeleteWaitingUser}
+              />
             ) : (
               <Typography>No waiting users.</Typography>
             )}
