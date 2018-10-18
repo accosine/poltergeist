@@ -2,7 +2,13 @@
 import * as program from 'commander';
 // import * as inquirer from 'inquirer';
 import { copySync, existsSync, realpathSync } from 'fs-extra';
-import { resolve } from 'path';
+import { join, resolve } from 'path';
+import * as spawn from 'cross-spawn';
+
+const npmInstall = (cwd: string) =>
+  spawn('npm', ['--prefix', cwd, 'install'], {
+    stdio: 'inherit',
+  });
 
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath: string) =>
@@ -30,9 +36,7 @@ const checkFile = (filename: string) => {
   }
 };
 
-console.log(resolveOwn('template'));
-
-const bootstrap = (foldername: string): void => {
+const bootstrap = async (foldername: string): Promise<any> => {
   console.log('Bootstrapping into:', resolveApp(foldername));
 
   if (existsSync(resolveApp(foldername))) {
@@ -41,6 +45,10 @@ const bootstrap = (foldername: string): void => {
   }
 
   copySync(resolveOwn('template'), resolveApp(foldername));
+
+  await npmInstall(resolveApp(foldername));
+  await npmInstall(resolveApp(join(foldername, 'functions')));
+
   // ask for the name of the new project
   // create the following files from templates:
   // - package.json
