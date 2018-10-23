@@ -1,20 +1,8 @@
 #!/usr/bin/env node
 import * as program from 'commander';
-// import * as inquirer from 'inquirer';
-import { copySync, existsSync, realpathSync } from 'fs-extra';
-import { join, resolve } from 'path';
-import * as spawn from 'cross-spawn';
-
-const npmInstall = (cwd: string) =>
-  spawn('npm', ['--prefix', cwd, 'install'], {
-    stdio: 'inherit',
-  });
-
-const appDirectory = realpathSync(process.cwd());
-const resolveApp = (relativePath: string) =>
-  resolve(appDirectory, relativePath);
-const resolveOwn = (relativePath: string) =>
-  resolve(__dirname, '../..', relativePath);
+import bootstrap from './cmds/bootstrap';
+import configure from './cmds/configure';
+import exportFromDB from './cmds/exportfromdb';
 
 // TODO
 // bootstrap:
@@ -26,41 +14,6 @@ const resolveOwn = (relativePath: string) =>
 //   - Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
 
-const checkFile = (filename: string) => {
-  if (existsSync(resolveApp(filename))) {
-    console.log(filename + ' exists');
-    // Do something
-  } else {
-    console.error(filename + ' is missing');
-    // Do something
-  }
-};
-
-const bootstrap = async (foldername: string): Promise<any> => {
-  console.log('Bootstrapping into:', resolveApp(foldername));
-
-  if (existsSync(resolveApp(foldername))) {
-    console.log('folder exists');
-    return;
-  }
-
-  copySync(resolveOwn('template'), resolveApp(foldername));
-
-  await npmInstall(resolveApp(foldername));
-  await npmInstall(resolveApp(join(foldername, 'functions')));
-
-  // ask for the name of the new project
-  // create the following files from templates:
-  // - package.json
-  // - firebase.json
-  // - firestore.rules
-  // - database.rules.json
-  // - firestore.indexes.json
-  // - storage.rules
-  //
-  console.log('  - now bootstrapping 👢 🎀');
-};
-
 // const importIntoDB = (): void => {
 //   // import content (articles/pages)
 //   console.log('  - now importing');
@@ -71,20 +24,7 @@ const bootstrap = async (foldername: string): Promise<any> => {
 //   console.log('  - now exporting');
 // };
 
-const configure = () => {
-  // check if this folder contains an already bootstrapped project
-  // check if config.json exists
-  // validate config.json
-  // ask if config should be modified
-  // walk config tree and ask questions
-  console.log('  - now configuring 👩🏿‍🎓');
-  checkFile('package.json');
-  checkFile('firebase.json');
-  checkFile('firestore.rules');
-  checkFile('firestore.indexes.json');
-  checkFile('storage.rules');
-  checkFile('.firebaserc');
-};
+console.log("Gettin' spooky 👻  with poltergeist:");
 
 program.version('0.0.0', '-v, --version');
 
@@ -97,13 +37,17 @@ program
   .command('configure')
   .description('configure project')
   .action(configure);
+
+program
+  .command('test')
+  .description('test db')
+  .action(exportFromDB);
 // .command('-c, --configure', 'configure project')
 // .command('-i, --import', 'import data into database')
 // .command('-e, --export', 'export data form database')
 
 program.parse(process.argv);
 
-console.log("Gettin' spooky 👻  with poltergeist:");
 // program
 //   .version('0.0.1')
 //   .option('-C, --chdir <path>', 'change the working directory')
