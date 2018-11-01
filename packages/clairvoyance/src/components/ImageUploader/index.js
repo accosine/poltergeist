@@ -71,7 +71,12 @@ class ImageUploader extends Component {
 
       return storageRef
         .child(`${file.newname}` + timestamp + fileext(file.type))
-        .put(file, { customMetadata: { dbkey: newImageRef.id } })
+        .put(file, {
+          customMetadata: {
+            dbkey: newImageRef.id,
+            shouldResize: true,
+          },
+        })
         .then(function(snapshot) {
           incrementUpload(() => {
             switchTabIfReady(1, files.length);

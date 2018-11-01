@@ -41,22 +41,15 @@ module.exports = (exp, functions, admin) => {
         const fileName = path.basename(filePath);
 
         // Exit if the image is already a thumbnail.
-        if (fileMetadata.isResized) {
-          console.log('Already resized.');
+        if (!fileMetadata.shouldResize) {
+          console.log('Resize not needed.');
           return null;
         }
 
         // Download file from bucket.
         const bucket = gcs.bucket(fileBucket);
 
-        const metadata = {
-          metadata: {
-            contentType,
-            metadata: {
-              isResized: true,
-            },
-          },
-        };
+        const metadata = { metadata: { contentType } };
 
         const pipeline = sharp();
         const promises = Promise.all(
