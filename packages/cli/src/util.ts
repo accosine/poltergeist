@@ -63,7 +63,29 @@ export const getProjectId = async () => {
   } else {
     projectId = projectIds[0];
   }
+  try {
+    await client.use(projectId, {});
+  } catch (error) {
+    if (
+      error.message.startsWith('Command requires authentication, please run')
+    ) {
+      await initializeAndEnsureAuth(projectId);
+      await client.use(projectId, {});
+    } else {
+      return error;
+    }
+  }
   return projectId;
+};
+
+const initializeApp = (projectId: string) => {
+  try {
+    admin.initializeApp({ projectId });
+  } catch (error) {
+    if (error.code !== 'app/duplicate-app') {
+      throw error;
+    }
+  }
 };
 
 export const writeEnvFile = (projectId: string, apiKey: string) =>
@@ -76,17 +98,17 @@ REACT_APP_FIREBASE_DATABASE_URL=https://${projectId}.firebaseio.com
 REACT_APP_FIREBASE_STORAGE_BUCKET=${projectId}.appspot.com`
   );
 
-export const initializeAndEnsureAuth = async () => {
+export const initializeAndEnsureAuth = async (projectId: string) => {
   ensureDefaultCredentials();
   try {
-    admin.initializeApp({ projectId: 'accosine' });
+    initializeApp(projectId);
   } catch (error) {
     if (error.code === 'app/invalid-credential') {
       await client.login({ localhost: false });
       ensureDefaultCredentials();
-      admin.initializeApp({ projectId: 'accosine' });
+      initializeApp(projectId);
     } else {
-      throw error;
+      console.log(error);
     }
   }
 };

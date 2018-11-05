@@ -41,7 +41,7 @@ module.exports = (exp, functions, admin) => {
         const fileName = path.basename(filePath);
 
         // Exit if the image is already a thumbnail.
-        if (!fileMetadata.shouldResize) {
+        if (!fileMetadata || !fileMetadata.shouldResize) {
           console.log('Resize not needed.');
           return null;
         }

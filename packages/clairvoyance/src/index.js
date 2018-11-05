@@ -71,6 +71,7 @@ class Main extends Component {
       } else {
         // User is signed out.
         window.localStorage.removeItem(STORAGEKEY);
+        // TODO: Fix "maximum update" error on page reload
         this.setState({ user: { uid: null } });
       }
     });

@@ -18,6 +18,8 @@ declare module 'firebase-tools/lib/ensureDefaultCredentials' {
 }
 
 declare module 'firebase-tools' {
+  export const use: (projectId: string, options: object) => void;
+
   export const login: (
     options: {
       localhost: boolean;

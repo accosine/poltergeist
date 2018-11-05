@@ -2,10 +2,21 @@ import * as inquirer from 'inquirer';
 import * as path from 'path';
 import * as client from 'firebase-tools';
 import chalk from 'chalk';
+import { Storage } from '@google-cloud/storage';
 import { getProjectId, initializeAndEnsureAuth, resolveApp } from '../util';
 import * as admin from 'firebase-admin';
-import { readFileSync } from 'fs-extra';
+import { readFileSync, readdirSync } from 'fs-extra';
 
+const deleteFirestore = async () => {
+  try {
+    await client.firestore.delete('', { allCollections: true });
+  } catch (error) {
+    console.log(error);
+    if (error.message !== 'Unable to list collection IDs') {
+      throw error;
+    }
+  }
+};
 const importFirestore = async (foldername: string) => {
   const data = JSON.parse(readFileSync(foldername, 'utf8'));
   const firestore = admin.firestore();
@@ -14,6 +25,7 @@ const importFirestore = async (foldername: string) => {
   Object.entries(data).forEach(([collection, value]) => {
     Object.entries(value).forEach(async ([name, content]) => {
       try {
+        console.log('set', collection, name);
         await firestore
           .collection(collection)
           .doc(name)
@@ -48,11 +60,14 @@ export default async (foldername: string): Promise<void> => {
   console.log('  - now restoring');
 
   try {
-    await initializeAndEnsureAuth();
-    // const projectId = await getProjectId();
+    const projectId = await getProjectId();
+    console.log(projectId);
+    await initializeAndEnsureAuth(projectId);
 
     console.log('restoring firestore');
-    await client.firestore.delete('', { allCollections: true });
+    console.log('delete firestore');
+    await deleteFirestore();
+    console.log('import firestore');
     await importFirestore(path.join(resolveApp(foldername), 'firestore.json'));
 
     console.log('restoring authentication users');
@@ -63,9 +78,29 @@ export default async (foldername: string): Promise<void> => {
     );
 
     console.log('restoring storage');
-    // TODO: delete all files in storage
-    // TODO: upload all files from backup
-  } catch (err) {
-    console.log(err);
+    const storage = new Storage({ projectId });
+
+    const bucket = storage.bucket(`gs://${projectId}.appspot.com`);
+    // delete all files in storage
+    await bucket.deleteFiles();
+
+    // upload all files from backup
+    // TODO: progress
+    const storagePath = path.join(resolveApp(foldername), 'storage');
+    const files = readdirSync(storagePath);
+    files.filter(file => !file.endsWith('.metadata')).forEach(async file => {
+      try {
+        const { shouldResize, ...metadata } = JSON.parse(
+          readFileSync(path.join(storagePath, file + '.metadata'), 'utf8')
+        );
+        await bucket.upload(path.join(storagePath, file), {
+          metadata: { metadata },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

@@ -33,7 +33,7 @@ const exportStorage = async (projectId: string, foldername: string) => {
       });
       writeFileSync(
         path.join(foldername, `${file.name}.metadata`),
-        JSON.stringify(file.metadata.metadata, null, 2)
+        JSON.stringify(file.metadata.metadata || {}, null, 2)
       );
     } catch (error) {
       console.log(error);
@@ -49,12 +49,10 @@ export default async (foldername: string): Promise<void> => {
   const projectId = await getProjectId();
 
   try {
-    await initializeAndEnsureAuth();
+    await initializeAndEnsureAuth(projectId);
 
     console.log('exporting firestore');
-    await exportFirestore(
-      path.join(resolveApp(foldername), 'firestore.json')
-    );
+    await exportFirestore(path.join(resolveApp(foldername), 'firestore.json'));
 
     console.log('exporting authentication users');
     await client.auth.export(

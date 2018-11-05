@@ -1,0 +1,24 @@
+service cloud.firestore {
+    match /databases/{database}/documents {
+    function getUser(uid) {
+      return get(/databases/$(database)/documents/staffusers/$(request.auth.uid)).data;
+    }
+    match /staffusers/{userId} {
+      allow read: if (request.auth.uid == userId && getUser(request.auth.uid).role in ['editor', 'admin'])
+                      || getUser(request.auth.uid).role == 'admin';
+      allow write: if getUser(request.auth.uid).role == 'admin';
+    }
+    match /waitingusers/{userId} {
+      allow read, write: if getUser(request.auth.uid).role == 'admin';
+    }
+    match /articles/{articleId} {
+      allow read, write: if getUser(request.auth.uid).role in ['editor', 'admin'];
+    }
+    match /pages/{pageId} {
+      allow read, write: if getUser(request.auth.uid).role in ['editor', 'admin'];
+    }
+    match /images/{imageId} {
+      allow read, write: if getUser(request.auth.uid).role in ['editor', 'admin'];
+    }
+  }
+}

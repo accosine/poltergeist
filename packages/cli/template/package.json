@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "develop": "clairvoyance develop",
+    "build": "clairvoyance build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@poltergeist/clairvoyance": "0.0.6",
+    "@poltergeist/plugin-ampgist": "0.0.1",
+    "@poltergeist/television": "0.0.3"
+  }
+}
