@@ -22,8 +22,12 @@ logger.add(winston.transports.Console, {
 });
 
 export const npmInstall = (cwd: string) =>
-  spawn('npm', ['--prefix', cwd, 'install'], {
-    stdio: 'inherit',
+  new Promise((resolve, reject) => {
+    const npm = spawn('npm', ['--prefix', cwd, 'install'], {
+      stdio: 'inherit',
+    });
+    npm.on('close', resolve);
+    npm.on('error', reject);
   });
 
 export const appDirectory = realpathSync(process.cwd());
@@ -72,7 +76,7 @@ export const getProjectId = async () => {
       await initializeAndEnsureAuth(projectId);
       await client.use(projectId, {});
     } else {
-      return error;
+      throw error;
     }
   }
   return projectId;

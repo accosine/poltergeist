@@ -4,7 +4,7 @@
   "description": "The Poltergeist CLI",
   "main": "build/dist/index.js",
   "bin": {
-    "poltergeist": "build/dist/index.js"
+    "poltergeist": "build/dist/cli.js"
   },
   "dependencies": {
     "@google-cloud/storage": "^2.2.0",

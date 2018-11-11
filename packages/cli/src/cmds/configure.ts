@@ -29,7 +29,7 @@ export default async () => {
       type: 'input',
       name: 'apiKey',
       message: `Visit this page ${chalk.underline(
-        'https://console.firebase.google.com/project/${projectId}/settings/general/'
+        `https://console.firebase.google.com/project/${projectId}/settings/general/`
       )} and paste the variable ${chalk.italic('apiKey')} here:`,
     },
   ]);
@@ -46,4 +46,11 @@ export default async () => {
   if (overwriteEnv) {
     writeEnvFile(projectId, apiKey);
   }
+
+  // TODO: generate config.json
+  // TODO: upload cloud functions config
+  // TODO: run npm build to generate editor in public folder
+
+  console.log('Please enable Firestore in the Firebase console');
+  console.log('Then, run firebase deploy');
 };

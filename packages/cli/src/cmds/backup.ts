@@ -5,7 +5,7 @@ import * as client from 'firebase-tools';
 import { getProjectId, initializeAndEnsureAuth, resolveApp } from '../util';
 import { ensureDirSync, writeFileSync } from 'fs-extra';
 
-const exportFirestore = async (foldername: string) => {
+export const exportFirestore = async (foldername: string) => {
   const firestore = admin.firestore();
   firestore.settings({ timestampsInSnapshots: true });
   const collections = await firestore.getCollections();
@@ -20,7 +20,7 @@ const exportFirestore = async (foldername: string) => {
   writeFileSync(foldername, JSON.stringify(data, null, 2));
 };
 
-const exportStorage = async (projectId: string, foldername: string) => {
+export const exportStorage = async (projectId: string, foldername: string) => {
   const storage = new Storage({ projectId });
 
   const bucket = storage.bucket(`gs://${projectId}.appspot.com`);
@@ -41,6 +41,12 @@ const exportStorage = async (projectId: string, foldername: string) => {
   });
 };
 
+export const exportAuthenticationUsers = (foldername: string) =>
+  client.auth.export(foldername, { format: 'json' });
+
+// export firestore collections
+// export authentication users
+// export storage files
 export default async (foldername: string): Promise<void> => {
   console.log('  - now exporting');
 
@@ -55,9 +61,8 @@ export default async (foldername: string): Promise<void> => {
     await exportFirestore(path.join(resolveApp(foldername), 'firestore.json'));
 
     console.log('exporting authentication users');
-    await client.auth.export(
-      path.join(resolveApp(foldername), 'accounts.json'),
-      { format: 'json' }
+    await exportAuthenticationUsers(
+      path.join(resolveApp(foldername), 'accounts.json')
     );
 
     console.log('exporting storage');
