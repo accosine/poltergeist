@@ -47,8 +47,17 @@ export const exportAuthenticationUsers = (foldername: string) =>
 // export firestore collections
 // export authentication users
 // export storage files
-export default async (foldername: string): Promise<void> => {
+export default async (
+  foldername: string,
+  {
+    firestore,
+    storage,
+    accounts,
+  }: { firestore?: boolean; storage?: boolean; accounts?: boolean }
+): Promise<void> => {
   console.log('  - now exporting');
+
+  const backupAll = !firestore && !storage && !accounts;
 
   ensureDirSync(foldername);
 
@@ -57,19 +66,27 @@ export default async (foldername: string): Promise<void> => {
   try {
     await initializeAndEnsureAuth(projectId);
 
-    console.log('exporting firestore');
-    await exportFirestore(path.join(resolveApp(foldername), 'firestore.json'));
+    if (firestore || backupAll) {
+      console.log('exporting firestore');
+      await exportFirestore(
+        path.join(resolveApp(foldername), 'firestore.json')
+      );
+    }
 
-    console.log('exporting authentication users');
-    await exportAuthenticationUsers(
-      path.join(resolveApp(foldername), 'accounts.json')
-    );
+    if (accounts || backupAll) {
+      console.log('exporting authentication users');
+      await exportAuthenticationUsers(
+        path.join(resolveApp(foldername), 'accounts.json')
+      );
+    }
 
-    console.log('exporting storage');
-    await exportStorage(
-      projectId,
-      path.join(resolveApp(foldername), 'storage')
-    );
+    if (storage || backupAll) {
+      console.log('exporting storage');
+      await exportStorage(
+        projectId,
+        path.join(resolveApp(foldername), 'storage')
+      );
+    }
   } catch (err) {
     console.log(err);
   }

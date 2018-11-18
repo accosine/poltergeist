@@ -6,7 +6,7 @@ import {
 } from 'fs-extra';
 import { resolve } from 'path';
 import * as spawn from 'cross-spawn';
-import * as inquirer from 'inquirer';
+import { prompt } from 'enquirer';
 
 import * as admin from 'firebase-admin';
 import * as client from 'firebase-tools';
@@ -56,14 +56,12 @@ export const getProjectId = async () => {
   const projectIds = getProjectIds();
   let projectId;
   if (projectIds.length > 1) {
-    projectId = (await inquirer.prompt<{ projectId: string }>([
-      {
-        type: 'list',
-        name: 'projectId',
-        message: 'Which project?',
-        choices: projectIds,
-      },
-    ])).projectId;
+    projectId = (await prompt<{ projectId: string }>({
+      type: 'Select',
+      name: 'projectId',
+      message: 'Which project?',
+      choices: projectIds,
+    })).projectId;
   } else {
     projectId = projectIds[0];
   }

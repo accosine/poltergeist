@@ -1,9 +1,9 @@
-import * as inquirer from 'inquirer';
+import { prompt } from 'enquirer';
 import * as path from 'path';
 import * as client from 'firebase-tools';
 import chalk from 'chalk';
 import { Storage } from '@google-cloud/storage';
-import { getProjectId, initializeAndEnsureAuth, resolveApp } from '../util';
+import { getProjectId, resolveApp, initializeAndEnsureAuth } from '../util';
 import * as admin from 'firebase-admin';
 import { readFileSync, readdirSync } from 'fs-extra';
 
@@ -56,33 +56,42 @@ export const importStorage = (projectId: string, foldername: string) => {
   const bucket = storage.bucket(`gs://${projectId}.appspot.com`);
   // TODO: progress
   const files = readdirSync(foldername);
-  files.filter(file => !file.endsWith('.metadata')).forEach(async file => {
-    try {
-      const { shouldResize, ...metadata } = JSON.parse(
-        readFileSync(path.join(foldername, file + '.metadata'), 'utf8')
-      );
-      await bucket.upload(path.join(foldername, file), {
-        metadata: { metadata },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  });
+  files
+    .filter(file => !file.endsWith('.metadata'))
+    .forEach(async file => {
+      try {
+        const { shouldResize, ...metadata } = JSON.parse(
+          readFileSync(path.join(foldername, file + '.metadata'), 'utf8')
+        );
+        await bucket.upload(path.join(foldername, file), {
+          metadata: { metadata },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    });
 };
 
 // delete and restore firestore
 // delete (TODO) and restore authentication users
 // delete and restore storage files
-export default async (foldername: string): Promise<void> => {
+export default async (
+  foldername: string,
+  {
+    firestore,
+    storage,
+    accounts,
+  }: { firestore?: boolean; storage?: boolean; accounts?: boolean }
+): Promise<void> => {
   if (
-    !(await inquirer.prompt<{ confirmed: boolean }>([
+    !(await prompt<{ confirmed: boolean }>([
       {
         type: 'confirm',
         name: 'confirmed',
         message: chalk.underline.bgMagenta(
           'Are you sure you want to restore from a backup? This WILL delete all live data in your firebase project!'
         ),
-        default: false,
+        initial: false,
       },
     ])).confirmed
   ) {
@@ -91,31 +100,40 @@ export default async (foldername: string): Promise<void> => {
 
   console.log('  - now restoring');
 
+  const restoreAll = !firestore && !storage && !accounts;
+
   try {
     const projectId = await getProjectId();
-    console.log(projectId);
     await initializeAndEnsureAuth(projectId);
 
-    console.log('restoring firestore');
-    console.log('delete firestore');
-    await deleteFirestore();
-    console.log('import firestore');
-    await importFirestore(path.join(resolveApp(foldername), 'firestore.json'));
+    if (firestore || restoreAll) {
+      console.log('restoring firestore');
+      console.log('delete firestore');
+      await deleteFirestore();
+      console.log('import firestore');
+      await importFirestore(
+        path.join(resolveApp(foldername), 'firestore.json')
+      );
+    }
 
-    console.log('restoring authentication users');
-    await deleteAuthenticationUsers();
-    await importAuthenticationUsers(
-      path.join(resolveApp(foldername), 'accounts.json')
-    );
+    if (accounts || restoreAll) {
+      console.log('restoring authentication users');
+      await deleteAuthenticationUsers();
+      await importAuthenticationUsers(
+        path.join(resolveApp(foldername), 'accounts.json')
+      );
+    }
 
-    console.log('restoring storage');
-    await deleteStorage(projectId);
+    if (storage || restoreAll) {
+      console.log('restoring storage');
+      await deleteStorage(projectId);
 
-    // upload all files from backup
-    await importStorage(
-      projectId,
-      path.join(resolveApp(foldername), 'storage')
-    );
+      // upload all files from backup
+      await importStorage(
+        projectId,
+        path.join(resolveApp(foldername), 'storage')
+      );
+    }
   } catch (error) {
     console.log(error);
   }

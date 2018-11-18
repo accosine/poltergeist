@@ -1,5 +1,5 @@
 import { checkFile, getProjectId, writeEnvFile } from '../util';
-import * as inquirer from 'inquirer';
+import { prompt } from 'enquirer';
 import chalk from 'chalk';
 
 export default async () => {
@@ -22,35 +22,39 @@ export default async () => {
     return;
   }
 
-  const projectId = await getProjectId();
+  try {
+    const projectId = await getProjectId();
 
-  const { apiKey } = await inquirer.prompt<{ apiKey: string }>([
-    {
-      type: 'input',
-      name: 'apiKey',
-      message: `Visit this page ${chalk.underline(
-        `https://console.firebase.google.com/project/${projectId}/settings/general/`
-      )} and paste the variable ${chalk.italic('apiKey')} here:`,
-    },
-  ]);
+    const { apiKey } = await prompt<{ apiKey: string }>([
+      {
+        type: 'input',
+        name: 'apiKey',
+        message: `Visit this page ${chalk.underline(
+          `https://console.firebase.google.com/project/${projectId}/settings/general/`
+        )} and paste the variable ${chalk.italic('apiKey')} here:`,
+      },
+    ]);
 
-  let overwriteEnv = true;
-  if (checkFile('.env', false)) {
-    overwriteEnv = (await inquirer.prompt<{ overwriteEnv: boolean }>({
-      type: 'confirm',
-      name: 'overwriteEnv',
-      message: 'File .env already exists. Do you want to overwrite it?',
-      default: false,
-    })).overwriteEnv;
+    let overwriteEnv = true;
+    if (checkFile('.env', false)) {
+      overwriteEnv = (await prompt<{ overwriteEnv: boolean }>({
+        type: 'confirm',
+        name: 'overwriteEnv',
+        message: 'File .env already exists. Do you want to overwrite it?',
+        initial: false,
+      })).overwriteEnv;
+    }
+    if (overwriteEnv) {
+      writeEnvFile(projectId, apiKey);
+    }
+
+    // TODO: generate config.json
+    // TODO: upload cloud functions config
+    // TODO: run npm build to generate editor in public folder
+
+    console.log('Please enable Firestore in the Firebase console');
+    console.log('Then, run firebase deploy');
+  } catch (error) {
+    console.log(error);
   }
-  if (overwriteEnv) {
-    writeEnvFile(projectId, apiKey);
-  }
-
-  // TODO: generate config.json
-  // TODO: upload cloud functions config
-  // TODO: run npm build to generate editor in public folder
-
-  console.log('Please enable Firestore in the Firebase console');
-  console.log('Then, run firebase deploy');
 };

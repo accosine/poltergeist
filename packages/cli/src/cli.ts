@@ -4,6 +4,8 @@ import bootstrap from './cmds/bootstrap';
 import configure from './cmds/configure';
 import backup from './cmds/backup';
 import restore from './cmds/restore';
+import upload from './cmds/upload';
+import chalk from 'chalk';
 
 const program = new Command();
 
@@ -17,7 +19,7 @@ const program = new Command();
 //   - Add name/slug objects to .runtimeconfig.json
 // Save .runtimeconfig.json
 
-console.log("Gettin' spooky 👻  with poltergeist:");
+console.log(`Gettin' spooky 👻  with ${chalk.hex('#fedc5d').bold('poltergeist')}`);
 
 program.version('0.0.0', '-v, --version');
 
@@ -33,12 +35,23 @@ program
 
 program
   .command('backup [destination]')
-  .description('backup all project data')
+  .option('--firestore', 'backup Firestore')
+  .option('--storage', 'backup storage')
+  .option('--accounts', 'backup accounts')
+  .description('backup project data')
   .action(backup);
 
 program
   .command('restore [source]')
+  .option('--firestore', 'restore Firestore')
+  .option('--storage', 'restore storage')
+  .option('--accounts', 'restore accounts')
   .description('restore backup folder to project')
   .action(restore);
+
+program
+  .command('upload')
+  .description('upload file or directory content')
+  .action(upload);
 
 program.parse(process.argv);
