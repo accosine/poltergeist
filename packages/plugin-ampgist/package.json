@@ -2,7 +2,12 @@
   "name": "@poltergeist/plugin-ampgist",
   "version": "0.0.1",
   "description": "",
-  "keywords": ["poltergeist", "shortcode", "plugin", "amp"],
+  "keywords": [
+    "poltergeist",
+    "shortcode",
+    "plugin",
+    "amp"
+  ],
   "main": "dist/index.js",
   "dependencies": {
     "react": "^16.4.0"
@@ -18,7 +23,9 @@
   "scripts": {
     "prepare": "babel src -d dist"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "accosine",
   "contributors": [
     "Simon Bugert <simon.bugert@gmail.com>",

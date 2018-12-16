@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@poltergeist/clairvoyance": "0.0.6",
+    "@poltergeist/clairvoyance": "0.0.7",
     "@poltergeist/plugin-ampgist": "0.0.1",
     "@poltergeist/television": "0.0.3"
   }

@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Input from '@material-ui/core/Input';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 
 import ChipInput from '../FrontMatter/ChipInput';
@@ -14,6 +16,7 @@ const styleSheet = theme => ({
     padding: theme.spacing.unit * 1,
   },
   card: {
+    position: 'relative',
     display: 'flex',
     width: '30vw',
   },
@@ -38,59 +41,68 @@ const styleSheet = theme => ({
   headline: {
     textOverflow: 'ellipsis',
   },
+  removeButton: {
+    position: 'absolute',
+    right: 0,
+  },
 });
 
-// TODO: make all inputs controlled components and don't mutate files
 class FilePreview extends Component {
   state = {
     loaded: false,
-    tags: [],
   };
 
   componentDidMount() {
     this.reader = new FileReader();
-    this.reader.readAsDataURL(this.props.file);
+    this.reader.readAsDataURL(this.props.file.nativeFile);
     this.reader.onload = event => {
       this.setState({ loaded: true });
     };
   }
 
   render() {
-    const { classes, file } = this.props;
-    const { tags, loaded } = this.state;
+    const { classes, file, onFileChange, onFileRemove } = this.props;
+    const { loaded } = this.state;
 
     return (
       <div className={classes.root}>
         <Card className={classes.card}>
+          <IconButton className={classes.removeButton} onClick={onFileRemove}>
+            <CloseIcon />
+          </IconButton>
           <div className={classes.details}>
             <CardContent className={classes.content}>
               <Typography className={classes.headline} type="headline">
                 {file.name}
               </Typography>
               <Input
-                onBlur={event => {
-                  file.newname = event.target.value;
+                value={file.name}
+                onChange={event => {
+                  onFileChange({ name: event.target.value });
                 }}
                 placeholder="Name"
                 className={classes.input}
               />
               <Input
-                onBlur={event => {
-                  file.newattribution = event.target.value;
+                value={file.attribution}
+                onChange={event => {
+                  onFileChange({ attribution: event.target.value });
                 }}
                 placeholder="Attribution"
                 className={classes.input}
               />
               <Input
-                onBlur={event => {
-                  file.newcaption = event.target.value;
+                value={file.caption}
+                onChange={event => {
+                  onFileChange({ caption: event.target.value });
                 }}
                 placeholder="Caption"
                 className={classes.input}
               />
               <Input
-                onBlur={event => {
-                  file.newalttext = event.target.value;
+                value={file.alttext}
+                onChange={event => {
+                  onFileChange({ alttext: event.target.value });
                 }}
                 placeholder="Alt Text"
                 className={classes.input}
@@ -98,10 +110,9 @@ class FilePreview extends Component {
               <ChipInput
                 id="Tags"
                 onChange={tags => {
-                  this.setState({ tags });
-                  file.tags = tags;
+                  onFileChange({ tags });
                 }}
-                chipData={tags}
+                chipData={file.tags || []}
               />
             </CardContent>
           </div>
@@ -109,8 +120,10 @@ class FilePreview extends Component {
             {loaded ? (
               <img
                 onLoad={event => {
-                  file.width = event.target.width;
-                  file.height = event.target.height;
+                  onFileChange({
+                    width: event.target.width,
+                    height: event.target.height,
+                  });
                 }}
                 className={classes.image}
                 src={this.reader.result}

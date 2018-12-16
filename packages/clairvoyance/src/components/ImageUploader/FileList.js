@@ -15,12 +15,20 @@ class FileList extends Component {
     files: PropTypes.arrayOf(PropTypes.object),
   };
 
-  list(files) {
-    return files.map(file => {
-      console.log(file);
-      return <FilePreview key={file.name} file={file} />;
-    });
-  }
+  handleFileChange = (file, i) => newSettings => {
+    this.props.onFilesChange([
+      ...this.props.files.slice(0, i),
+      { ...file, ...newSettings },
+      ...this.props.files.slice(i + 1, this.props.files.length),
+    ]);
+  };
+
+  handleFileRemove = i => () => {
+    this.props.onFilesChange([
+      ...this.props.files.slice(0, i),
+      ...this.props.files.slice(i + 1, this.props.files.length),
+    ]);
+  };
 
   render() {
     const { files, classes } = this.props;
@@ -29,7 +37,18 @@ class FileList extends Component {
       return <div>Nothing to display</div>;
     }
 
-    return <div className={classes.fileList}>{this.list(files)}</div>;
+    return (
+      <div className={classes.fileList}>
+        {files.map((file, i) => (
+          <FilePreview
+            key={file.nativeFile.name}
+            file={file}
+            onFileChange={this.handleFileChange(file, i)}
+            onFileRemove={this.handleFileRemove(i)}
+          />
+        ))}
+      </div>
+    );
   }
 }
 

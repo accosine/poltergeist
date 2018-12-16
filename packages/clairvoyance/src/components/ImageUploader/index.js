@@ -34,75 +34,95 @@ class ImageUploader extends Component {
     };
   }
 
-  uploadFiles = files => {
+  uploadFiles = () => {
     const {
       firebase: { firestore, storage },
     } = this.props;
-    this.setState({ isUploading: true });
-    const timestamp = Date.now();
-    const incrementUpload = cb =>
-      this.setState({ upload: this.state.upload + 1 }, cb);
-    const switchTabIfReady = (tabnumber, arrlength) => {
-      if (this.state.upload === arrlength) {
-        this.props.switchTab(null, tabnumber);
-      }
-    };
-    const fileext = type => {
-      let extension;
-      switch (type) {
-        case 'image/jpeg':
-          extension = '.jpg';
-          break;
-        case 'image/gif':
-          extension = '.gif';
-          break;
-        case 'image/png':
-          extension = '.png';
-          break;
-        default:
-      }
-      return extension;
-    };
-    const storageRef = storage.ref();
+    const { droppedFiles } = this.state;
 
-    files.map(file => {
-      // Get a ref for a new image
-      var newImageRef = firestore.collection('images').doc();
+    this.setState({ isUploading: true }, () => {
+      const timestamp = Date.now();
+      const incrementUpload = cb =>
+        this.setState({ upload: this.state.upload + 1 }, cb);
+      const switchTabIfReady = (tabnumber, arrlength) => {
+        if (this.state.upload === arrlength) {
+          this.props.switchTab(null, tabnumber);
+        }
+      };
+      const fileext = type => {
+        let extension;
+        switch (type) {
+          case 'image/jpeg':
+            extension = '.jpg';
+            break;
+          case 'image/gif':
+            extension = '.gif';
+            break;
+          case 'image/png':
+            extension = '.png';
+            break;
+          default:
+        }
+        return extension;
+      };
+      const storageRef = storage.ref();
 
-      return storageRef
-        .child(`${file.newname}` + timestamp + fileext(file.type))
-        .put(file, {
-          customMetadata: {
-            dbkey: newImageRef.id,
-            shouldResize: true,
-          },
-        })
-        .then(function(snapshot) {
-          incrementUpload(() => {
-            switchTabIfReady(1, files.length);
-          });
-          newImageRef.set({
-            name: file.newname + timestamp + fileext(file.type),
-            attribution: file.newattribution,
-            caption: file.newcaption,
-            alt: file.newalttext,
-            width: file.width,
-            height: file.height,
-            tags: file.tags.reduce(
-              (tags, tag) => ({ ...tags, [tag]: true }),
-              {}
-            ),
-          });
-        })
-        .catch(console.log);
+      droppedFiles.forEach(
+        async ({
+          nativeFile,
+          name,
+          attribution,
+          caption,
+          alttext,
+          width,
+          height,
+          tags,
+        }) => {
+          // Get a ref for a new image
+          const imageRef = firestore.collection('images').doc();
+
+          try {
+            await storageRef
+              .child(`${name}` + timestamp + fileext(nativeFile.type))
+              .put(nativeFile, {
+                customMetadata: {
+                  dbkey: imageRef.id,
+                  shouldResize: true,
+                },
+              });
+
+            incrementUpload(() => {
+              switchTabIfReady(1, droppedFiles.length);
+            });
+
+            imageRef.set({
+              name: name + timestamp + fileext(nativeFile.type),
+              attribution,
+              caption,
+              alt: alttext,
+              width,
+              height,
+              tags: tags.reduce((tags, tag) => ({ ...tags, [tag]: true }), {}),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
     });
   };
 
   handleFileDrop = (item, monitor) => {
     if (monitor) {
-      const droppedFiles = monitor.getItem().files;
+      const droppedFiles = monitor
+        .getItem()
+        .files.map(nativeFile => ({ nativeFile }));
       this.setState({ droppedFiles });
     }
+  };
+
+  handleFilesChange = droppedFiles => {
+    this.setState({ droppedFiles });
   };
 
   render() {
@@ -116,11 +136,26 @@ class ImageUploader extends Component {
       <DragDropContextProvider backend={HTML5Backend}>
         <div>
           <TargetBox accepts={[FILE]} onDrop={this.handleFileDrop} />
-          <FileList files={droppedFiles} />
+          <FileList
+            files={droppedFiles}
+            onFilesChange={this.handleFilesChange}
+          />
           <div className={classes.wrapper}>
             <Button
-              disabled={!hasFiles || isUploading}
-              onClick={() => this.uploadFiles(droppedFiles)}
+              disabled={
+                !hasFiles ||
+                isUploading ||
+                !droppedFiles.every(
+                  file =>
+                    file.name &&
+                    file.alttext &&
+                    file.attribution &&
+                    file.caption &&
+                    file.tags &&
+                    file.tags.length
+                )
+              }
+              onClick={this.uploadFiles}
               variant="fab"
               className={classes.savebutton}
             >

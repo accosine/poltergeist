@@ -17,11 +17,16 @@ const streamAsPromise = stream =>
     stream.on('finish', resolve).on('error', reject)
   );
 
+const runtimeOpts = {
+  memory: '1GB',
+};
+
 module.exports = (exp, functions, admin) => {
   const config = functions.config();
 
-  exp.thoughtography = functions.storage
-    .object()
+  exp.thoughtography = functions
+    .runWith(runtimeOpts)
+    .storage.object()
     .onFinalize(
       ({
         metadata: fileMetadata,
