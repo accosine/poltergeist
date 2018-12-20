@@ -11,6 +11,9 @@ service cloud.firestore {
     match /waitingusers/{userId} {
       allow read, write: if getUser(request.auth.uid).role == 'admin';
     }
+    match /pendingusers/{userId} {
+      allow read, write: if getUser(request.auth.uid).role == 'admin';
+    }
     match /articles/{articleId} {
       allow read, write: if getUser(request.auth.uid).role in ['editor', 'admin'];
     }
