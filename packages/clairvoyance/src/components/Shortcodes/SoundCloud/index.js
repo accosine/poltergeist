@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,14 +11,9 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const styleSheet = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
-  },
-});
+import icon from './icon.svg';
+
+const Icon = () => <img width="24" height="24" src={icon} alt="SoundCloud" />;
 
 const soundcloudShortcode = params =>
   // ATTENTION! This template string has significant whitespace - don't change!
@@ -28,7 +23,7 @@ const soundcloudShortcode = params =>
   `${params.height ? ' height=' + params.height : ''}` +
   ']';
 
-class Soundcloud extends Component {
+class SoundCloud extends Component {
   state = {
     open: false,
     trackid: '',
@@ -58,17 +53,14 @@ class Soundcloud extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { trackid, isVisual, height, color } = this.state;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Soundcloud
-        </Button>
+      <>
+        <Tooltip title="SoundCloud">
+          <IconButton onClick={this.openDialog}>
+            <Icon />
+          </IconButton>
+        </Tooltip>
         <Dialog open={this.state.open} onClose={this.closeDialog}>
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
@@ -77,7 +69,7 @@ class Soundcloud extends Component {
               anonymous location data to Google, even when no apps are running.
             </DialogContentText>
             <TextField
-              label="Soundcloud Track ID"
+              label="SoundCloud Track ID"
               value={trackid}
               onChange={event => this.setState({ trackid: event.target.value })}
             />
@@ -109,14 +101,9 @@ class Soundcloud extends Component {
             <Button onClick={this.onInsert}>Insert</Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }
 
-Soundcloud.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onShortcode: PropTypes.func.isRequired,
-};
-
-export default withStyles(styleSheet)(Soundcloud);
+export default SoundCloud;

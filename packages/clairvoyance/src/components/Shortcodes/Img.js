@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import Tooltip from '@material-ui/core/Tooltip';
+import PhotoIcon from '@material-ui/icons/Photo';
 
 import MediaManager from '../MediaManager';
 import MediaManagerTabs from '../MediaManager/Tabs';
 import MediaManagerActions from '../MediaManager/Actions';
-
-const styleSheet = {
-  container: {
-    display: 'inline',
-  },
-  root: {
-    flexGrow: 1,
-  },
-};
 
 const imgShortcode = (img, carousel) =>
   `[image ${
@@ -53,16 +44,13 @@ class Img extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Img
-        </Button>
+      <>
+        <Tooltip title="Image">
+          <IconButton size="small" onClick={this.openDialog}>
+            <PhotoIcon />
+          </IconButton>
+        </Tooltip>
         {this.state.open ? (
           <Dialog fullScreen open={this.state.open} onClose={this.closeDialog}>
             <MediaManager
@@ -79,14 +67,9 @@ class Img extends Component {
             </MediaManager>
           </Dialog>
         ) : null}
-      </div>
+      </>
     );
   }
 }
 
-Img.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onShortcode: PropTypes.func.isRequired,
-};
-
-export default withStyles(styleSheet)(Img);
+export default Img;

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -10,21 +8,19 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 
-const styleSheet = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
-  },
-});
+import icon from './icon.svg';
 
-const playbuzzShortcode = ({ height, url, iteminfo }) =>
-  `[playbuzz url="${url}" height=${height}${iteminfo ? ' iteminfo' : ''}]`;
+const Icon = () => <img width="24" height="24" src={icon} alt="Facebook" />;
 
-class Playbuzz extends Component {
-  state = { open: false, url: '', height: '', iteminfo: false };
+const facebookShortcode = ({ url, width, height, isVideo }) =>
+  `[facebook url="${url}" width=${width} height=${height}${
+    isVideo ? ' video' : ''
+  }]`;
+
+class Facebook extends Component {
+  state = { open: false, url: '', width: '', height: '', isVideo: false };
 
   openDialog = () => {
     this.setState({ open: true });
@@ -35,31 +31,35 @@ class Playbuzz extends Component {
   };
 
   onInsert = () => {
-    const shortcode = playbuzzShortcode(this.state);
+    const shortcode = facebookShortcode(this.state);
     this.props.onShortcode(shortcode);
     this.closeDialog();
   };
 
   render() {
-    const { classes } = this.props;
-    const { height, url, iteminfo } = this.state;
+    const { url, width, height, isVideo } = this.state;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Playbuzz Post
-        </Button>
+      <>
+        <Tooltip title="Facebook Post">
+          <Button size="small" onClick={this.openDialog}>
+            <Icon />
+            Post
+          </Button>
+        </Tooltip>
         <Dialog open={this.state.open} onClose={this.closeDialog}>
-          <DialogTitle>{'Insert Playbuzz shortcode'}</DialogTitle>
+          <DialogTitle>{'Insert Facebook shortcode'}</DialogTitle>
           <DialogContent>
             <DialogContentText />
             <TextField
-              label="url"
+              label="URL"
               value={url}
               onChange={event => this.setState({ url: event.target.value })}
+            />
+            <TextField
+              label="Width"
+              value={width}
+              type="number"
+              onChange={event => this.setState({ width: event.target.value })}
             />
             <TextField
               label="Height"
@@ -70,11 +70,11 @@ class Playbuzz extends Component {
             <FormControlLabel
               control={
                 <Switch
-                  checked={iteminfo}
-                  onChange={(event, iteminfo) => this.setState({ iteminfo })}
+                  checked={isVideo}
+                  onChange={(event, isVideo) => this.setState({ isVideo })}
                 />
               }
-              label="whether to display data info, such as creation date, creator name, etc."
+              label="Only show video"
             />
           </DialogContent>
           <DialogActions>
@@ -82,14 +82,9 @@ class Playbuzz extends Component {
             <Button onClick={this.onInsert}>Insert</Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }
 
-Playbuzz.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onShortcode: PropTypes.func.isRequired,
-};
-
-export default withStyles(styleSheet)(Playbuzz);
+export default Facebook;

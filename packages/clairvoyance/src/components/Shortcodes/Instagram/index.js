@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -10,15 +9,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 
-const styleSheet = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
-  },
-});
+import icon from './icon.svg';
+
+const Icon = () => <img width="24" height="24" src={icon} alt="Instagram" />;
 
 const instagramShortcode = (id, isCaptioned) =>
   `[instagram id=${id}${isCaptioned ? ' captioned' : ''}]`;
@@ -42,17 +37,14 @@ class Instagram extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { id, isCaptioned } = this.state;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Instagram
-        </Button>
+      <>
+        <Tooltip title="Instagram">
+          <IconButton size="small" onClick={this.openDialog}>
+            <Icon />
+          </IconButton>
+        </Tooltip>
         <Dialog open={this.state.open} onClose={this.closeDialog}>
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
@@ -82,14 +74,9 @@ class Instagram extends Component {
             <Button onClick={this.onInsert}>Insert</Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }
 
-Instagram.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onShortcode: PropTypes.func.isRequired,
-};
-
-export default withStyles(styleSheet)(Instagram);
+export default Instagram;

@@ -10,13 +10,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import icon from './icon.svg';
+
+const Icon = () => <img height="14" src={icon} alt="Gfycat" />;
 
 const styleSheet = theme => ({
   button: {
     margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
   },
 });
 
@@ -46,14 +48,16 @@ class Gfycat extends Component {
     const { classes } = this.props;
     const { id, noAutoplay, width, height } = this.state;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Gfycat
-        </Button>
+      <>
+        <Tooltip title="Gfycat">
+          <Button
+            size="small"
+            onClick={this.openDialog}
+            className={classes.button}
+          >
+            <Icon />
+          </Button>
+        </Tooltip>
         <Dialog open={this.state.open} onClose={this.closeDialog}>
           <DialogTitle>{'Insert Gfycat shortcode'}</DialogTitle>
           <DialogContent>
@@ -97,7 +101,7 @@ class Gfycat extends Component {
             <Button onClick={this.onInsert}>Insert</Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }

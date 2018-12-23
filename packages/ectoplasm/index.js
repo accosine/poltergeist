@@ -58,8 +58,7 @@ module.exports = (exp, functions, admin) => {
     res.send(`User-agent: *\nDisallow:${noindex === 'true' ? ' /' : ''}`);
   });
 
-  // TODO: make double digits work
-  const paginationRegex = ':page([2-9]|[1-9]\\d*)';
+  const paginationRegex = ':page([2-9]|[1-9]\\d+)';
 
   app.get(`/(${paginationRegex})?`, (req, res) => {
     fetcher

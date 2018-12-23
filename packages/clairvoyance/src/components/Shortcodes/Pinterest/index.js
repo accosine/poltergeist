@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 
-const styleSheet = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
-  },
-});
+import icon from './icon.svg';
+
+const Icon = () => <img width="24" height="24" src={icon} alt="Pinterest" />;
 
 const pinterestShortcode = ({ url, width, height }) =>
   `[pinterest url="${url}" width=${width} height=${height}]`;
@@ -39,17 +34,14 @@ class Pinterest extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { url, width, height } = this.state;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Pinterest
-        </Button>
+      <>
+        <Tooltip title="Pinterest">
+          <IconButton size="small" onClick={this.openDialog}>
+            <Icon />
+          </IconButton>
+        </Tooltip>
         <Dialog open={this.state.open} onClose={this.closeDialog}>
           <DialogTitle>{'Insert Pinterest shortcode'}</DialogTitle>
           <DialogContent>
@@ -77,14 +69,9 @@ class Pinterest extends Component {
             <Button onClick={this.onInsert}>Insert</Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }
 
-Pinterest.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onShortcode: PropTypes.func.isRequired,
-};
-
-export default withStyles(styleSheet)(Pinterest);
+export default Pinterest;

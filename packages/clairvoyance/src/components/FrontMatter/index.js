@@ -30,13 +30,9 @@ const styleSheet = theme => ({
   },
 });
 
-// TODO: add date and date modified to frontmatter
-
-// const FrontMatter = ({ itemtype, disableSlug, ...props }) => (
-// );
 class FrontMatter extends PureComponent {
   render() {
-    const { itemtype, disableSlug, kind, ...props } = this.props;
+    const { itemtype, disableSlug, slugError, kind, ...props } = this.props;
 
     let collections, collectionsorder;
     if (kind === 'article') {
@@ -83,6 +79,7 @@ class FrontMatter extends PureComponent {
               props.onChange({ collection: event.target.value })
             }
             input={<Input id="collection" />}
+            disabled={disableSlug}
           >
             <MenuItem value="">
               <em>None</em>
@@ -133,7 +130,13 @@ class FrontMatter extends PureComponent {
         <FrontMatterTextfield id="picture" {...props} />
         <FrontMatterTextfield id="attribution" {...props} />
         <FrontMatterTextfield id="alt" {...props} />
-        <FrontMatterTextfield disabled={disableSlug} id="slug" {...props} />
+        <FrontMatterTextfield
+          disabled={disableSlug}
+          error={!!slugError}
+          helperText={slugError}
+          id="slug"
+          {...props}
+        />
         {props.type === 'review' ? (
           <ReviewFrontMatter {...props} itemtype={itemtype} />
         ) : props.type === 'recipe' ? (

@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ImageUploader from '../ImageUploader';
 import ImagePicker from '../ImagePicker';
+import ImageSearch from '../ImageSearch';
 
 const styleSheet = theme => ({
   root: {
@@ -67,7 +68,7 @@ class MediaManagerTabs extends Component {
             multiple={multiple}
           />
         ) : (
-          'Item Three'
+          <ImageSearch />
         )}
       </div>
     );

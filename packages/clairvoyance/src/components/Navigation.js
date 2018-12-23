@@ -28,27 +28,27 @@ const Navigation = props => {
           </IconButton>
           <Switch>
             <Route path="/pages">
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="h6" className={classes.flex}>
                 Pages
               </Typography>
             </Route>
             <Route path="/articles">
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="h6" className={classes.flex}>
                 Articles
               </Typography>
             </Route>
             <Route path="/editor">
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="h6" className={classes.flex}>
                 Editor
               </Typography>
             </Route>
             <Route path="/users">
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="h6" className={classes.flex}>
                 Users
               </Typography>
             </Route>
             <Route>
-              <Typography variant="title" className={classes.flex}>
+              <Typography variant="h6" className={classes.flex}>
                 Home
               </Typography>
             </Route>

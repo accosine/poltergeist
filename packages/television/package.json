@@ -1,6 +1,6 @@
 {
   "name": "@poltergeist/television",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a theme for poltergeist",
   "main": "dist/index.js",
   "dependencies": {

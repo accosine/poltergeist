@@ -57,10 +57,10 @@ class MediaControlCard extends Component {
         onClick={onClick}
       >
         <CardContent className={classes.content}>
-          <Typography align="left" variant="headline">
+          <Typography align="left" variant="h5">
             {title}
           </Typography>
-          <Typography align="left" variant="subheading">
+          <Typography align="left" variant="subtitle1">
             {headline}
           </Typography>
           <Typography align="left" variant="caption">

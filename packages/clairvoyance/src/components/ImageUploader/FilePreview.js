@@ -72,7 +72,7 @@ class FilePreview extends Component {
           </IconButton>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography className={classes.headline} type="headline">
+              <Typography className={classes.headline} type="h5">
                 {file.name}
               </Typography>
               <Input

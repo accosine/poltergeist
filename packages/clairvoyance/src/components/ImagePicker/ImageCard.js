@@ -20,6 +20,7 @@ const styleSheet = theme => ({
   },
   card: {
     width: 350,
+    borderRadius: theme.spacing.unit * 3,
   },
   headline: {
     textOverflow: 'ellipsis',
@@ -60,7 +61,7 @@ class ImageCard extends Component {
             }
           />
           <CardContent>
-            <Typography gutterBottom variant="headline" component="h2">
+            <Typography gutterBottom variant="h5" component="h2">
               {image.name}
             </Typography>
             {image.caption && (

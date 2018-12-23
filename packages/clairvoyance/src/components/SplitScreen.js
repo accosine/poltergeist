@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import classnames from 'classnames';
 import Editor from './Editor';
 import FixedButton from './FixedButton';
 import SaveIcon from '@material-ui/icons/Save';
@@ -18,20 +16,37 @@ import Preview from './Preview';
 import Shortcodes from './Shortcodes';
 import FrontMatter from './FrontMatter';
 import connectFirebase from '../util/connect-firebase';
+import config from '../config';
+
+const articleCollectionSlugs = Object.values(
+  config.application.article.collections
+).map(c => c.slug);
 
 const styleSheet = theme => ({
   root: {
-    padding: '0 30px 47px 30px',
-    flexGrow: 1,
-    flexShrink: 1,
-    height: 'fit-content',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    padding: theme.spacing.unit,
+  },
+  frontmatter: {
+    padding: 4,
+  },
+  shortcodes: {
+    margin: 4,
   },
   container: {
+    display: 'flex',
     flexGrow: 1,
     flexShrink: 1,
+    flexWrap: 'wrap',
+    justifyContent: 'stretch',
   },
-  row: {
-    margin: 0,
+  half: {
+    flex: 1,
+    padding: 4,
+    flexBasis: 500,
+    minHeight: 500,
   },
   paper: {
     padding: 10,
@@ -49,10 +64,6 @@ const styleSheet = theme => ({
   },
   fetching: {
     alignSelf: 'center',
-  },
-  frontmatter: {
-    margin: `${theme.spacing.unit}px 0 0 0`,
-    padding: 4,
   },
 });
 
@@ -188,11 +199,21 @@ class SplitScreen extends Component {
 
   handleFrontmatterChange = change => this.setState(change);
 
+  validateSlug = (slug, kind) => {
+    if (!slug.length) return false;
+
+    if (kind === 'article' && /[2-9]|[1-9]\d+/.test(slug)) {
+      return 'Slug breaks pagination';
+    } else if (kind === 'page' && articleCollectionSlugs.includes(slug)) {
+      return 'Slug equals collection name';
+    }
+  };
+
   render() {
     const {
       classes,
       match: {
-        params: { slug, kind },
+        params: { slug: urlSlug, kind },
       },
     } = this.props;
     const {
@@ -204,11 +225,9 @@ class SplitScreen extends Component {
     } = this.state;
 
     return (
-      <Grid container spacing={0} direction="column" className={classes.root}>
-        <Grid container className={classes.frontmatter} spacing={8}>
-          <ExpansionPanel
-            defaultExpanded={this.props.match.params.slug ? false : true}
-          >
+      <div className={classes.root}>
+        <div className={classes.frontmatter}>
+          <ExpansionPanel defaultExpanded={urlSlug ? false : true}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="body1">Frontmatter</Typography>
             </ExpansionPanelSummary>
@@ -217,25 +236,23 @@ class SplitScreen extends Component {
               <FrontMatter
                 {...frontmatter}
                 kind={kind}
-                disableSlug={!!slug}
+                disableSlug={!!urlSlug}
+                disableCollection={!!urlSlug}
+                slugError={this.validateSlug(frontmatter.slug, kind)}
                 onChange={this.handleFrontmatterChange}
               />
             </ExpansionPanelDetails>
           </ExpansionPanel>
-        </Grid>
-        <Grid container className={classes.row} spacing={8}>
-          <Grid spacing={16} item xs={12}>
+        </div>
+        <div className={classes.shortcodes}>
+          <div>
             <Paper>
               <Shortcodes onShortcode={this.onShortcode} />
             </Paper>
-          </Grid>
-        </Grid>
-        <Grid
-          className={classnames(classes.container, classes.row)}
-          container
-          spacing={8}
-        >
-          <Grid spacing={16} item xs={6}>
+          </div>
+        </div>
+        <div className={classes.container}>
+          <div className={classes.half}>
             <Paper className={classes.paper}>
               <Typography
                 variant="body1"
@@ -256,8 +273,8 @@ class SplitScreen extends Component {
                 />
               )}
             </Paper>
-          </Grid>
-          <Grid spacing={16} item xs={6}>
+          </div>
+          <div className={classes.half}>
             <Paper className={classes.paper}>
               <Typography
                 variant="body1"
@@ -269,8 +286,8 @@ class SplitScreen extends Component {
               <Divider />
               <Preview text={content} kind={kind} {...frontmatter} />
             </Paper>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
         <FixedButton
           color="primary"
           onClick={this.onSave}
@@ -282,7 +299,7 @@ class SplitScreen extends Component {
             <CircularProgress size={60} className={classes.progress} />
           )}
         </FixedButton>
-      </Grid>
+      </div>
     );
   }
 }

@@ -5,7 +5,6 @@ import { styled } from 'styletron-react';
 import { withTheme } from '../util/ThemeContext';
 import Link from './Link';
 
-
 const Container = withTheme(
   styled('div', ({ $theme }) => ({
     color: $theme.grey[700],
@@ -36,7 +35,7 @@ const ButtonActive = withTheme(
 );
 
 const ButtonInactive = withTheme(
-  styled(Link, ({ $theme }) => ({
+  styled('span', ({ $theme }) => ({
     margin: '2vw',
     textDecoration: 'none',
     color: $theme.grey[400],

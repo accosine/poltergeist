@@ -9,6 +9,7 @@ const FrontMatterTextfield = ({
   multiline = false,
   rows = 1,
   rowsMax = 1,
+  disableCollection,
   ...props
 }) => (
   <TextField

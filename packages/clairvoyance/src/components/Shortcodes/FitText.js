@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,15 +6,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-
-const styleSheet = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
-  },
-});
 
 const fitTextShortcode = ({ text, width, height, min, max }) =>
   `[fittext width=${width} height=${height} min=${min} max=${max}]${text}[/fittext]`;
@@ -46,15 +35,10 @@ class FitText extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { text, width, height, min, max } = this.state;
     return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
+      <>
+        <Button size="small" onClick={this.openDialog}>
           Fit-Text
         </Button>
         <Dialog open={this.state.open} onClose={this.closeDialog}>
@@ -100,14 +84,9 @@ class FitText extends Component {
             <Button onClick={this.onInsert}>Insert</Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }
 
-FitText.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onShortcode: PropTypes.func.isRequired,
-};
-
-export default withStyles(styleSheet)(FitText);
+export default FitText;

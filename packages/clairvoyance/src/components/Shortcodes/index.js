@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
 import Shortcode, { TextInput, Switch, Text } from './Shortcode';
-import Youtube from './Youtube';
-import Soundcloud from './Soundcloud';
+import YouTube from './YouTube';
+import SoundCloud from './SoundCloud';
 import Vimeo from './Vimeo';
 import Instagram from './Instagram';
 import Gfycat from './Gfycat';
 import FitText from './FitText';
-import FacebookComments from './FacebookComments';
-import Facebook from './Facebook';
+import FacebookComments from './Facebook/Comments';
+import FacebookPost from './Facebook/Post';
 import Pinterest from './Pinterest';
 import Twitter from './Twitter';
 import Playbuzz from './Playbuzz';
@@ -23,13 +24,22 @@ import plugins from '../../plugins';
 // import Lightbox from './Lightbox';
 // import ImageLightbox from './ImageLightbox';
 // import AppBanner from './AppBanner';
+//
+const styleSheet = theme => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
+    padding: theme.spacing.unit + 'px 0',
+  },
+});
 
 class Shortcodes extends PureComponent {
   render() {
-    const { onShortcode } = this.props;
+    const { onShortcode, classes } = this.props;
 
     return (
-      <div>
+      <div className={classes.container}>
         <Img onShortcode={onShortcode} />
         {plugins.filter(plugin => plugin.shortcode).map(({ shortcode }) => {
           const { dialog, name, label, title } = shortcode;
@@ -50,18 +60,18 @@ class Shortcodes extends PureComponent {
             />
           );
         })}
-        <Youtube onShortcode={onShortcode} />
-        <Soundcloud onShortcode={onShortcode} />
+        <YouTube onShortcode={onShortcode} />
+        <SoundCloud onShortcode={onShortcode} />
         <Vimeo onShortcode={onShortcode} />
         <Instagram onShortcode={onShortcode} />
         <Gfycat onShortcode={onShortcode} />
-        <FitText onShortcode={onShortcode} />
         <FacebookComments onShortcode={onShortcode} />
-        <Facebook onShortcode={onShortcode} />
+        <FacebookPost onShortcode={onShortcode} />
         <Pinterest onShortcode={onShortcode} />
         <Playbuzz onShortcode={onShortcode} />
         <Twitter onShortcode={onShortcode} />
         <Iframe onShortcode={onShortcode} />
+        <FitText onShortcode={onShortcode} />
         {/*
       <AppBanner onShortcode={onShortcode} />
       */}
@@ -86,4 +96,4 @@ Shortcodes.propTypes = {
   onShortcode: PropTypes.func.isRequired,
 };
 
-export default Shortcodes;
+export default withStyles(styleSheet)(Shortcodes);

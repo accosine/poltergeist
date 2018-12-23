@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -9,15 +8,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-
-const styleSheet = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  container: {
-    display: 'inline',
-  },
-});
 
 class Shortcode extends Component {
   state = {
@@ -37,7 +27,6 @@ class Shortcode extends Component {
     this.setState({ settings: { ...this.state.settings, [id]: value } });
 
   onInsert = () => {
-    console.log(this.state.settings);
     this.props.onShortcode(this.props.onInsert(this.state.settings));
     this.closeDialog();
   };
@@ -46,7 +35,7 @@ class Shortcode extends Component {
     const { Content, label, title, isValid, classes } = this.props;
     const { settings, open } = this.state;
     return (
-      <div className={classes.container}>
+      <>
         <Button
           size="small"
           onClick={this.openDialog}
@@ -69,7 +58,7 @@ class Shortcode extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </>
     );
   }
 }
@@ -78,7 +67,7 @@ const LabelSwitch = ({ label, ...props }) => (
   <FormControlLabel control={<Switch {...props} />} label={label} />
 );
 
-export default withStyles(styleSheet)(Shortcode);
+export default Shortcode;
 export {
   LabelSwitch as Switch,
   TextField as TextInput,
