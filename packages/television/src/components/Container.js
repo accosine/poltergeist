@@ -5,6 +5,8 @@ export default withTheme(
   styled('div', ({ $theme }) => ({
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    '@media screen and (min-width: 1024px)': {
+      alignItems: 'center',
+    },
   }))
 );

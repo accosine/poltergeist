@@ -4,7 +4,14 @@
       "collectionId": "articles",
       "fields": [
         { "fieldPath": "collection", "mode": "ASCENDING" },
-        { "fieldPath": "slug", "mode": "ASCENDING" }
+        { "fieldPath": "date", "mode": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionId": "articles",
+      "fields": [
+        { "fieldPath": "published", "mode": "ASCENDING" },
+        { "fieldPath": "date", "mode": "ASCENDING" }
       ]
     }
   ]

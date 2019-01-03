@@ -73,13 +73,15 @@ const A = withTheme(
 );
 
 const ArticleHeadline = withTheme(
-  styled('h1', ({ $theme }) => ({
-    marginTop: '0',
-    marginBottom: '3vw',
-    color: $theme.grey[700],
-    fontWeight: 300,
+  styled('h1', ({ $theme, $collection }) => ({
+    backgroundColor: $theme.collection($collection).subline,
+    fontSize: '5vw',
+    color: $theme.white,
+    padding: '2vw',
+    margin: '0 0 3vw 0',
     '@media screen and (min-width: 1024px)': {
       fontSize: '2vw',
+      padding: '1vw',
     },
   }))
 );
@@ -98,14 +100,13 @@ const PageHeadline = withTheme(
 
 const Subline = withTheme(
   styled('h2', ({ $theme, $collection }) => ({
-    backgroundColor: $theme.collection($collection).subline,
-    fontSize: '5vw',
-    color: $theme.white,
-    padding: '2vw',
-    margin: '0 0 3vw 0',
+    padding: '10px',
+    marginTop: '0',
+    marginBottom: '3vw',
+    color: $theme.grey[700],
+    fontWeight: 300,
     '@media screen and (min-width: 1024px)': {
       fontSize: '2vw',
-      padding: '1vw',
     },
   }))
 );
@@ -147,34 +148,35 @@ export default ({
         </Time>
       )}
     </Container>
-    {kind === 'article' && (
-      <Picture>
-        <AmpImg
-          width={4}
-          height={3}
-          src={oneLine`${config.media}${addSizeSuffix(
-            picture,
-            config.images.small.suffix
-          )}${config.mediasuffix}`}
-          srcset={oneLine`${config.media}${addSizeSuffix(
-            picture,
-            config.images.large.suffix
-          )}${config.mediasuffix} ${config.images.large.size},
+    {kind === 'article' &&
+      picture && (
+        <Picture>
+          <AmpImg
+            width={4}
+            height={3}
+            src={oneLine`${config.media}${addSizeSuffix(
+              picture,
+              config.images.small.suffix
+            )}${config.mediasuffix}`}
+            srcset={oneLine`${config.media}${addSizeSuffix(
+              picture,
+              config.images.large.suffix
+            )}${config.mediasuffix} ${config.images.large.size},
                   ${config.media}${addSizeSuffix(
-            picture,
-            config.images.medium.suffix
-          )}${config.mediasuffix} ${config.images.medium.size},
+              picture,
+              config.images.medium.suffix
+            )}${config.mediasuffix} ${config.images.medium.size},
                   ${config.media}${addSizeSuffix(
-            picture,
-            config.images.small.suffix
-          )}${config.mediasuffix} ${config.images.small.size}`}
-          alt={alt}
-          attribution={attribution}
-          layout="responsive"
-        />
-        <PictureAttribution>{attribution}</PictureAttribution>
-      </Picture>
-    )}
+              picture,
+              config.images.small.suffix
+            )}${config.mediasuffix} ${config.images.small.size}`}
+            alt={alt}
+            attribution={attribution}
+            layout="responsive"
+          />
+          <PictureAttribution>{attribution}</PictureAttribution>
+        </Picture>
+      )}
     {subline && <Subline $collection={collection}>{subline}</Subline>}
   </Fragment>
 );

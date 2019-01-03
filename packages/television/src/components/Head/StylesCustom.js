@@ -6,8 +6,8 @@ export default ({ styles, theme }) => (
     dangerouslySetInnerHTML={{
       __html:
         styles +
-        ` ::selection { background: ${
-          theme.primary
+        ` ::selection { background: ${theme.primary}; color: ${
+          theme.white
         }; } .amp-carousel-slide img { object-fit: contain; } figure { margin: 0; }`,
     }}
   />

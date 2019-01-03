@@ -66,7 +66,7 @@ module.exports = (exp, functions, admin) => {
       .then(data => res.send(theme.start(data)))
       .catch(err => {
         console.error(err);
-        res.status(500).send(err);
+        res.status(500).send('Something broke!');
       });
   });
 

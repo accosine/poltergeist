@@ -32,15 +32,11 @@ class Shortcode extends Component {
   };
 
   render() {
-    const { Content, label, title, isValid, classes } = this.props;
+    const { Content, label, title, isValid } = this.props;
     const { settings, open } = this.state;
     return (
       <>
-        <Button
-          size="small"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
+        <Button size="small" onClick={this.openDialog}>
           {label}
         </Button>
         <Dialog open={open} onClose={this.closeDialog}>

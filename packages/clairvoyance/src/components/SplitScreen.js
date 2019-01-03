@@ -72,6 +72,7 @@ class SplitScreen extends Component {
     loading: false,
     isSaving: false,
     caretPosition: { start: 0, end: 0 },
+    published: false,
     content: '',
     date: '',
     datemodified: '',
@@ -118,12 +119,12 @@ class SplitScreen extends Component {
     this.firestoreUnsubscribe = firebase.firestore
       .collection(kind === 'article' ? 'articles' : 'pages')
       .doc(slug)
-      .onSnapshot(snapshot =>
+      .onSnapshot(snapshot => {
         this.setState({
           loading: false,
           ...(snapshot.exists ? snapshot.data() : {}),
-        })
-      );
+        });
+      });
   };
 
   componentDidMount() {

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -32,7 +34,14 @@ const styleSheet = theme => ({
 
 class FrontMatter extends PureComponent {
   render() {
-    const { itemtype, disableSlug, slugError, kind, ...props } = this.props;
+    const {
+      itemtype,
+      disableSlug,
+      slugError,
+      kind,
+      published,
+      ...props
+    } = this.props;
 
     let collections, collectionsorder;
     if (kind === 'article') {
@@ -51,6 +60,19 @@ class FrontMatter extends PureComponent {
             props.onChange({ attribution: selected.attribution });
             props.onChange({ alt: selected.alt });
           }}
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={published}
+              onChange={event =>
+                props.onChange({ published: event.target.checked })
+              }
+              value="published"
+              color="primary"
+            />
+          }
+          label="published"
         />
         <FrontMatterTextfield id="title" {...props} />
         <FormControl margin="normal">

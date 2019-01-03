@@ -5,6 +5,7 @@ module.exports = config => {
       Promise.all([
         articles
           .select()
+          .where('published', '==', true)
           .get()
           .then(emptySelectSnapshot => emptySelectSnapshot.docs.length),
         articles
@@ -18,6 +19,7 @@ module.exports = config => {
             'attribution',
             'alt'
           )
+          .where('published', '==', true)
           .orderBy('date')
           .offset((page - 1) * pagerSize)
           .limit(parseInt(pagerSize, 10))
@@ -44,7 +46,11 @@ module.exports = config => {
         .get()
         .then(doc => {
           if (doc.exists) {
-            return doc.data();
+            const page = doc.data();
+            if (!page.published) {
+              throw new Error('404');
+            }
+            return page;
           } else {
             throw new Error('404');
           }
@@ -57,7 +63,7 @@ module.exports = config => {
         .then(doc => {
           if (doc.exists) {
             const article = doc.data();
-            if (article.collection !== collection) {
+            if (article.collection !== collection || !article.published) {
               throw new Error('404');
             }
             return article;
@@ -71,6 +77,7 @@ module.exports = config => {
         articles
           .select()
           .where('collection', '==', collection)
+          .where('published', '==', true)
           .get()
           .then(emptySelectSnapshot => emptySelectSnapshot.docs.length),
         articles
@@ -82,8 +89,9 @@ module.exports = config => {
             'attribution',
             'alt'
           )
-          .orderBy('slug')
           .where('collection', '==', collection)
+          .where('published', '==', true)
+          .orderBy('date')
           .offset((page - 1) * pagerSize)
           .limit(parseInt(pagerSize, 10))
           .get(),

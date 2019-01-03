@@ -5,14 +5,14 @@ const collections = {
     invertcolor: '#ffffff',
     backgroundcolor: '#777777',
     border: '#585858',
-    subline: '#ff5e00', // '#dd4814'
+    subline: '#585252', // '#dd4814'
     gradient: '#00ADFF, #FF6500',
     transparent: 'rgba(0, 167, 255, 0.5)',
   },
 };
 
 const theme = {
-  primary: '#FF6500',
+  primary: '#585252',
 
   /* CONTRASTS */
   white: '#fff',
