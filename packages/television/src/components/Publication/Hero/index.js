@@ -31,13 +31,13 @@ const PictureAttribution = withTheme(
 const Container = withTheme(
   styled('div', ({ $theme }) => ({
     margin: '0 auto',
-    padding: '10px',
+    padding: '0 10px',
     width: '87vw',
     position: 'relative',
     background: $theme.white,
     lineHeight: 1,
     '@media screen and (min-width: 1024px)': {
-      marginTop: 0,
+      margin: 0,
       width: 'inherit',
     },
   }))
@@ -47,7 +47,7 @@ const Time = withTheme(
   styled('time', ({ $theme }) => ({
     color: $theme.grey[400],
     display: 'block',
-    margin: '0vw 0vw 5vw 0vw',
+    margin: '5vw 0',
     textAlign: 'center',
     '@media screen and (min-width: 1024px)': {
       margin: '0 0 2vw 0',
@@ -57,7 +57,7 @@ const Time = withTheme(
 
 const Breadcrumbs = withTheme(
   styled('p', ({ $theme, $collection }) => ({
-    marginBottom: '5vw',
+    margin: '5vw 0',
     color: $theme.grey[400],
     '@media screen and (min-width: 1024px)': {
       marginBottom: '2vw',
@@ -78,7 +78,7 @@ const ArticleHeadline = withTheme(
     fontSize: '5vw',
     color: $theme.white,
     padding: '2vw',
-    margin: '0 0 3vw 0',
+    margin: '5vw 0',
     '@media screen and (min-width: 1024px)': {
       fontSize: '2vw',
       padding: '1vw',
@@ -100,9 +100,9 @@ const PageHeadline = withTheme(
 
 const Subline = withTheme(
   styled('h2', ({ $theme, $collection }) => ({
-    padding: '10px',
-    marginTop: '0',
-    marginBottom: '3vw',
+    margin: '5vw auto',
+    padding: '0 10px',
+    width: '87vw',
     color: $theme.grey[700],
     fontWeight: 300,
     '@media screen and (min-width: 1024px)': {

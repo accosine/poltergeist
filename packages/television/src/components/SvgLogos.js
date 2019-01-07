@@ -1,9 +1,9 @@
 import React from 'react';
-import preval from 'preval.macro'
+import preval from 'preval.macro';
 
 const spritemap = preval`
 import { getSpritemapSync } from 'svg-spritemap';
-module.exports = "'" + getSpritemapSync('src/logos', { withSvgTag: false }) + "'";
+module.exports = getSpritemapSync('logos', { withSvgTag: false });
 `;
 
 export default () => {
