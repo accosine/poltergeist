@@ -6,7 +6,6 @@ const {
   copySync,
   existsSync,
   realpathSync,
-  moveSync,
   removeSync,
   writeFileSync,
 } = require('fs-extra');
@@ -40,6 +39,7 @@ switch (args[0]) {
     // copy package to temp dir and change name in package.json
     copySync(resolveOwn('.'), tmpDir);
     pkg.name = themeName;
+    delete pkg.bin;
     writeFileSync(join(tmpDir, 'package.json'), JSON.stringify(pkg), 'utf8');
 
     // replace logos if folder was passed
@@ -47,6 +47,11 @@ switch (args[0]) {
       removeSync(join(tmpDir, 'logos'));
       copySync(resolveApp(logosDir), join(tmpDir, 'logos'));
     }
+
+    // install dependencies
+    spawn('npm', ['--prefix', tmpDir, 'install'], {
+      stdio: 'inherit',
+    });
 
     // create tarball
     spawn('npm', ['pack', tmpDir], {
