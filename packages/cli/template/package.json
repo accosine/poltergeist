@@ -12,6 +12,6 @@
   "dependencies": {
     "@poltergeist/clairvoyance": "0.0.10",
     "@poltergeist/plugin-ampgist": "0.0.1",
-    "@poltergeist/television": "0.0.5"
+    "@poltergeist/television": "0.0.9"
   }
 }
