@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,36 +7,31 @@ import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 
-class WaitingUsers extends Component {
-  render() {
-    const { users, onAcceptUser } = this.props;
-    return (
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Accept</TableCell>
+const WaitingUsers = ({ users, onAcceptUser }) => (
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableCell>ID</TableCell>
+        <TableCell>Email</TableCell>
+        <TableCell>Accept</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {users.map(user => {
+        return (
+          <TableRow key={user.id}>
+            <TableCell>{user.id}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>
+              <IconButton onClick={() => onAcceptUser(user)}>
+                <AddIcon />
+              </IconButton>
+            </TableCell>
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map(user => {
-            return (
-              <TableRow key={user.id}>
-                <TableCell>{user.id}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>
-                  <IconButton onClick={() => onAcceptUser(user)}>
-                    <AddIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    );
-  }
-}
+        );
+      })}
+    </TableBody>
+  </Table>
+);
 
 export default WaitingUsers;

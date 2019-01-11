@@ -4,10 +4,10 @@ import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 import TargetBox from './TargetBox';
 import FileList from './FileList';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { withStyles } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
-import connectFirebase from '../../util/connect-firebase';
+import { FirebaseContext } from '../../firebase';
 
 const styleSheet = {
   savebutton: {
@@ -24,6 +24,7 @@ const styleSheet = {
 };
 
 class ImageUploader extends Component {
+  static contextType = FirebaseContext;
   constructor(props) {
     super(props);
 
@@ -35,9 +36,7 @@ class ImageUploader extends Component {
   }
 
   uploadFiles = () => {
-    const {
-      firebase: { firestore, storage },
-    } = this.props;
+    const { firestore, storage } = this.context;
     const { droppedFiles } = this.state;
 
     this.setState({ isUploading: true }, () => {
@@ -141,7 +140,7 @@ class ImageUploader extends Component {
             onFilesChange={this.handleFilesChange}
           />
           <div className={classes.wrapper}>
-            <Button
+            <Fab
               disabled={
                 !hasFiles ||
                 isUploading ||
@@ -156,11 +155,10 @@ class ImageUploader extends Component {
                 )
               }
               onClick={this.uploadFiles}
-              variant="fab"
               className={classes.savebutton}
             >
               <SaveIcon />
-            </Button>
+            </Fab>
             {isUploading && (
               <CircularProgress size={60} className={classes.progress} />
             )}
@@ -171,5 +169,5 @@ class ImageUploader extends Component {
   }
 }
 export default withStyles(styleSheet)(
-  DragDropContext(HTML5Backend)(connectFirebase(ImageUploader))
+  DragDropContext(HTML5Backend)(ImageUploader)
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import { withStyles } from '@material-ui/core/styles';
 
 const styleSheet = theme => ({
@@ -20,13 +20,9 @@ const styleSheet = theme => ({
 });
 
 const FixedButton = ({ children, classes, position, top, ...props }) => (
-  <Button
-    variant="fab"
-    className={classNames(classes.button, classes[position])}
-    {...props}
-  >
+  <Fab className={classNames(classes.button, classes[position])} {...props}>
     {children}
-  </Button>
+  </Fab>
 );
 
 FixedButton.propTypes = {

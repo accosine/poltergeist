@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -17,62 +16,45 @@ const styleSheet = {
   },
 };
 
-class Iframe extends Component {
-  state = {
-    scrollY: 0,
-  };
-
-  componentDidMount() {
-    this.updateIframe();
+const Iframe = ({ html, classes }) => {
+  if (!html) {
+    return null;
   }
 
-  componentDidUpdate() {
-    this.updateIframe();
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.html !== this.props.html;
-  }
-
-  createIframe = () => {
+  const containerEl = useRef(null);
+  const createIframe = () => {
     const iframe = document.createElement('iframe');
-    iframe.setAttribute(
-      'class',
-      classnames(this.props.classes.iframe, this.props.classes.hidden)
-    );
+    iframe.setAttribute('class', classnames(classes.iframe, classes.hidden));
     iframe.setAttribute('title', 'preview');
     return iframe;
   };
+  const [scrollTop, setScrollTop] = useState(0);
+  useLayoutEffect(
+    () => {
+      const iframe = createIframe();
+      containerEl.current.appendChild(iframe);
+      const iframeDocument = iframe.contentDocument;
 
-  updateIframe = () => {
-    const iframe = this.createIframe();
-    this.container.appendChild(iframe);
+      iframeDocument.open();
 
-    const iframeDocument = iframe.contentDocument;
-    iframeDocument.open();
-    iframeDocument.write(this.props.html);
-    iframeDocument.close();
-    iframeDocument.addEventListener('scroll', event =>
-      this.setState({ scrollTop: event.target.scrollingElement.scrollTop })
-    );
-    iframe.contentWindow.onload = () => {
-      if (this.container.children.length > 1) {
-        this.container.removeChild(this.container.firstChild);
-      }
-      iframe.className = this.props.classes.iframe;
-      iframe.contentWindow.scrollTo(0, this.state.scrollTop);
-    };
-  };
+      iframe.contentWindow.onload = () => {
+        if (containerEl.current.children.length > 1) {
+          containerEl.current.removeChild(containerEl.current.firstChild);
+        }
+        iframe.className = classes.iframe;
+        iframe.contentWindow.scrollTo(0, scrollTop);
+      };
+      iframeDocument.addEventListener('scroll', event =>
+        setScrollTop(event.target.scrollingElement.scrollTop)
+      );
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.container} ref={ref => (this.container = ref)} />
-    );
-  }
-}
+      iframeDocument.write(html);
+      iframeDocument.close();
+    },
+    [html]
+  );
 
-Iframe.propTypes = {
-  html: PropTypes.string.isRequired,
+  return <div className={classes.container} ref={containerEl} />;
 };
+
 export default withStyles(styleSheet)(Iframe);

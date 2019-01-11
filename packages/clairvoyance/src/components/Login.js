@@ -1,45 +1,85 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import classnames from 'classnames';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import connectFirebase from '../util/connect-firebase';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const styleSheet = {
+import { useFirebaseContext } from '../firebase';
+
+const useStyles = makeStyles({
   row: {
     display: 'flex',
     justifyContent: 'center',
   },
   avatar: {
     margin: 10,
+    cursor: 'pointer',
   },
-};
+  invisible: {
+    display: 'hidden',
+  },
+});
 
-const Login = props => {
+const Login = () => {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [avatarError, setAvatarError] = React.useState(false);
   const {
-    classes,
-    firebase: { isAuthenticated, authenticate },
     user,
-  } = props;
-  const authed = isAuthenticated();
+    signIn,
+    signOut,
+    loading,
+  } = useFirebaseContext().authentication;
 
-  if (authed) {
-    return (
-      <div className={classes.row}>
-        <Avatar alt="" src={user.avatar} className={classes.avatar} />
-      </div>
-    );
-  } else {
-    return <Button onClick={event => authenticate()}>Login</Button>;
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
   }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
+  return loading ? (
+    <CircularProgress color="secondary" />
+  ) : user ? (
+    <div className={classes.row}>
+      {avatarError ? (
+        <Avatar onClick={handleClick} className={classes.avatar}>
+          {user.displayName
+            .split(' ')
+            .map(x => x[0])
+            .join('')}
+        </Avatar>
+      ) : (
+        <Avatar
+          onClick={handleClick}
+          alt="user avatar"
+          src={user.photoURL}
+          imgProps={{
+            onError: () => setAvatarError(true),
+          }}
+          className={classnames(classes.avatar, {
+            [classes.invisible]: avatarError,
+          })}
+        />
+      )}
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+        <MenuItem
+          onClick={() => {
+            signOut();
+            handleClose();
+          }}
+        >
+          Logout
+        </MenuItem>
+      </Menu>
+    </div>
+  ) : (
+    <Button onClick={signIn}>Login</Button>
+  );
 };
 
-Login.defaultProps = {
-  user: { avatar: '' },
-};
-
-Login.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styleSheet)(connectFirebase(Login));
+export default Login;

@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { styled } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import { Switch, Route } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,60 +7,55 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import Dresser from './Dresser';
 import Login from './Login';
 
-const styleSheet = {
-  flex: {
-    flex: 1,
-  },
-};
+const Headline = styled(Typography)({
+  flex: 1,
+});
 
-const Navigation = props => {
-  const { classes, onDrawerToggle, ...rest } = props;
+const Navigation = ({ authenticated }) => {
+  const [drawerOpen, setDrawerState] = useState(false);
+
+  const toggleDrawer = () => setDrawerState(!drawerOpen);
+  const closeDrawer = () => setDrawerState(false);
 
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <IconButton onClick={onDrawerToggle}>
-            <MenuIcon />
-          </IconButton>
-          <Switch>
-            <Route path="/pages">
-              <Typography variant="h6" className={classes.flex}>
-                Pages
-              </Typography>
-            </Route>
-            <Route path="/articles">
-              <Typography variant="h6" className={classes.flex}>
-                Articles
-              </Typography>
-            </Route>
-            <Route path="/editor">
-              <Typography variant="h6" className={classes.flex}>
-                Editor
-              </Typography>
-            </Route>
-            <Route path="/users">
-              <Typography variant="h6" className={classes.flex}>
-                Users
-              </Typography>
-            </Route>
-            <Route>
-              <Typography variant="h6" className={classes.flex}>
-                Home
-              </Typography>
-            </Route>
-          </Switch>
-          <Login {...rest} />
+          {authenticated ? (
+            <>
+              <IconButton onClick={toggleDrawer}>
+                <MenuIcon />
+              </IconButton>
+              <Switch>
+                <Route path="/pages">
+                  <Headline variant="h6">Pages</Headline>
+                </Route>
+                <Route path="/articles">
+                  <Headline variant="h6">Articles</Headline>
+                </Route>
+                <Route path="/editor">
+                  <Headline variant="h6">Editor</Headline>
+                </Route>
+                <Route path="/users">
+                  <Headline variant="h6">Users</Headline>
+                </Route>
+                <Route>
+                  <Headline variant="h6">Home</Headline>
+                </Route>
+              </Switch>
+            </>
+          ) : (
+            <Headline variant="h6">Please log in</Headline>
+          )}
+          <Login />
         </Toolbar>
       </AppBar>
+      <Dresser onDrawerClose={closeDrawer} open={drawerOpen} />
     </div>
   );
 };
 
-Navigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styleSheet)(Navigation);
+export default Navigation;

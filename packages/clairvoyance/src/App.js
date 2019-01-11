@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-// import Home from './components/Home';
-import SplitScreen from './components/SplitScreen';
-import Users from './components/Users';
-import Articles from './components/Articles';
-import Pages from './components/Pages';
+import React, { Suspense, lazy } from 'react';
+import { makeStyles } from '@material-ui/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Home from './components/Home';
 import Navigation from './components/Navigation';
-import Dresser from './components/Dresser';
-import connectFirebase from './util/connect-firebase';
+import { useFirebaseContext } from './firebase';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-const styleSheet = {
+const SplitScreen = lazy(() => import('./components/SplitScreen'));
+const Users = lazy(() => import('./components/Users'));
+const Articles = lazy(() => import('./components/Articles'));
+const Pages = lazy(() => import('./components/Pages'));
+
+const useStyles = makeStyles({
   app: {
     width: '100%',
     height: 'fit-content',
@@ -19,95 +19,37 @@ const styleSheet = {
     display: 'flex',
     flexDirection: 'column',
   },
-};
+});
 
-const RenderMergedProps = (component, ...rest) => {
-  const finalProps = Object.assign({}, ...rest);
-  return React.createElement(component, finalProps);
-};
+const App = () => {
+  const classes = useStyles();
+  const { isAuthenticated } = useFirebaseContext().authentication;
 
-const PrivateRoute = ({ component, redirectTo, isAuthenticated, ...rest }) => (
-  <Route
-    {...rest}
-    render={routeProps =>
-      isAuthenticated() ? (
-        RenderMergedProps(component, routeProps, rest)
-      ) : (
-        <Redirect
-          to={{
-            pathname: redirectTo,
-            state: { from: routeProps.location },
-          }}
-        />
-      )
-    }
-  />
-);
-
-class App extends Component {
-  render() {
-    const {
-      classes,
-      firebase,
-      user,
-      open,
-      onDrawerToggle,
-      onDrawerClose,
-    } = this.props;
-    return (
-      <Router basename="/admin">
+  return (
+    <Router basename="/admin">
+      <Suspense fallback={<LinearProgress color="secondary" />}>
         <div className={classes.app}>
-          <Navigation onDrawerToggle={onDrawerToggle} user={user} />
-          <Dresser
-            onDrawerClose={onDrawerClose}
-            isAuthenticated={firebase.isAuthenticated}
-            open={open}
-          />
-          {/* <PrivateRoute */}
-          {/*   path="/" */}
-          {/*   exact */}
-          {/*   isAuthenticated={firebase.isAuthenticated} */}
-          {/*   component={Home} */}
-          {/* /> */}
-          <PrivateRoute
-            path="/editor/:kind(page|article)/:slug?"
-            isAuthenticated={firebase.isAuthenticated}
-            component={SplitScreen}
-          />
-          <PrivateRoute
-            path="/articles"
-            isAuthenticated={firebase.isAuthenticated}
-            component={Articles}
-            redirectTo="/"
-          />
-          <PrivateRoute
-            path="/pages"
-            isAuthenticated={firebase.isAuthenticated}
-            component={Pages}
-            redirectTo="/"
-          />
-          <PrivateRoute
-            path="/users"
-            isAuthenticated={firebase.isAuthenticated}
-            component={Users}
-            redirectTo="/"
-          />
+          <Navigation authenticated={isAuthenticated} />
+          {isAuthenticated ? (
+            <>
+              <Route path="/" exact component={Home} />
+              <Route
+                path="/editor/:kind(page|article)/:slug?"
+                component={SplitScreen}
+              />
+              <Route path="/articles" component={Articles} redirectTo="/" />
+              <Route path="/pages" component={Pages} redirectTo="/" />
+              <Route path="/users" component={Users} redirectTo="/" />
+            </>
+          ) : (
+            <>
+              <Redirect to="/" />
+            </>
+          )}
         </div>
-      </Router>
-    );
-  }
-}
-
-App.propTypes = {
-  onDrawerToggle: PropTypes.func.isRequired,
-  onDrawerClose: PropTypes.func.isRequired,
-  firebase: PropTypes.shape({
-    auth: PropTypes.object.isRequired,
-    authenticate: PropTypes.func.isRequired,
-    firestore: PropTypes.object.isRequired,
-    storage: PropTypes.object.isRequired,
-    isAuthenticated: PropTypes.func.isRequired,
-  }).isRequired,
+      </Suspense>
+    </Router>
+  );
 };
 
-export default withStyles(styleSheet)(connectFirebase(App));
+export default App;

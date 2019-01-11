@@ -1,6 +1,6 @@
 {
   "name": "@poltergeist/plugin-ampgist",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "keywords": [
     "poltergeist",
@@ -10,7 +10,7 @@
   ],
   "main": "dist/index.js",
   "peerDependencies": {
-    "react": "^16.3.0"
+    "react": "16.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.46",

@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import React, { memo } from 'react';
+import { makeStyles } from '@material-ui/styles';
 
 import Shortcode, { TextInput, Switch, Text } from './Shortcode';
 import YouTube from './YouTube';
@@ -25,23 +24,24 @@ import plugins from '../../plugins';
 // import ImageLightbox from './ImageLightbox';
 // import AppBanner from './AppBanner';
 //
-const styleSheet = theme => ({
+const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     padding: theme.spacing.unit + 'px 0',
   },
-});
+}));
 
-class Shortcodes extends PureComponent {
-  render() {
-    const { onShortcode, classes } = this.props;
+const Shortcodes = ({ onShortcode }) => {
+  const classes = useStyles();
 
-    return (
-      <div className={classes.container}>
-        <Img onShortcode={onShortcode} />
-        {plugins.filter(plugin => plugin.shortcode).map(({ shortcode }) => {
+  return (
+    <div className={classes.container}>
+      <Img onShortcode={onShortcode} />
+      {plugins
+        .filter(plugin => plugin.shortcode)
+        .map(({ shortcode }) => {
           const { dialog, name, label, title } = shortcode;
           const { Content, onInsert, isValid } = dialog({
             TextInput,
@@ -60,40 +60,35 @@ class Shortcodes extends PureComponent {
             />
           );
         })}
-        <YouTube onShortcode={onShortcode} />
-        <SoundCloud onShortcode={onShortcode} />
-        <Vimeo onShortcode={onShortcode} />
-        <Instagram onShortcode={onShortcode} />
-        <Gfycat onShortcode={onShortcode} />
-        <FacebookComments onShortcode={onShortcode} />
-        <FacebookPost onShortcode={onShortcode} />
-        <Pinterest onShortcode={onShortcode} />
-        <Playbuzz onShortcode={onShortcode} />
-        <Twitter onShortcode={onShortcode} />
-        <Iframe onShortcode={onShortcode} />
-        <FitText onShortcode={onShortcode} />
-        {/*
+      <YouTube onShortcode={onShortcode} />
+      <SoundCloud onShortcode={onShortcode} />
+      <Vimeo onShortcode={onShortcode} />
+      <Instagram onShortcode={onShortcode} />
+      <Gfycat onShortcode={onShortcode} />
+      <FacebookComments onShortcode={onShortcode} />
+      <FacebookPost onShortcode={onShortcode} />
+      <Pinterest onShortcode={onShortcode} />
+      <Playbuzz onShortcode={onShortcode} />
+      <Twitter onShortcode={onShortcode} />
+      <Iframe onShortcode={onShortcode} />
+      <FitText onShortcode={onShortcode} />
+      {/*
       <AppBanner onShortcode={onShortcode} />
       */}
-        {/*
+      {/*
       <Lightbox onShortcode={onShortcode} />
       */}
-        {/*
+      {/*
       <ImageLightbox onShortcode={onShortcode} />
       */}
-        {/*
+      {/*
       <Accordion onShortcode={onShortcode} />
       */}
-        {/*
+      {/*
       <Carousel onShortcode={onShortcode} />
       */}
-      </div>
-    );
-  }
-}
-
-Shortcodes.propTypes = {
-  onShortcode: PropTypes.func.isRequired,
+    </div>
+  );
 };
 
-export default withStyles(styleSheet)(Shortcodes);
+export default memo(Shortcodes);

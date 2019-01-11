@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled } from '@material-ui/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -8,6 +9,10 @@ import Typography from '@material-ui/core/Typography';
 
 import config from '../config';
 
+const Pre = styled('pre')({
+  overflow: 'scroll',
+});
+
 const Home = props => (
   <ExpansionPanel defaultExpanded={false}>
     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -15,7 +20,9 @@ const Home = props => (
     </ExpansionPanelSummary>
     <Divider />
     <ExpansionPanelDetails>
-      <pre>{JSON.stringify(config, null, 2)}</pre>
+      <Pre>
+        <code>{JSON.stringify(config, null, 2)}</code>
+      </Pre>
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );

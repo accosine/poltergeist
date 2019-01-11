@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -12,11 +12,12 @@ import Editor from './Editor';
 import FixedButton from './FixedButton';
 import SaveIcon from '@material-ui/icons/Save';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Preview from './Preview';
-import Shortcodes from './Shortcodes';
 import FrontMatter from './FrontMatter';
-import connectFirebase from '../util/connect-firebase';
+import { FirebaseContext } from '../firebase';
 import config from '../config';
+
+const Preview = lazy(() => import('./Preview'));
+const Shortcodes = lazy(() => import('./Shortcodes'));
 
 const articleCollectionSlugs = Object.values(
   config.application.article.collections
@@ -68,6 +69,7 @@ const styleSheet = theme => ({
 });
 
 class SplitScreen extends Component {
+  static contextType = FirebaseContext;
   state = {
     loading: false,
     isSaving: false,
@@ -110,13 +112,12 @@ class SplitScreen extends Component {
 
   subscribe = slug => {
     const {
-      firebase,
       match: {
         params: { kind },
       },
     } = this.props;
     this.setState({ loading: true });
-    this.firestoreUnsubscribe = firebase.firestore
+    this.firestoreUnsubscribe = this.context.firestore
       .collection(kind === 'article' ? 'articles' : 'pages')
       .doc(slug)
       .onSnapshot(snapshot => {
@@ -157,11 +158,11 @@ class SplitScreen extends Component {
     const { caretPosition, isSaving, loading, ...contentState } = this.state;
     const {
       history,
-      firebase: { firestore },
       match: {
         params: { kind },
       },
     } = this.props;
+    const { firestore } = this.context;
     this.setState(
       {
         isSaving: true,
@@ -309,4 +310,4 @@ SplitScreen.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(connectFirebase(SplitScreen));
+export default withStyles(styleSheet)(SplitScreen);

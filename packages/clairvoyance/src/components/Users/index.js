@@ -1,99 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
 import CreateIcon from '@material-ui/icons/Create';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 import StaffUsers from './StaffUsers';
 import WaitingUsers from './WaitingUsers';
+import WaitingUserDialog from './WaitingUserDialog';
 import PendingUsers from './PendingUsers';
 import FixedButton from '../FixedButton';
-import connectFirebase from '../../util/connect-firebase';
+import {
+  useFirebaseContext,
+  useFirestoreCollectionSubscription,
+} from '../../firebase';
 
-// TODO: confirmations for delete dialogs
-// TODO: create new entries via plus symbol in new line
-
-class WaitingUserDialog extends Component {
-  state = {
-    email: '',
-    role: 'editor',
-  };
-
-  handleEmailChange = event =>
-    this.setState({
-      email: event.target.value,
-    });
-
-  handleRoleChange = event =>
-    this.setState({
-      role: event.target.value,
-    });
-
-  render() {
-    const { open, onClose, onSubmit } = this.props;
-
-    return (
-      <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Add user to waitlist</DialogTitle>
-        <DialogContent>
-          <DialogContentText>asdlkfjadslkf</DialogContentText>
-          <TextField
-            value={this.state.email}
-            onChange={this.handleEmailChange}
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-          />
-          <FormControl>
-            <InputLabel htmlFor="role">Role</InputLabel>
-            <Select
-              value={this.state.role}
-              onChange={this.handleRoleChange}
-              inputProps={{
-                name: 'role',
-                id: 'role',
-              }}
-            >
-              <MenuItem value="editor">Editor</MenuItem>
-              <MenuItem value="admin">Admin</MenuItem>
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={onClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={() => onSubmit(this.state)} color="primary">
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-}
-
-const TabContainer = props => (
-  <Typography component="div" style={{ padding: 8 * 3 }}>
-    {props.children}
-  </Typography>
-);
-
-const styleSheet = theme => ({
+const useStyles = makeStyles(theme => ({
+  tabContainer: {
+    padding: theme.spacing.unit * 3,
+    overflow: 'scroll',
+    width: '100%',
+  },
   root: {
     marginTop: 2 * theme.spacing.unit,
     justifyContent: 'center',
@@ -101,198 +29,135 @@ const styleSheet = theme => ({
     display: 'flex',
     flexDirection: 'column',
   },
-});
+}));
 
-class Users extends Component {
-  state = {
-    tabId: 0,
-    staffusers: [],
-    loadingStaff: true,
-    pendingusers: [],
-    loadingPending: true,
-    waitingusers: [],
-    loadingWaiting: true,
-    waitingUserOpen: false,
-  };
+// TODO: confirmations for delete dialogs
+// TODO: create new entries via plus symbol in new line
 
-  componentDidMount() {
-    this.firestoreUnsubscribeStaffusers = this.props.firebase.firestore
-      .collection('staffusers')
-      .onSnapshot(snapshot => {
-        this.setState({
-          staffusers: snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })),
-          loadingStaff: false,
-        });
-      });
-    this.firestoreUnsubscribeWaitingusers = this.props.firebase.firestore
-      .collection('waitingusers')
-      .onSnapshot(snapshot => {
-        this.setState({
-          waitingusers: snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          })),
-          loadingWaiting: false,
-        });
-      });
-    this.firestoreUnsubscribePendingusers = this.props.firebase.firestore
-      .collection('pendingusers')
-      .onSnapshot(snapshot => {
-        this.setState({
-          pendingusers: snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          })),
-          loadingPending: false,
-        });
-      });
-  }
+const TabContainer = props => {
+  const classes = useStyles();
+  return <div className={classes.tabContainer}>{props.children}</div>;
+};
 
-  openDialog = () => {
-    if (this.state.tabId === 1) {
-      this.setState({
-        waitingUserOpen: true,
-      });
-    }
-  };
+const Users = () => {
+  const classes = useStyles();
+  const [tabId, setTabId] = useState(0);
+  const [waitingUserOpen, setWaitingUserOpen] = useState(false);
+  const { firestore } = useFirebaseContext();
+  const [staffusers, loadingStaff] = useFirestoreCollectionSubscription(
+    'staffusers'
+  );
+  const [waitingusers, loadingWaiting] = useFirestoreCollectionSubscription(
+    'waitingusers'
+  );
+  const [pendingusers, loadingPending] = useFirestoreCollectionSubscription(
+    'pendingusers'
+  );
 
   // TODO: handle loading state (disable save button) and errors
-  handleCreateWaiting = ({ email, role }) => {
-    this.props.firebase.firestore
+  const handleCreateWaiting = async ({ email, role }) => {
+    await firestore
       .collection('waitingusers')
       .doc(email)
-      .set({ role })
-      .then(() => {
-        this.setState({ waitingUserOpen: false });
-      });
+      .set({ role });
+    setWaitingUserOpen(false);
   };
 
-  handleStaffUserChange = async ({ id, ...user }) => {
-    await this.props.firebase.firestore
+  const handleStaffUserChange = ({ id, ...user }) =>
+    firestore
       .collection('staffusers')
       .doc(id)
       .set(user);
-  };
 
-  handleDeleteStaffUser = async ({ id }) => {
-    await this.props.firebase.firestore
+  const handleDeleteStaffUser = ({ id }) =>
+    firestore
       .collection('staffusers')
       .doc(id)
       .delete();
-  };
 
-  handleDeleteWaitingUser = async ({ id }) => {
-    await this.props.firebase.firestore
+  const handleDeleteWaitingUser = ({ id }) =>
+    firestore
       .collection('waitingusers')
       .doc(id)
       .delete();
-  };
 
-  handleAcceptUser = async ({ id, email }) => {
-    await this.props.firebase.firestore
+  const handleAcceptUser = async ({ id, email }) => {
+    await firestore
       .collection('staffusers')
       .doc(id)
       .set({ email, role: 'editor' });
-    await this.props.firebase.firestore
+    await firestore
       .collection('pendingusers')
       .doc(id)
       .delete();
   };
 
-  componentWillUnmount() {
-    // Remove database change listeners
-    this.firestoreUnsubscribeStaffusers();
-    this.firestoreUnsubscribeWaitingusers();
-    this.firestoreUnsubscribePendingusers();
-  }
+  return (
+    <div className={classes.root}>
+      <Tabs value={tabId} onChange={(event, value) => setTabId(value)}>
+        <Tab label="Staff" />
+        <Tab label="Waiting" />
+        <Tab label="Pending" />
+      </Tabs>
 
-  render() {
-    const { classes } = this.props;
-    const {
-      tabId,
-      staffusers,
-      pendingusers,
-      waitingusers,
-      loadingStaff,
-      loadingPending,
-      loadingWaiting,
-      waitingUserOpen,
-    } = this.state;
+      {tabId === 0 ? (
+        <TabContainer>
+          {loadingStaff ? (
+            <CircularProgress />
+          ) : staffusers.length ? (
+            <StaffUsers
+              users={staffusers}
+              onUserChange={handleStaffUserChange}
+              onDeleteUser={handleDeleteStaffUser}
+            />
+          ) : (
+            <Typography>No users. Impossible. Who are you?</Typography>
+          )}
+        </TabContainer>
+      ) : null}
 
-    return (
-      <div className={classes.root}>
-        <Tabs
-          value={tabId}
-          onChange={(event, value) => this.setState({ tabId: value })}
-        >
-          <Tab label="Staff" />
-          <Tab label="Waiting" />
-          <Tab label="Pending" />
-        </Tabs>
+      {tabId === 1 ? (
+        <TabContainer>
+          {loadingWaiting ? (
+            <CircularProgress />
+          ) : waitingusers.length ? (
+            <WaitingUsers
+              users={waitingusers}
+              onDeleteUser={handleDeleteWaitingUser}
+            />
+          ) : (
+            <Typography>No waiting users.</Typography>
+          )}
+        </TabContainer>
+      ) : null}
 
-        {tabId === 0 ? (
-          <TabContainer>
-            {loadingStaff ? (
-              <CircularProgress />
-            ) : staffusers.length ? (
-              <StaffUsers
-                users={staffusers}
-                onUserChange={this.handleStaffUserChange}
-                onDeleteUser={this.handleDeleteStaffUser}
-              />
-            ) : (
-              <Typography>No users. Impossible. Who are you?</Typography>
-            )}
-          </TabContainer>
-        ) : null}
+      {tabId === 2 ? (
+        <TabContainer>
+          {loadingPending ? (
+            <CircularProgress />
+          ) : pendingusers.length ? (
+            <PendingUsers
+              users={pendingusers}
+              onAcceptUser={handleAcceptUser}
+            />
+          ) : (
+            <Typography>No pending users.</Typography>
+          )}
+        </TabContainer>
+      ) : null}
 
-        {tabId === 1 ? (
-          <TabContainer>
-            {loadingWaiting ? (
-              <CircularProgress />
-            ) : waitingusers.length ? (
-              <WaitingUsers
-                users={waitingusers}
-                onDeleteUser={this.handleDeleteWaitingUser}
-              />
-            ) : (
-              <Typography>No waiting users.</Typography>
-            )}
-          </TabContainer>
-        ) : null}
-
-        {tabId === 2 ? (
-          <TabContainer>
-            {loadingPending ? (
-              <CircularProgress />
-            ) : pendingusers.length ? (
-              <PendingUsers
-                users={pendingusers}
-                onAcceptUser={this.handleAcceptUser}
-              />
-            ) : (
-              <Typography>No pending users.</Typography>
-            )}
-          </TabContainer>
-        ) : null}
-
-        {tabId === 1 ? (
-          <FixedButton onClick={this.openDialog} position="right">
-            <CreateIcon />
-          </FixedButton>
-        ) : null}
-        <WaitingUserDialog
-          open={waitingUserOpen}
-          onClose={() => this.setState({ waitingUserOpen: false })}
-          onSubmit={this.handleCreateWaiting}
-        />
-      </div>
-    );
-  }
-}
-
-Users.propTypes = {
-  classes: PropTypes.object.isRequired,
+      {tabId === 1 ? (
+        <FixedButton onClick={() => setWaitingUserOpen(true)} position="right">
+          <CreateIcon />
+        </FixedButton>
+      ) : null}
+      <WaitingUserDialog
+        open={waitingUserOpen}
+        onClose={() => setWaitingUserOpen(false)}
+        onSubmit={handleCreateWaiting}
+      />
+    </div>
+  );
 };
 
-export default withStyles(styleSheet)(connectFirebase(Users));
+export default Users;

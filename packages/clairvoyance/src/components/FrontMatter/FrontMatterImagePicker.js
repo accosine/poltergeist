@@ -1,70 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 
 import MediaManager from '../MediaManager';
 import MediaManagerTabs from '../MediaManager/Tabs';
 import MediaManagerActions from '../MediaManager/Actions';
 
-const styleSheet = {
+const useStyles = makeStyles({
   container: {
     display: 'inline',
   },
   root: {
     flexGrow: 1,
   },
+});
+
+const FrontMatterImagePicker = ({ onInsert }) => {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const openDialog = () => setOpen(true);
+  const closeDialog = () => setOpen(false);
+
+  return (
+    <div className={classes.container}>
+      <Button
+        size="small"
+        color="primary"
+        variant="contained"
+        onClick={openDialog}
+        className={classes.button}
+      >
+        Img
+      </Button>
+      <Dialog fullScreen open={open} onClose={closeDialog}>
+        <MediaManager
+          onInsert={selected => {
+            onInsert(selected);
+            closeDialog();
+          }}
+          onCancel={closeDialog}
+        >
+          <DialogContent>
+            <MediaManagerTabs />
+          </DialogContent>
+          <DialogActions>
+            <MediaManagerActions />
+          </DialogActions>
+        </MediaManager>
+      </Dialog>
+    </div>
+  );
 };
 
-class FrontMatterImagePicker extends Component {
-  state = {
-    open: false,
-  };
-
-  openDialog = () => {
-    this.setState({ open: true });
-  };
-
-  closeDialog = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes, onInsert } = this.props;
-    return (
-      <div className={classes.container}>
-        <Button
-          size="small"
-          color="primary"
-          variant="contained"
-          onClick={this.openDialog}
-          className={classes.button}
-        >
-          Img
-        </Button>
-        {this.state.open ? (
-          <Dialog fullScreen open={this.state.open} onClose={this.closeDialog}>
-            <MediaManager
-              onInsert={selected => {
-                onInsert(selected);
-                this.closeDialog();
-              }}
-              onCancel={this.closeDialog}
-            >
-              <DialogContent>
-                <MediaManagerTabs />
-              </DialogContent>
-              <DialogActions>
-                <MediaManagerActions />
-              </DialogActions>
-            </MediaManager>
-          </Dialog>
-        ) : null}
-      </div>
-    );
-  }
-}
-
-export default withStyles(styleSheet)(FrontMatterImagePicker);
+export default FrontMatterImagePicker;

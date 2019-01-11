@@ -4,6 +4,11 @@ import codegen from 'babel-plugin-codegen/macro';
 // https://github.com/kentcdodds/babel-plugin-macros#babel-cache-problem
 
 export default codegen`
-const { application: { plugins } } = require('./config.json');
-module.exports = '[' + (plugins || []).map(plugin => "require('" + plugin + "')").join(', ') + ']';
+const {
+  application: { plugins },
+} = require('./config.json');
+module.exports =
+  '[' +
+  (plugins || []).map(plugin => "require('" + plugin + "')").join(', ') +
+  ']';
 `;

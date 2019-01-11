@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import connectFirebase from '../util/connect-firebase';
+import { FirebaseContext } from '../firebase';
 
 class ImageSearch extends Component {
+  static contextType = FirebaseContext;
   state = {
     query: '',
     result: [],
@@ -13,7 +14,7 @@ class ImageSearch extends Component {
 
     if (query.length) {
       try {
-        const { docs } = await this.props.firebase.firestore
+        const { docs } = await this.context.firestore
           .collection('images')
           .orderBy('name')
           .startAt(query)
@@ -41,4 +42,4 @@ class ImageSearch extends Component {
   }
 }
 
-export default connectFirebase(ImageSearch);
+export default ImageSearch;

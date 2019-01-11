@@ -12,6 +12,8 @@ import plugins from '../plugins';
 import DevicePreview from './DevicePreview';
 import Iframe from './Iframe';
 
+const theme = Theme(config.application, plugins);
+
 const styleSheet = {
   container: {
     width: '100%',
@@ -38,7 +40,6 @@ class Preview extends PureComponent {
 
   componentDidMount() {
     this.updatePreview();
-    this.theme = Theme(config.application, plugins);
   }
 
   componentDidUpdate() {
@@ -52,11 +53,15 @@ class Preview extends PureComponent {
 
     this.renderTimeout = setTimeout(() => {
       const { text, kind, ...frontmatter } = this.props;
-      const preview =
-        text && frontmatter
-          ? this.theme[kind]({ ...frontmatter, content: text })
-          : '';
-      this.setState({ preview });
+      try {
+        const preview =
+          text && frontmatter
+            ? theme[kind]({ ...frontmatter, content: text })
+            : '';
+        this.setState({ preview });
+      } catch (error) {
+        this.setState({ preview: false });
+      }
     }, this.props.renderDelay);
   };
 

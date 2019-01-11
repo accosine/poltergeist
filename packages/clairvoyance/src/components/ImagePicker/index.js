@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ImageCard from './ImageCard';
 import { withStyles } from '@material-ui/core/styles';
-import connectFirebase from '../../util/connect-firebase';
+import { FirebaseContext } from '../../firebase';
 
 const styleSheet = theme => ({
   container: {
@@ -44,6 +44,7 @@ const styleSheet = theme => ({
 });
 
 class ImagePicker extends Component {
+  static contextType = FirebaseContext;
   state = {
     images: [],
     selected: [],
@@ -51,7 +52,7 @@ class ImagePicker extends Component {
   };
 
   componentDidMount() {
-    this.firestoreUnsubscribe = this.props.firebase.firestore
+    this.firestoreUnsubscribe = this.context.firestore
       .collection('images')
       .onSnapshot(snapshot => {
         this.setState({
@@ -115,4 +116,4 @@ ImagePicker.propTypes = {
   onCarouselSettings: PropTypes.func.isRequired,
 };
 
-export default withStyles(styleSheet)(connectFirebase(ImagePicker));
+export default withStyles(styleSheet)(ImagePicker);

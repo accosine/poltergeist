@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const styleSheet = {
@@ -47,11 +46,5 @@ class Editor extends Component {
     );
   }
 }
-
-Editor.propTypes = {
-  onEdit: PropTypes.func.isRequired,
-  onCaretPosition: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styleSheet)(Editor);
