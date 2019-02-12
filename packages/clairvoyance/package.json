@@ -15,12 +15,13 @@
     "cross-spawn": "^6.0.5",
     "fs-extra": "^7.0.0",
     "prop-types": "^15.6.1",
-    "react": "16.7.0-alpha.2",
+    "react": "16.8.1",
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.5.4",
-    "react-dom": "16.7.0-alpha.2",
+    "react-dom": "16.8.1",
+    "react-infinite-scroll-component": "^4.5.0",
     "react-router-dom": "^4.4.0-beta.6",
-    "react-scripts": "^2.1.2",
+    "react-scripts": "^2.1.5",
     "typeface-roboto": "^0.0.22"
   },
   "bin": {

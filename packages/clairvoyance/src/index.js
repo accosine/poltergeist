@@ -9,12 +9,14 @@ import { FirebaseProvider } from './firebase';
 import App from './App';
 
 const Main = () => (
-  <ThemeProvider>
-    <FirebaseProvider>
-      <CssBaseline />
-      <App />
-    </FirebaseProvider>
-  </ThemeProvider>
+  <React.StrictMode>
+    <ThemeProvider>
+      <FirebaseProvider>
+        <CssBaseline />
+        <App />
+      </FirebaseProvider>
+    </ThemeProvider>
+  </React.StrictMode>
 );
 
-ReactDOM.createRoot(document.getElementById('root')).render(<Main />);
+ReactDOM.unstable_createRoot(document.getElementById('root')).render(<Main />);

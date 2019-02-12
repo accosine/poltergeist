@@ -1,39 +1,65 @@
 import React, { useState, memo } from 'react';
 import { makeStyles } from '@material-ui/styles';
+import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+import AddIcon from '@material-ui/icons/Add';
+import PhotoIcon from '@material-ui/icons/Photo';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 
-import FrontMatterImagePicker from './FrontMatterImagePicker';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+
+import MediaManager from '../MediaManager';
+import MediaManagerTabs from '../MediaManager/Tabs';
+import MediaManagerActions from '../MediaManager/Actions';
 import FrontMatterTextfield from './FrontMatterTextfield';
 
 import addSizeSuffix from '../../util/addSizeSuffix';
 import config from '../../config.js';
 
 const useStyles = makeStyles(theme => ({
-  card: {
+  root: {
     display: 'flex',
   },
   details: {
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
   },
   content: {
     flex: '1 0 auto',
-  },
-  cover: {
-    width: 151,
   },
   controls: {
     display: 'flex',
     alignItems: 'center',
     paddingLeft: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
+  },
+  previewContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  preview: {
+    position: 'relative',
+  },
+  button: {
+    position: 'absolute',
+    right: 0,
+    padding: 0,
+    margin: 2,
+  },
+  avatar: {
+    margin: 2 * theme.spacing.unit,
+    width: 130,
+    height: 130,
+  },
+  cover: {
+    width: 130 + 2 * theme.spacing.unit,
+    height: 130 + 2 * theme.spacing.unit,
   },
   playIcon: {
     height: 38,
@@ -43,58 +69,80 @@ const useStyles = makeStyles(theme => ({
 
 const Media = ({ picture, attribution, alt, onChange }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const openDialog = () => setOpen(true);
+  const closeDialog = () => setOpen(false);
+
   return (
     <>
-      <Card className={classes.card}>
-        <CardMedia
-          className={classes.cover}
-          image={
-            config.application.media +
-            addSizeSuffix(picture, '-s') +
-            config.application.mediasuffix
-          }
-          title="Live from space album cover"
-        />
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography component="h5" variant="h5">
-              Live From Space
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              Mac Miller
-            </Typography>
-          </CardContent>
-          <div className={classes.controls}>
-            <IconButton aria-label="Previous">
-              <SkipPreviousIcon />
+      <div className={classes.root}>
+        <div className={classes.previewContainer}>
+          <div className={classes.preview}>
+            <IconButton onClick={openDialog} className={classes.button}>
+              {picture ? (
+                <PhotoLibraryIcon fontSize="large" />
+              ) : (
+                <AddIcon fontSize="large" />
+              )}
             </IconButton>
-            <IconButton aria-label="Play/pause">
-              <PlayArrowIcon className={classes.playIcon} />
-            </IconButton>
-            <IconButton aria-label="Next">
-              <SkipNextIcon />
-            </IconButton>
+            {picture ? (
+              <CardMedia
+                className={classes.cover}
+                image={
+                  config.application.media +
+                  addSizeSuffix(picture, '-s') +
+                  config.application.mediasuffix
+                }
+              />
+            ) : (
+              <Avatar className={classes.avatar}>
+                <PhotoIcon fontSize="large" />
+              </Avatar>
+            )}
           </div>
         </div>
-      </Card>
-      <FrontMatterImagePicker
-        onInsert={selected => {
-          onChange({ picture: selected.name });
-          onChange({ attribution: selected.attribution });
-          onChange({ alt: selected.alt });
-        }}
-      />
-      <FrontMatterTextfield
-        id="picture"
-        picture={picture}
-        onChange={onChange}
-      />
-      <FrontMatterTextfield
-        id="attribution"
-        attribution={attribution}
-        onChange={onChange}
-      />
-      <FrontMatterTextfield id="alt" alt={alt} onChange={onChange} />
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <FrontMatterTextfield
+              id="picture"
+              picture={picture}
+              onChange={onChange}
+              fullWidth
+            />
+            <FrontMatterTextfield
+              id="attribution"
+              attribution={attribution}
+              onChange={onChange}
+              fullWidth
+            />
+            <FrontMatterTextfield
+              id="alt"
+              alt={alt}
+              onChange={onChange}
+              fullWidth
+            />
+          </CardContent>
+        </div>
+      </div>
+      <Dialog fullScreen open={open} onClose={closeDialog}>
+        <MediaManager
+          onInsert={selected => {
+            onChange({ picture: selected.name });
+            onChange({ attribution: selected.attribution });
+            onChange({ alt: selected.alt });
+            closeDialog();
+          }}
+          onCancel={closeDialog}
+        >
+          <DialogContent>
+            <MediaManagerTabs />
+          </DialogContent>
+          <DialogActions>
+            <MediaManagerActions />
+          </DialogActions>
+        </MediaManager>
+      </Dialog>
     </>
   );
 };
