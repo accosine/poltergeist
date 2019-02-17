@@ -1,7 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
@@ -64,6 +63,10 @@ const useStyles = makeStyles(theme => ({
   playIcon: {
     height: 38,
     width: 38,
+  },
+  imagePickerDialog: {
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
 
@@ -135,7 +138,7 @@ const Media = ({ picture, attribution, alt, onChange }) => {
           }}
           onCancel={closeDialog}
         >
-          <DialogContent>
+          <DialogContent className={classes.imagePickerDialog}>
             <MediaManagerTabs />
           </DialogContent>
           <DialogActions>
@@ -146,18 +149,5 @@ const Media = ({ picture, attribution, alt, onChange }) => {
     </>
   );
 };
-
-//      <div className={classes.rowContainer}>
-//        <FrontMatterImagePicker
-//          onInsert={selected => {
-//            props.onChange({ picture: selected.name });
-//            props.onChange({ attribution: selected.attribution });
-//            props.onChange({ alt: selected.alt });
-//          }}
-//        />
-//        <FrontMatterTextfield id="picture" {...props} />
-//        <FrontMatterTextfield id="attribution" {...props} />
-//        <FrontMatterTextfield id="alt" {...props} />
-//      </div>
 
 export default Media;

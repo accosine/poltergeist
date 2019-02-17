@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -21,55 +22,51 @@ const carouselShortcode = (imgs, settings) =>
     .map(img => imgShortcode(img, true))
     .join('\n')}\n[/carousel]`;
 
-class Img extends Component {
-  state = {
-    open: false,
-  };
+const useStyles = makeStyles(theme => ({
+  imagePickerDialog: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));
 
-  openDialog = () => {
-    this.setState({ open: true });
-  };
-
-  closeDialog = () => {
-    this.setState({ open: false });
-  };
-
-  onInsert = (selection, carouselSettings) => {
+const Img = ({ onShortcode }) => {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const onInsert = (selection, carouselSettings) => {
+    console.log(selection);
     const html =
       selection.length > 1
         ? carouselShortcode(selection, carouselSettings)
         : imgShortcode(selection[0]);
-    this.props.onShortcode(html);
-    this.closeDialog();
+    onShortcode(html);
+    setOpen(false);
   };
 
-  render() {
-    return (
-      <>
-        <Tooltip title="Image">
-          <IconButton size="small" onClick={this.openDialog}>
-            <PhotoIcon />
-          </IconButton>
-        </Tooltip>
-        {this.state.open ? (
-          <Dialog fullScreen open={this.state.open} onClose={this.closeDialog}>
-            <MediaManager
-              onInsert={this.onInsert}
-              onCancel={this.closeDialog}
-              multiple
-            >
-              <DialogContent>
-                <MediaManagerTabs />
-              </DialogContent>
-              <DialogActions>
-                <MediaManagerActions />
-              </DialogActions>
-            </MediaManager>
-          </Dialog>
-        ) : null}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Tooltip title="Image">
+        <IconButton size="small" onClick={() => setOpen(true)}>
+          <PhotoIcon />
+        </IconButton>
+      </Tooltip>
+      {open ? (
+        <Dialog fullScreen open={open} onClose={() => setOpen(false)}>
+          <MediaManager
+            onInsert={onInsert}
+            onCancel={() => setOpen(false)}
+            multiple
+          >
+            <DialogContent className={classes.imagePickerDialog}>
+              <MediaManagerTabs />
+            </DialogContent>
+            <DialogActions>
+              <MediaManagerActions />
+            </DialogActions>
+          </MediaManager>
+        </Dialog>
+      ) : null}
+    </>
+  );
+};
 
 export default Img;

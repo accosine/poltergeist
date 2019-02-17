@@ -7,12 +7,16 @@ import ImageCard from './ImageCard';
 import { withStyles } from '@material-ui/core/styles';
 import { FirebaseContext } from '../../firebase';
 
+// TODO: virtualized list of images for performance
+
 const styleSheet = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
+    overflowY: 'scroll',
+    height: '100%',
   },
   root: {
     padding: theme.spacing.unit * 1,
@@ -42,6 +46,9 @@ const styleSheet = theme => ({
   headline: {
     textOverflow: 'ellipsis',
   },
+  loading: {
+    margin: '0 auto',
+  },
 });
 
 const PAGE_SIZE = 3;
@@ -52,58 +59,12 @@ class ImagePicker extends Component {
     images: [],
     selected: [],
     last: null,
+    hasMore: true,
   };
-
-  // getImageCount = async () =>
-  //   (await this.context.firestore
-  //     .collection('images')
-  //     .select()
-  //     .get()).docs.length;
-
-  // getImages = async () => {
-  //   const { images, page } = this.state;
-  //   const start = page * PAGE_SIZE;
-  //   const docs = await this.context.firestore
-  //     .collection('images')
-  //     .orderBy('name')
-  //     .startAt(start)
-  //     .limit(PAGE_SIZE)
-  //     .get();
-  //   console.log(docs);
-  //
-  //   this.setState({
-  //     loading: false,
-  //     images: [
-  //       ...images.slice(0, start),
-  //       ...docs.map(doc => ({ id: doc.id, ...doc.data() })),
-  //       ...images.slice(start + PAGE_SIZE),
-  //     ],
-  //   });
-  // };
-
-  // asdfsd = async () => {
-  //   var first = db
-  //     .collection('cities')
-  //     .orderBy('population')
-  //     .limit(25);
-  //
-  //   const snapshots = await first.get();
-  //   // Get the last visible document
-  //   var lastVisible = snapshots.docs[snapshots.docs.length - 1];
-  //   console.log('last', lastVisible);
-  //
-  //   // Construct a new query starting at this document,
-  //   // get the next 25 cities.
-  //   var next = db
-  //     .collection('cities')
-  //     .orderBy('population')
-  //     .startAfter(lastVisible)
-  //     .limit(25);
-  // };
 
   fetchImages = async () => {
     console.log('fetch images');
-    const { last } = this.state;
+    const { images, last } = this.state;
     let query = this.context.firestore.collection('images').orderBy('name');
     if (last) {
       query = query.startAfter(last);
@@ -113,8 +74,12 @@ class ImagePicker extends Component {
     const snapshots = await query.get();
 
     this.setState({
-      images: snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+      images: [
+        ...images,
+        ...snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+      ],
       last: snapshots.docs[snapshots.docs.length - 1],
+      hasMore: snapshots.docs.length !== 0,
     });
   };
 
@@ -122,22 +87,12 @@ class ImagePicker extends Component {
     this.fetchImages();
   }
 
-  // onNext = async () => {
-  //   //   var next = db
-  //   //     .collection('cities')
-  //   //     .orderBy('population')
-  //   //     .startAfter(lastVisible)
-  //   //     .limit(25);
-  //   this.setState({
-  //     images: snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() })),
-  //     last: snapshots.docs[snapshots.docs.length - 1],
-  //   });
-  // };
-
   addSelection = key => {
     this.setState({ selected: [...this.state.selected, key] }, () => {
       this.props.onSelection(
-        this.state.selected.map(key => this.state.images[key])
+        this.state.selected.map(id =>
+          this.state.images.find(image => image.id === id)
+        )
       );
     });
   };
@@ -150,21 +105,16 @@ class ImagePicker extends Component {
       multiple,
       ...rest
     } = this.props;
-    const { loading, images } = this.state;
+    const { hasMore, images } = this.state;
 
     return (
-      <div className={classes.container}>
+      <div id="scroll-target" className={classes.container}>
         <InfiniteScroll
           dataLength={images.length}
           next={this.fetchImages}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-          scrollableTarget="asdf"
+          hasMore={hasMore}
+          loader={<CircularProgress className={classes.loading} />}
+          scrollableTarget="scroll-target"
         >
           {images.map(image => (
             <ImageCard
@@ -186,20 +136,5 @@ ImagePicker.propTypes = {
   carouselSettings: PropTypes.object.isRequired,
   onCarouselSettings: PropTypes.func.isRequired,
 };
-
-//   Object.keys(images).length ? (
-//   Object.keys(images).map(id => (
-//     <ImageCard
-//       key={id}
-//       disabled={!multiple && this.state.selected.length >= 1}
-//       addSelection={this.addSelection}
-//       image={images[id]}
-//       reference={id}
-//       {...rest}
-//     />
-//   ))
-// ) : (
-//   'No images uploaded yet.'
-// )}
 
 export default withStyles(styleSheet)(ImagePicker);

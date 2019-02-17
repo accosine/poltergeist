@@ -10,10 +10,12 @@ import ImageSearch from '../ImageSearch';
 
 const styleSheet = theme => ({
   root: {
-    flexGrow: 1,
+    zIndex: 1,
   },
   tabContainer: {
-    padding: theme.spacing.unit * 3,
+    padding: `${theme.spacing.unit * 3}px 0`,
+    overflow: 'hidden',
+    flex: 1,
   },
 });
 
@@ -74,7 +76,7 @@ class MediaManagerTabs extends Component {
     );
 
     return (
-      <div>
+      <>
         <Paper className={classes.root}>
           <Tabs
             value={index}
@@ -88,7 +90,7 @@ class MediaManagerTabs extends Component {
           </Tabs>
         </Paper>
         {content}
-      </div>
+      </>
     );
   }
 }

@@ -101,7 +101,7 @@ class ImageUploader extends Component {
               alt: alttext,
               width,
               height,
-              tags: tags.reduce((tags, tag) => ({ ...tags, [tag]: true }), {}),
+              tags, //: tags.reduce((tags, tag) => ({ ...tags, [tag]: true }), {}),
             });
           } catch (error) {
             console.log(error);

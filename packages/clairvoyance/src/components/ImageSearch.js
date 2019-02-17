@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FirebaseContext } from '../firebase';
+import TextField from '@material-ui/core/TextField';
 
 class ImageSearch extends Component {
   static contextType = FirebaseContext;
@@ -20,6 +21,11 @@ class ImageSearch extends Component {
           .startAt(query)
           .endAt(query + '\uf8ff')
           .get();
+        // const { docs } = await this.context.firestore
+        //   .collection('images')
+        //   .where('tags', 'array-contains', query)
+        //   .get();
+        console.log(docs);
         this.setState({ result: docs.map(doc => doc.data().name) });
       } catch (error) {
         console.log(error);
@@ -33,7 +39,7 @@ class ImageSearch extends Component {
     const { query, result } = this.state;
     return (
       <>
-        <input value={query} onChange={this.handleChange} />
+        <TextField label="query" value={query} onChange={this.handleChange} />
         {result.map(name => (
           <p key={name}>{name}</p>
         ))}
