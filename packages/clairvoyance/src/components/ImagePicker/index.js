@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import ImageCard from './ImageCard';
@@ -11,12 +11,14 @@ import { FirebaseContext } from '../../firebase';
 
 const styleSheet = theme => ({
   container: {
+    overflowY: 'scroll',
+    height: '100%',
+  },
+  list: {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
-    overflowY: 'scroll',
-    height: '100%',
   },
   root: {
     padding: theme.spacing.unit * 1,
@@ -47,11 +49,13 @@ const styleSheet = theme => ({
     textOverflow: 'ellipsis',
   },
   loading: {
-    margin: '0 auto',
+    position: 'fixed',
+    top: 0,
+    width: '100%',
   },
 });
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 
 class ImagePicker extends Component {
   static contextType = FirebaseContext;
@@ -113,8 +117,9 @@ class ImagePicker extends Component {
           dataLength={images.length}
           next={this.fetchImages}
           hasMore={hasMore}
-          loader={<CircularProgress className={classes.loading} />}
+          loader={<LinearProgress className={classes.loading} />}
           scrollableTarget="scroll-target"
+          className={classes.list}
         >
           {images.map(image => (
             <ImageCard

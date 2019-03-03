@@ -23,6 +23,7 @@ const styleSheet = {
   },
 };
 
+// TODO: FirebaseError: Function DocumentReference.set() called with invalid data. Unsupported field value: undefined (found in field width)
 class ImageUploader extends Component {
   static contextType = FirebaseContext;
   constructor(props) {
