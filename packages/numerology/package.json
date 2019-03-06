@@ -1,0 +1,10 @@
+{
+  "name": "@poltergeist/numerology",
+  "version": "0.0.1",
+  "author": "accosine",
+  "contributors": [
+    "Simon Bugert <simon.bugert@gmail.com>",
+    "Duncan Kolba <duncankolba@gmail.com>"
+  ],
+  "license": "BSD-2-Clause"
+}
