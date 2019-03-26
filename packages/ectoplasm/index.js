@@ -37,6 +37,7 @@ module.exports = (exp, functions, admin) => {
   const noindex = config.application.noindex;
 
   const firestore = admin.firestore();
+  const ledger = firestore.collection('ledger');
   const articles = firestore.collection('articles');
   const pages = firestore.collection('pages');
 
@@ -62,7 +63,7 @@ module.exports = (exp, functions, admin) => {
 
   app.get(`/(${paginationRegex})?`, (req, res) => {
     fetcher
-      .start(articles, req.params.page || 1)
+      .start(articles, ledger, req.params.page || 1)
       .then(data => res.send(theme.start(data)))
       .catch(err => {
         console.error(err);
@@ -75,7 +76,7 @@ module.exports = (exp, functions, admin) => {
 
     app.get(`/${collectionPath}(/${paginationRegex})?`, (req, res) => {
       fetcher
-        .portal(articles, collection, req.params.page || 1)
+        .portal(articles, collection, ledger, req.params.page || 1)
         .then(data => res.send(theme.portal(data)))
         .catch(err => {
           console.log(err);

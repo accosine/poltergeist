@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 // TODO: pagination/search
 const CardList = ({ collection, CardComponent, path, history }) => {
   const classes = useStyles();
+  // TODO: Don't use subscriptions for article listing, use lazy loading
   const [elements, loading] = useFirestoreCollectionSubscription(collection);
 
   return (

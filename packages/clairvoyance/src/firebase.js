@@ -60,6 +60,7 @@ const useAuthentication = () => {
   return { isAuthenticated, user, signIn, signOut, loading, error };
 };
 
+// TODO: why two exports?
 export const Context = createContext();
 
 export const FirebaseContext = Context;

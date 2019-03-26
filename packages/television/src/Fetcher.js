@@ -1,13 +1,14 @@
 module.exports = config => {
   const pagerSize = config.pager.size;
   return {
-    start: (articles, page) =>
+    start: (articles, ledger, page) =>
       Promise.all([
-        articles
-          .select()
-          .where('published', '==', true)
+        ledger
+          .doc('counter')
           .get()
-          .then(emptySelectSnapshot => emptySelectSnapshot.docs.length),
+          .then(snapshot =>
+            Object.values(snapshot.data().articles).reduce((acc, x) => acc + x)
+          ),
         articles
           .select(
             'collection',
@@ -20,8 +21,8 @@ module.exports = config => {
             'alt'
           )
           .where('published', '==', true)
-          .orderBy('date')
-          .offset((page - 1) * pagerSize)
+          .orderBy('typeSequence')
+          .startAt((page - 1) * pagerSize + 1)
           .limit(parseInt(pagerSize, 10))
           .get(),
       ]).then(([articleCount, documentSnapshots]) => {
@@ -72,14 +73,12 @@ module.exports = config => {
           }
         }),
 
-    portal: (articles, collection, page) =>
+    portal: (articles, collection, ledger, page) =>
       Promise.all([
-        articles
-          .select()
-          .where('collection', '==', collection)
-          .where('published', '==', true)
+        ledger
+          .doc('counter')
           .get()
-          .then(emptySelectSnapshot => emptySelectSnapshot.docs.length),
+          .then(snapshot => snapshot.data().articles[collection]),
         articles
           .select(
             'slug',
@@ -91,12 +90,12 @@ module.exports = config => {
           )
           .where('collection', '==', collection)
           .where('published', '==', true)
-          .orderBy('date')
-          .offset((page - 1) * pagerSize)
+          .orderBy('collectionSequence')
+          .startAt((page - 1) * pagerSize + 1)
           .limit(parseInt(pagerSize, 10))
           .get(),
       ]).then(([articleCount, documentSnapshots]) => {
-        if (Math.ceil(articleCount / pagerSize) > page) {
+        if (Math.ceil(articleCount / pagerSize) < page) {
           throw new Error('404');
         }
         return {
