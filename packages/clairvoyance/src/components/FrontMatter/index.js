@@ -102,10 +102,16 @@ const FrontMatter = ({
               }
               label="published"
             />
-            <FrontMatterTextfield id="date" inputType="date" {...props} />
+            <FrontMatterTextfield
+              id="date"
+              inputType="date"
+              InputLabelProps={{ shrink: true }}
+              {...props}
+            />
             <FrontMatterTextfield
               id="datemodified"
               inputType="date"
+              InputLabelProps={{ shrink: true }}
               {...props}
             />
             <FrontMatterTextfield
