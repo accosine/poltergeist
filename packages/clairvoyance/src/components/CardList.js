@@ -11,12 +11,12 @@ import { useFirebaseContext } from '../firebase';
 const useStyles = makeStyles(theme => ({
   root: {
     marginTop: 2 * theme.spacing.unit,
-    justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
     overflowY: 'scroll',
-    height: '100%',
+    height: 0,
+    flex: 1,
   },
   loading: {
     position: 'fixed',
@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const PAGE_SIZE = 6;
 
+// TODO: Keep in mind to prefill the <InfiniteScroll> component until it overflows
 // TODO: pagination/search
 const CardList = ({ collection, CardComponent, path, history }) => {
   const classes = useStyles();
@@ -70,6 +71,7 @@ const CardList = ({ collection, CardComponent, path, history }) => {
         loader={<LinearProgress className={classes.loading} />}
         scrollableTarget="scroll-target"
         className={classes.list}
+        style={{ overflow: 'unset' }}
       >
         {elements.map(({ slug, ...props }) => (
           <CardComponent
