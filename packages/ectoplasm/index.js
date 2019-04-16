@@ -35,11 +35,13 @@ module.exports = (exp, functions, admin) => {
   const collections = config.application.article.collections;
   const caching = config.application.caching;
   const noindex = config.application.noindex;
+  const tagPath = config.application.tagPath;
 
   const firestore = admin.firestore();
   const ledger = firestore.collection('ledger');
   const articles = firestore.collection('articles');
   const pages = firestore.collection('pages');
+  const tags = firestore.collection('tags');
 
   app.use(cors);
   app.use((req, res, next) => {
@@ -99,6 +101,26 @@ module.exports = (exp, functions, admin) => {
           res.status(500).send('Something broke!');
         });
     });
+  });
+
+  app.get(`/${tagPath}/:tag(/${paginationRegex})?`, (req, res) => {
+    fetcher
+      .tagged(
+        req.params.tag,
+        tags,
+        articles,
+        pages,
+        firestore.getAll,
+        req.params.page || 1
+      )
+      .then(data => res.send(theme.tagged(data)))
+      .catch(err => {
+        console.log(err);
+        if (err.message === '404') {
+          return res.status(404).send('Page not found');
+        }
+        res.status(500).send('Something broke!');
+      });
   });
 
   app.get('/:page', (req, res) => {

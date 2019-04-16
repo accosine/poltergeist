@@ -156,6 +156,11 @@ const portal = config => ({ articles, frontmatter }) => {
   return html(head, body);
 };
 
+const tagged = config => ({ documents, frontmatter }) => {
+  return `<code>${JSON.stringify(documents, null, 2)}</code>
+  <code>${JSON.stringify(frontmatter, null, 2)}</code>`;
+};
+
 const start = config => ({ articles, frontmatter }) => {
   const styletron = initializeStyletron();
 
@@ -190,6 +195,7 @@ const start = config => ({ articles, frontmatter }) => {
 export default (config, plugins) => ({
   article: article(config, plugins),
   portal: portal(config),
+  tagged: tagged(config),
   start: start(config),
   page: page(config, plugins),
 });

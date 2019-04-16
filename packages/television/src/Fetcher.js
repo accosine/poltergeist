@@ -110,5 +110,39 @@ module.exports = config => {
           },
         };
       }),
+
+    // pagerSize = 3
+    // /tag/1
+
+    tagged: async (tags, tag, articles, pages, getAll, page) => {
+      const PAGE_PREFIX = 'page__';
+      const ARTICLE_PREFIX = 'article__';
+      const slugsSnapshot = await tags.doc(tag).get();
+      const slugs = slugsSnapshot.exists ? slugsSnapshot.data().pagination : [];
+
+      if (slugs.length === 0) {
+        throw new Error('404');
+      }
+
+      const refs = slugs
+        .slice((page - 1) * pagerSize, (page - 1) * pagerSize + pagerSize)
+        .map(slug =>
+          slug.startsWith(PAGE_PREFIX)
+            ? pages.doc(slug.slice(PAGE_PREFIX.length))
+            : articles.doc(slug.slice(ARTICLE_PREFIX))
+        );
+
+      const taggedDocs = await getAll(...refs);
+      return {
+        documents: taggedDocs.map(doc => doc.data()),
+        frontmatter: {
+          pagination: {
+            currentPage: parseInt(page, 10),
+            pagerSize,
+            documentCount: slugs.length,
+          },
+        },
+      };
+    },
   };
 };

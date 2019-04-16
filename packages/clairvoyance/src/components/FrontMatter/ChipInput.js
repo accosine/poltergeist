@@ -79,7 +79,10 @@ export default class ChipInput extends Component {
           onChange={event => this.setState({ text: event.target.value })}
           margin="normal"
         />
-        <IconButton onClick={this.handleChipAdd} disabled={!text.trim().length}>
+        <IconButton
+          onClick={this.handleChipAdd}
+          disabled={!text.trim().length || chipData.includes(text.trim())}
+        >
           <AddCircleOutlineIcon />
         </IconButton>
         <ChipsArray chipData={chipData} onChange={onChange} />

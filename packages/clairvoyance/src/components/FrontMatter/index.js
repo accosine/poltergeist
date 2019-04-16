@@ -12,6 +12,7 @@ import Tab from '@material-ui/core/Tab';
 
 import Media from './Media';
 import FrontMatterTextfield from './FrontMatterTextfield';
+import ChipInput from '../FrontMatter/ChipInput';
 import config from '../../config';
 
 import RecipeFrontMatter from './RecipeFrontMatter';
@@ -87,119 +88,132 @@ const FrontMatter = ({
         ) : null}
       </Tabs>
       {currentTab === 0 && (
-        <div className={classes.rowContainer}>
-          <div className={classes.column}>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={published}
-                  onChange={event =>
-                    props.onChange({ published: event.target.checked })
-                  }
-                  value="published"
-                  color="primary"
-                />
-              }
-              label="published"
-            />
-            <FrontMatterTextfield
-              id="date"
-              inputType="date"
-              InputLabelProps={{ shrink: true }}
-              {...props}
-            />
-            <FrontMatterTextfield
-              id="datemodified"
-              inputType="date"
-              InputLabelProps={{ shrink: true }}
-              {...props}
-            />
-            <FrontMatterTextfield
-              disabled={disableSlug}
-              error={!!slugError}
-              helperText={slugError}
-              id="slug"
-              {...props}
-            />
-          </div>
-          <div className={classes.column}>
-            <FormControl margin="normal">
-              <InputLabel htmlFor="collection">collection</InputLabel>
-              <Select
-                value={props.collection}
-                onChange={event =>
-                  props.onChange({ collection: event.target.value })
+        <>
+          <div className={classes.rowContainer}>
+            <div className={classes.column}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={published}
+                    onChange={event =>
+                      props.onChange({ published: event.target.checked })
+                    }
+                    value="published"
+                    color="primary"
+                  />
                 }
-                input={<Input id="collection" />}
+                label="published"
+              />
+              <FrontMatterTextfield
+                id="date"
+                inputType="date"
+                InputLabelProps={{ shrink: true }}
+                {...props}
+              />
+              <FrontMatterTextfield
+                id="datemodified"
+                inputType="date"
+                InputLabelProps={{ shrink: true }}
+                {...props}
+              />
+              <FrontMatterTextfield
                 disabled={disableSlug}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {collectionsorder.map(collection => (
-                  <MenuItem key={collection} value={collection}>
-                    {collections[collection].name}
+                error={!!slugError}
+                helperText={slugError}
+                id="slug"
+                {...props}
+              />
+            </div>
+            <div className={classes.column}>
+              <FormControl margin="normal">
+                <InputLabel htmlFor="collection">collection</InputLabel>
+                <Select
+                  value={props.collection}
+                  onChange={event =>
+                    props.onChange({ collection: event.target.value })
+                  }
+                  input={<Input id="collection" />}
+                  disabled={disableSlug}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
                   </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl margin="normal">
-              <InputLabel htmlFor="author">author</InputLabel>
-              <Select
-                value={props.author}
-                onChange={event =>
-                  props.onChange({ author: event.target.value })
-                }
-                input={<Input id="author" />}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {Object.keys(authors).map(author => (
-                  <MenuItem key={author} value={author}>
-                    {authors[author].name}
+                  {collectionsorder.map(collection => (
+                    <MenuItem key={collection} value={collection}>
+                      {collections[collection].name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl margin="normal">
+                <InputLabel htmlFor="author">author</InputLabel>
+                <Select
+                  value={props.author}
+                  onChange={event =>
+                    props.onChange({ author: event.target.value })
+                  }
+                  input={<Input id="author" />}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
                   </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl margin="normal">
-              <InputLabel htmlFor="layout">layout</InputLabel>
-              <Select
-                value={props.layout}
-                onChange={event =>
-                  props.onChange({ layout: event.target.value })
-                }
-                input={<Input id="layout" />}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {Object.keys(layouts).map(layout => (
-                  <MenuItem key={layout} value={layout}>
-                    {layout}
+                  {Object.keys(authors).map(author => (
+                    <MenuItem key={author} value={author}>
+                      {authors[author].name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl margin="normal">
+                <InputLabel htmlFor="layout">layout</InputLabel>
+                <Select
+                  value={props.layout}
+                  onChange={event =>
+                    props.onChange({ layout: event.target.value })
+                  }
+                  input={<Input id="layout" />}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
                   </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl margin="normal">
-              <InputLabel htmlFor="type">type</InputLabel>
-              <Select
-                value={props.type}
-                onChange={event => props.onChange({ type: event.target.value })}
-                input={<Input id="type" />}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {Object.keys(types).map(type => (
-                  <MenuItem key={type} value={type}>
-                    {type}
+                  {Object.keys(layouts).map(layout => (
+                    <MenuItem key={layout} value={layout}>
+                      {layout}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <FormControl margin="normal">
+                <InputLabel htmlFor="type">type</InputLabel>
+                <Select
+                  value={props.type}
+                  onChange={event =>
+                    props.onChange({ type: event.target.value })
+                  }
+                  input={<Input id="type" />}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
                   </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                  {Object.keys(types).map(type => (
+                    <MenuItem key={type} value={type}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
           </div>
-        </div>
+          <div className={classes.rowContainer}>
+            <ChipInput
+              id="tags"
+              onChange={tags => {
+                props.onChange({ tags });
+              }}
+              chipData={props.tags || []}
+            />
+          </div>
+        </>
       )}
 
       {currentTab === 1 && (
