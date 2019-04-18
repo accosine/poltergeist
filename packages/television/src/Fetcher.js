@@ -111,28 +111,32 @@ module.exports = config => {
         };
       }),
 
-    // pagerSize = 3
-    // /tag/1
-
-    tagged: async (tags, tag, articles, pages, getAll, page) => {
+    tagged: async (tag, tags, articles, pages, firestore, page) => {
       const PAGE_PREFIX = 'page__';
       const ARTICLE_PREFIX = 'article__';
       const slugsSnapshot = await tags.doc(tag).get();
       const slugs = slugsSnapshot.exists ? slugsSnapshot.data().pagination : [];
 
-      if (slugs.length === 0) {
+      if (!slugs.length) {
         throw new Error('404');
       }
 
-      const refs = slugs
-        .slice((page - 1) * pagerSize, (page - 1) * pagerSize + pagerSize)
-        .map(slug =>
-          slug.startsWith(PAGE_PREFIX)
-            ? pages.doc(slug.slice(PAGE_PREFIX.length))
-            : articles.doc(slug.slice(ARTICLE_PREFIX))
-        );
+      const pageSlugs = slugs.slice(
+        (page - 1) * pagerSize,
+        (page - 1) * pagerSize + pagerSize
+      );
 
-      const taggedDocs = await getAll(...refs);
+      if (!pageSlugs.length) {
+        throw new Error('404');
+      }
+
+      const refs = pageSlugs.map(slug =>
+        slug.startsWith(PAGE_PREFIX)
+          ? pages.doc(slug.slice(PAGE_PREFIX.length))
+          : articles.doc(slug.slice(ARTICLE_PREFIX.length))
+      );
+
+      const taggedDocs = await firestore.getAll(...refs);
       return {
         documents: taggedDocs.map(doc => doc.data()),
         frontmatter: {

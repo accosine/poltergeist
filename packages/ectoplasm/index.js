@@ -35,7 +35,7 @@ module.exports = (exp, functions, admin) => {
   const collections = config.application.article.collections;
   const caching = config.application.caching;
   const noindex = config.application.noindex;
-  const tagPath = config.application.tagPath;
+  const tagPath = config.application.tagpath;
 
   const firestore = admin.firestore();
   const ledger = firestore.collection('ledger');
@@ -63,9 +63,30 @@ module.exports = (exp, functions, admin) => {
 
   const paginationRegex = ':page([2-9]|[1-9]\\d+)';
 
-  app.get(`/(${paginationRegex})?`, (req, res) => {
+  app.get(`/${tagPath}/(:tag)(/${paginationRegex})?`, (req, res) => {
     fetcher
-      .start(articles, ledger, req.params.page || 1)
+      .tagged(
+        req.params.tag,
+        tags,
+        articles,
+        pages,
+        firestore,
+        req.params.page || 1
+      )
+      .then(data => res.send(theme.tagged(data)))
+      .catch(err => {
+        console.log(err);
+        if (err.message === '404') {
+          return res.status(404).send('Page not found');
+        }
+        res.status(500).send('Something broke!');
+      });
+  });
+
+  app.get(`/(${paginationRegex})?`, (req, res) => {
+    let page = req.params.page || 1;
+    fetcher
+      .start(articles, ledger, page)
       .then(data => res.send(theme.start(data)))
       .catch(err => {
         console.error(err);
@@ -101,26 +122,6 @@ module.exports = (exp, functions, admin) => {
           res.status(500).send('Something broke!');
         });
     });
-  });
-
-  app.get(`/${tagPath}/:tag(/${paginationRegex})?`, (req, res) => {
-    fetcher
-      .tagged(
-        req.params.tag,
-        tags,
-        articles,
-        pages,
-        firestore.getAll,
-        req.params.page || 1
-      )
-      .then(data => res.send(theme.tagged(data)))
-      .catch(err => {
-        console.log(err);
-        if (err.message === '404') {
-          return res.status(404).send('Page not found');
-        }
-        res.status(500).send('Something broke!');
-      });
   });
 
   app.get('/:page', (req, res) => {
