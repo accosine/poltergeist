@@ -1,8 +1,0 @@
-{
-  "presets": ["@babel/preset-react", "@babel/preset-es2015"],
-  "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-object-rest-spread"
-  ],
-  "ignore": ["**/__tests__"]
-}

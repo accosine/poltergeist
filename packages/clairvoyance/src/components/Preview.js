@@ -52,7 +52,7 @@ class Preview extends PureComponent {
     }
 
     this.renderTimeout = setTimeout(() => {
-      const { text, kind, ...frontmatter } = this.props;
+      const { text, kind, classes, ...frontmatter } = this.props;
       try {
         const preview =
           text && frontmatter

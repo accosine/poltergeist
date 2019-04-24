@@ -63,28 +63,8 @@ module.exports = (exp, functions, admin) => {
 
   const paginationRegex = ':page([2-9]|[1-9]\\d+)';
 
-  app.get(`/${tagPath}/(:tag)(/${paginationRegex})?`, (req, res) => {
-    fetcher
-      .tagged(
-        req.params.tag,
-        tags,
-        articles,
-        pages,
-        firestore,
-        req.params.page || 1
-      )
-      .then(data => res.send(theme.tagged(data)))
-      .catch(err => {
-        console.log(err);
-        if (err.message === '404') {
-          return res.status(404).send('Page not found');
-        }
-        res.status(500).send('Something broke!');
-      });
-  });
-
   app.get(`/(${paginationRegex})?`, (req, res) => {
-    let page = req.params.page || 1;
+    const page = parseInt(req.params.page, 10) || 1;
     fetcher
       .start(articles, ledger, page)
       .then(data => res.send(theme.start(data)))
@@ -98,8 +78,9 @@ module.exports = (exp, functions, admin) => {
     const collectionPath = collections[collection].slug;
 
     app.get(`/${collectionPath}(/${paginationRegex})?`, (req, res) => {
+      const page = parseInt(req.params.page, 10) || 1;
       fetcher
-        .portal(articles, collection, ledger, req.params.page || 1)
+        .portal(articles, collection, ledger, page)
         .then(data => res.send(theme.portal(data)))
         .catch(err => {
           console.log(err);
@@ -124,7 +105,21 @@ module.exports = (exp, functions, admin) => {
     });
   });
 
-  app.get('/:page', (req, res) => {
+  app.get(`/${tagPath}/(:tag)(/${paginationRegex})?`, (req, res) => {
+    const page = parseInt(req.params.page, 10) || 1;
+    fetcher
+      .tagged(req.params.tag, tags, articles, pages, firestore, page)
+      .then(data => res.send(theme.tagged(data)))
+      .catch(err => {
+        console.log(err);
+        if (err.message === '404') {
+          return res.status(404).send('Page not found');
+        }
+        res.status(500).send('Something broke!');
+      });
+  });
+
+  app.get('/:page', (req, res, next) => {
     fetcher
       .page(pages, req.params.page)
       .then(data => res.send(theme.page(data)))

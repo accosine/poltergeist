@@ -6,10 +6,18 @@
     "cors": "^2.8.4",
     "express": "^4.16.2"
   },
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
   "author": "accosine",
   "contributors": [
     "Simon Bugert <simon.bugert@gmail.com>",
     "Duncan Kolba <duncankolba@gmail.com>"
   ],
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "jest": "^24.7.1",
+    "supertest": "^4.0.2"
+  }
 }
