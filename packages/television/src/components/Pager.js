@@ -46,27 +46,30 @@ const ButtonInactive = withTheme(
 );
 
 const Pager = ({
+  prefixPath = '/',
   currentPage,
   pagerSize,
   articleCount,
   collection,
   config,
 }) => {
-  const collectionSlug = collection
-    ? '/' + config.article.collections[collection].slug
-    : '/';
-
   return (
     <Container>
       {currentPage === 1 ? (
         <ButtonInactive>|{'<'}</ButtonInactive>
       ) : (
-        <ButtonActive href={collectionSlug}>|{'<'}</ButtonActive>
+        <ButtonActive href={prefixPath}>|{'<'}</ButtonActive>
       )}
       {currentPage > 1 ? (
         <ButtonActive
-          href={`${collectionSlug}${collection ? '/' : ''}${
-            currentPage - 1 > 1 ? currentPage - 1 : ''
+          href={`${prefixPath}${
+            prefixPath.endsWith('/') && currentPage - 1 === 1
+              ? ''
+              : prefixPath.endsWith('/') && currentPage > 2
+              ? currentPage - 1
+              : !prefixPath.endsWith('/') && currentPage - 1 === 1
+              ? ''
+              : `/${currentPage - 1}`
           }`}
         >
           {'<'}
@@ -77,7 +80,9 @@ const Pager = ({
       {currentPage} of {Math.ceil(articleCount / pagerSize)}
       {currentPage < Math.ceil(articleCount / pagerSize) ? (
         <ButtonActive
-          href={`${collectionSlug}${collection ? '/' : ''}${currentPage + 1}`}
+          href={`${prefixPath}${
+            prefixPath.endsWith('/') ? '' : '/'
+          }${currentPage + 1}`}
         >
           {'>'}
         </ButtonActive>
@@ -88,7 +93,7 @@ const Pager = ({
         <ButtonInactive>{'>'}|</ButtonInactive>
       ) : (
         <ButtonActive
-          href={`${collectionSlug}${collection ? '/' : ''}${Math.ceil(
+          href={`${prefixPath}${prefixPath.endsWith('/') ? '' : '/'}${Math.ceil(
             articleCount / pagerSize
           )}`}
         >

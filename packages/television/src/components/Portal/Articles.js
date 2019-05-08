@@ -3,6 +3,7 @@ import { styled } from 'styletron-react';
 
 import Link from '../Link';
 import { withTheme } from '../../util/ThemeContext';
+import formatDate from '../../util/formatDate';
 
 const Article = withTheme(
   styled('div', ({ $theme, $collection }) => ({
@@ -86,7 +87,7 @@ const Articles = ({ articles, collection, config }) => (
       ({ picture, attribution, alt, slug, headline, subline, date }) => (
         <section key={slug}>
           <Article>
-            <Date>2018-07-09</Date>
+            <Date>{formatDate(date, 'DD. MMMM YYYY', 'de')}</Date>
             <ArticleHeadline>
               <A
                 href={`/${config.article.collections[collection].slug}/${slug}`}

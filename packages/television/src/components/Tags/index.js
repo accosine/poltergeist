@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Body from '../Body';
-import Articles from './Articles';
+import Documents from './Documents';
 import Pager from '../Pager';
 import Analytics from '../Analytics';
 import SvgSpritemap from '../SvgSpritemap';
@@ -16,9 +16,9 @@ import Content from '../Content';
 
 const Portal = ({
   styletron,
-  articles,
+  frontmatter: { tag, pagination },
+  documents,
   config,
-  frontmatter: { collection, pagination },
 }) => (
   <Body>
     <Menu
@@ -33,23 +33,18 @@ const Portal = ({
       <Header styletron={styletron} />
       <Main id="main" role="main">
         <Content>
-          {articles.length ? (
-            <Articles
-              articles={articles}
-              collection={collection}
-              config={config}
-            />
+          {documents.length ? (
+            <Documents documents={documents} tag={tag} config={config} />
           ) : (
             'No articles in this collection'
           )}
         </Content>
-        {articles.length ? (
+        {documents.length ? (
           <Pager
-            prefixPath={'/' + config.article.collections[collection].slug}
             currentPage={pagination.currentPage}
             pagerSize={pagination.pagerSize}
-            articleCount={pagination.articleCount}
-            collection={collection}
+            articleCount={pagination.documentCount}
+            documents={documents}
             config={config}
           />
         ) : null}

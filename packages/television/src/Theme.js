@@ -3,17 +3,20 @@ import ReactDOMServer from 'react-dom/server';
 import { Server as StyletronServer } from 'styletron-engine-atomic';
 import { Provider as StyletronProvider } from 'styletron-react';
 import marksy from 'marksy';
+
 import Shortcodes from './util/shortcodes';
+import colors from './colors.js';
+
 import Head from './components/Head';
 import Text from './components/Publication';
 import Portal from './components/Portal';
+import Tags from './components/Tags';
 import Start from './components/Start';
+
 import { ThemeProvider } from './util/ThemeContext';
 import { ConfigProvider } from './util/ConfigContext';
 import MarkdownComponents from './components/MarkdownComponents';
 import getAmpScripts from './util/getAmpScripts';
-
-import colors from './colors.js';
 
 const initializeStyletron = () => {
   const styletron = new StyletronServer();
@@ -157,8 +160,37 @@ const portal = config => ({ articles, frontmatter }) => {
 };
 
 const tagged = config => ({ documents, frontmatter }) => {
-  return `<code>${JSON.stringify(documents, null, 2)}</code>
-  <code>${JSON.stringify(frontmatter, null, 2)}</code>`;
+  // return `<code>${JSON.stringify(documents, null, 2)}</code>
+  // <code>${JSON.stringify(frontmatter, null, 2)}</code>`;
+
+  const styletron = initializeStyletron();
+
+  const body = ReactDOMServer.renderToStaticMarkup(
+    <StyletronProvider value={styletron}>
+      <ThemeProvider value={colors}>
+        <ConfigProvider value={config}>
+          <Tags
+            styletron={styletron}
+            frontmatter={frontmatter}
+            documents={documents}
+            config={config}
+          />
+        </ConfigProvider>
+      </ThemeProvider>
+    </StyletronProvider>
+  );
+
+  const head = ReactDOMServer.renderToStaticMarkup(
+    <Layout
+      frontmatter={{ ...frontmatter, title: frontmatter.tag }}
+      config={config}
+      styles={styletron.getCss()}
+      body={body}
+      kind="tags"
+    />
+  );
+
+  return html(head, body);
 };
 
 const start = config => ({ articles, frontmatter }) => {

@@ -140,6 +140,7 @@ module.exports = config => {
       return {
         documents: taggedDocs.map(doc => doc.data()),
         frontmatter: {
+          tag,
           pagination: {
             currentPage: parseInt(page, 10),
             pagerSize,

@@ -17,10 +17,6 @@ const styleSheet = {
 };
 
 const Iframe = ({ html, classes }) => {
-  if (!html) {
-    return null;
-  }
-
   const containerEl = useRef(null);
   const createIframe = () => {
     const iframe = document.createElement('iframe');

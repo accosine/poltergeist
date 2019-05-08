@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled } from 'styletron-react';
 
-import { withTheme } from '../../util/ThemeContext';
 import Link from '../Link';
+import { withTheme } from '../../util/ThemeContext';
 import formatDate from '../../util/formatDate';
 
 const Article = withTheme(
@@ -12,8 +12,8 @@ const Article = withTheme(
   }))
 );
 
-const Headline = withTheme(
-  styled('h1', ({ $theme }) => ({
+const ArticleHeadline = withTheme(
+  styled('h2', ({ $theme }) => ({
     paddingBottom: '5vw',
     marginTop: '3vw',
     textTransform: 'uppercase',
@@ -35,7 +35,7 @@ const Collection = withTheme(
   styled(Link, ({ $theme }) => ({
     display: 'inline-block',
     textDecoration: 'none',
-    borderRadius: '4vw',
+    borderRadius: '6vw',
     backgroundColor: $theme.grey[400],
     color: $theme.white,
     padding: '0 2vw',
@@ -66,17 +66,22 @@ const A = withTheme(
     color: $theme.grey[900],
     ':visited': {
       color: $theme.grey[500],
-      textDecorationLine: 'line-through',
     },
     ':hover': {
       color: $theme.grey[400],
     },
   }))
 );
+const CollectionHeadline = styled('h1', {
+  textAlign: 'center',
+});
 
-const Articles = ({ kind, articles, config }) => (
+const Articles = ({ documents, tag, config }) => (
   <div>
-    {articles.map(
+    <CollectionHeadline>
+      <Collection href={`/${config.tagpath}/${tag}`}>{tag}</Collection>
+    </CollectionHeadline>
+    {documents.map(
       ({
         collection,
         picture,
@@ -90,18 +95,13 @@ const Articles = ({ kind, articles, config }) => (
         <section key={slug}>
           <Article>
             <Date>{formatDate(date, 'DD. MMMM YYYY', 'de')}</Date>
-            <Headline>
-              <Collection
-                href={`/${config.article.collections[collection].slug}`}
-              >
-                {collection}
-              </Collection>{' '}
+            <ArticleHeadline>
               <A
                 href={`/${config.article.collections[collection].slug}/${slug}`}
               >
-                {headline}{' '}
+                {headline}
               </A>
-            </Headline>
+            </ArticleHeadline>
           </Article>
         </section>
       )

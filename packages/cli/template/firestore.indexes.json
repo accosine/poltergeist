@@ -4,14 +4,15 @@
       "collectionId": "articles",
       "fields": [
         { "fieldPath": "collection", "mode": "ASCENDING" },
-        { "fieldPath": "date", "mode": "ASCENDING" }
+        { "fieldPath": "published", "mode": "ASCENDING" },
+        { "fieldPath": "collectionSequence", "mode": "ASCENDING" }
       ]
     },
     {
       "collectionId": "articles",
       "fields": [
         { "fieldPath": "published", "mode": "ASCENDING" },
-        { "fieldPath": "date", "mode": "ASCENDING" }
+        { "fieldPath": "typeSequence", "mode": "ASCENDING" }
       ]
     }
   ]

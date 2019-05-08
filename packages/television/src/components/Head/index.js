@@ -28,6 +28,7 @@ const Head = ({
     description,
     slug,
     pagination,
+    tag,
   },
   styles,
   body,
@@ -57,6 +58,14 @@ const Head = ({
         href={`${config.protocol}://${config.domain}/${
           config.article.collections[collection].slug
         }${pagination.currentPage > 1 ? '/' + pagination.currentPage : ''}`}
+      />
+    ) : null}
+    {kind === 'tags' ? (
+      <link
+        rel="canonical"
+        href={`${config.protocol}://${config.domain}/${tag}${
+          pagination.currentPage > 1 ? '/' + pagination.currentPage : ''
+        }`}
       />
     ) : null}
     {kind === 'page' ? (
@@ -101,7 +110,9 @@ const Head = ({
     <AmpScript name="ad" />
     <AmpScript name="user-notification" />
     <AmpScript name="sidebar" />
-    {ampScripts.map((name, index) => <AmpScript key={index} name={name} />)}
+    {ampScripts.map((name, index) => (
+      <AmpScript key={index} name={name} />
+    ))}
     <StylesAmp />
     <StylesCustom styles={styles} theme={theme} />
   </head>
