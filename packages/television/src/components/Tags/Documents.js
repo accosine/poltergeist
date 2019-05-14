@@ -12,7 +12,7 @@ const Article = withTheme(
   }))
 );
 
-const ArticleHeadline = withTheme(
+const Headline = withTheme(
   styled('h2', ({ $theme }) => ({
     paddingBottom: '5vw',
     marginTop: '3vw',
@@ -95,13 +95,18 @@ const Articles = ({ documents, tag, config }) => (
         <section key={slug}>
           <Article>
             <Date>{formatDate(date, 'DD. MMMM YYYY', 'de')}</Date>
-            <ArticleHeadline>
+            <Headline>
+              <Collection
+                href={`/${config.article.collections[collection].slug}`}
+              >
+                {collection}
+              </Collection>{' '}
               <A
                 href={`/${config.article.collections[collection].slug}/${slug}`}
               >
                 {headline}
               </A>
-            </ArticleHeadline>
+            </Headline>
           </Article>
         </section>
       )

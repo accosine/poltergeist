@@ -69,38 +69,38 @@ module.exports = (exp, functions, admin) => {
     }
   };
 
-  const diff = (a, b) => a.filter(value => !b.includes(value));
-  // removes or adds the given document's slug to all passed tags
-  const tagsTransaction = action => (doc, tags = []) =>
-    firestore.runTransaction(async t => {
-      await Promise.all(
-        tags.map(async tag => {
-          const tagsRef = firestore.collection('tags').doc(tag);
-          const tagSlugs = (await t.get(tagsRef)).data();
+  const tagging = kind => (change, context) => {
+    const diff = (a, b) => a.filter(value => !b.includes(value));
+    // removes or adds the given document's slug to all passed tags
+    const tagsTransaction = action => (doc, tags = []) =>
+      firestore.runTransaction(async t => {
+        await Promise.all(
+          tags.map(async tag => {
+            const tagsRef = firestore.collection('tags').doc(tag);
+            const tagSlugs = (await t.get(tagsRef)).data();
 
-          // filter and add or only filter the document from the tag array
-          // depending on method
-          const newTagSlugs = [
-            ...(action === 'add' ? [doc.type + '__' + doc.slug] : []),
-            ...((tagSlugs && tagSlugs.pagination) || []).filter(
-              s => s !== doc.type + '__' + doc.slug
-            ),
-          ];
-          if (newTagSlugs.length) {
-            if (tagSlugs) {
-              await t.update(tagsRef, { pagination: newTagSlugs });
+            // filter and add or only filter the document from the tag array
+            // depending on method
+            const newTagSlugs = [
+              ...(action === 'add' ? [kind + '__' + doc.slug] : []),
+              ...((tagSlugs && tagSlugs.pagination) || []).filter(
+                s => s !== kind + '__' + doc.slug
+              ),
+            ];
+            if (newTagSlugs.length) {
+              if (tagSlugs) {
+                await t.update(tagsRef, { pagination: newTagSlugs });
+              } else {
+                await t.set(tagsRef, { pagination: newTagSlugs });
+              }
             } else {
-              await t.set(tagsRef, { pagination: newTagSlugs });
+              await t.delete(tagsRef);
             }
-          } else {
-            await t.delete(tagsRef);
-          }
-        })
-      );
-    });
-  const removeFromTags = tagsTransaction('remove');
-  const addToTags = tagsTransaction('add');
-  const tagging = (change, context) => {
+          })
+        );
+      });
+    const removeFromTags = tagsTransaction('remove');
+    const addToTags = tagsTransaction('add');
     const docBefore = change.before.exists ? change.before.data() : null;
     const doc = change.after.exists ? change.after.data() : null;
 
@@ -156,11 +156,11 @@ module.exports = (exp, functions, admin) => {
 
   exp.numerologyArticleTagging = functions.firestore
     .document('articles/{document}')
-    .onWrite(tagging);
+    .onWrite(tagging('article'));
 
   exp.numerologyPageTagging = functions.firestore
     .document('pages/{document}')
-    .onWrite(tagging);
+    .onWrite(tagging('page'));
 
   exp.numerologyArticles = functions.firestore
     .document('articles/{document}')

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Body from '../Body';
 import Documents from './Documents';
@@ -41,6 +40,7 @@ const Portal = ({
         </Content>
         {documents.length ? (
           <Pager
+            prefixPath={'/' + config.tagpath + '/' + tag}
             currentPage={pagination.currentPage}
             pagerSize={pagination.pagerSize}
             articleCount={pagination.documentCount}
@@ -54,24 +54,5 @@ const Portal = ({
     </Container>
   </Body>
 );
-
-Portal.propTypes = {
-  config: PropTypes.object.isRequired,
-  articles: PropTypes.arrayOf(
-    PropTypes.shape({
-      picture: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      headline: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  frontmatter: PropTypes.shape({
-    collection: PropTypes.string.isRequired,
-    pagination: PropTypes.shape({
-      currentPage: PropTypes.number.isRequired,
-      pagerSize: PropTypes.number.isRequired,
-      articleCount: PropTypes.number.isRequired,
-    }),
-  }).isRequired,
-};
 
 export default Portal;
