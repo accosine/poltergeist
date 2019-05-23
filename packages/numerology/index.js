@@ -6,101 +6,40 @@ module.exports = (exp, functions, admin) => {
   }
   const firestore = admin.firestore();
 
-  const EVENTID_BUFFER_SIZE = 20;
-
-  const counter = type => (change, context) => {
-    const documentBefore = change.before.exists ? change.before.data() : {};
-    const document = change.after.data();
-
-    // make cloud function invocation idempotent
-    if (
-      document.counterEventIds &&
-      document.counterEventIds.includes(context.eventId)
-    ) {
-      return false;
-    }
-
-    // no previous document exists and created document is published
-    // or previous document was not published but now is
-    if (
-      (!change.before.exists && document.published) ||
-      (!documentBefore.published && document.published)
-    ) {
-      return firestore.runTransaction(async t => {
-        const documentRef = firestore
-          .collection(type)
-          .doc(context.params.document);
-        const counterRef = firestore.collection('ledger').doc('counter');
-        const counter = (await t.get(counterRef)).data();
-
-        // increment if exists, otherwise initialize with 1
-        const collectionSequence =
-          counter && counter[type] && counter[type][document.collection]
-            ? counter[type][document.collection] + 1
-            : 1;
-        const typeSequence =
-          counter && counter[type]
-            ? Object.values(counter[type]).reduce((acc, curr) => acc + curr) + 1
-            : 1;
-
-        if (counter) {
-          await t.update(counterRef, {
-            [type + '.' + document.collection]: collectionSequence,
-          });
-        } else {
-          await t.set(counterRef, {
-            [type]: {
-              [document.collection]: collectionSequence,
-            },
-          });
-        }
-
-        await t.update(documentRef, {
-          counterEventIds: [
-            context.eventId,
-            ...(document.counterEventIds || []),
-          ].slice(0, EVENTID_BUFFER_SIZE),
-          collectionSequence,
-          typeSequence,
-        });
-      });
-    } else {
-      return false;
-    }
-  };
-
-  const tagging = kind => (change, context) => {
+  const indexing = (kind, indexKey) => (change, context) => {
     const diff = (a, b) => a.filter(value => !b.includes(value));
-    // removes or adds the given document's slug to all passed tags
-    const tagsTransaction = action => (doc, tags = []) =>
+    // removes or adds the given document's slug to all passed indexes
+    const indexTransaction = action => (doc, keys = []) =>
       firestore.runTransaction(async t => {
         await Promise.all(
-          tags.map(async tag => {
-            const tagsRef = firestore.collection('tags').doc(tag);
-            const tagSlugs = (await t.get(tagsRef)).data();
+          keys.map(async key => {
+            const ref = firestore
+              .collection(`indexes/${indexKey}/pagination`)
+              .doc(key);
+            const index = (await t.get(ref)).data();
 
-            // filter and add or only filter the document from the tag array
+            // filter and add or only filter the document from the index array
             // depending on method
-            const newTagSlugs = [
+            const newSlugs = [
               ...(action === 'add' ? [kind + '__' + doc.slug] : []),
-              ...((tagSlugs && tagSlugs.pagination) || []).filter(
+              ...((index && index.slugs) || []).filter(
                 s => s !== kind + '__' + doc.slug
               ),
             ];
-            if (newTagSlugs.length) {
-              if (tagSlugs) {
-                await t.update(tagsRef, { pagination: newTagSlugs });
+            if (newSlugs.length) {
+              if (index) {
+                await t.update(ref, { slugs: newSlugs });
               } else {
-                await t.set(tagsRef, { pagination: newTagSlugs });
+                await t.set(ref, { slugs: newSlugs });
               }
             } else {
-              await t.delete(tagsRef);
+              await t.delete(ref);
             }
           })
         );
       });
-    const removeFromTags = tagsTransaction('remove');
-    const addToTags = tagsTransaction('add');
+    const removeFromIndexes = indexTransaction('remove');
+    const addToIndexes = indexTransaction('add');
     const docBefore = change.before.exists ? change.before.data() : null;
     const doc = change.after.exists ? change.after.data() : null;
 
@@ -111,62 +50,92 @@ module.exports = (exp, functions, admin) => {
       (!docBefore.published && doc.published)
     ) {
       try {
-        return addToTags(doc, doc.tags);
+        switch (indexKey) {
+          case 'tags':
+            return addToIndexes(doc, doc.tags);
+          case 'collections':
+            return addToIndexes(doc, [doc.collection]);
+          case 'start':
+            return addToIndexes(doc, ['all']);
+          default:
+            return null;
+        }
       } catch (error) {
         console.log(error);
         return false;
       }
 
-      // article gets unpublished or deleted
+      // document gets unpublished or deleted
     } else if (
       docBefore.published &&
       (!doc.published || !change.after.exists)
     ) {
       try {
-        return removeFromTags(doc, doc.tags);
+        switch (indexKey) {
+          case 'tags':
+            return removeFromIndexes(doc, doc.tags);
+          case 'collections':
+            return removeFromIndexes(doc, [doc.collection]);
+          case 'start':
+            return removeFromIndexes(doc, ['all']);
+          default:
+            return null;
+        }
       } catch (error) {
         console.log(error);
         return false;
       }
 
-      // tag(s) get added or removed and article/page is published
+      // document changes and document is published
     } else if (
       docBefore.published &&
       doc.published &&
       change.before.exists &&
       change.after.exists
     ) {
+      // TODO: support collections and start?
+      if (indexKey === 'collections' || indexKey === 'start') {
+        return null;
+      }
       const tagsBefore = docBefore.tags || [];
       const tagsAfter = doc.tags || [];
       const removedTags = diff(tagsBefore, tagsAfter);
       const addedTags = diff(tagsAfter, tagsBefore);
       try {
         return Promise.all([
-          removeFromTags(doc, removedTags),
-          addToTags(doc, addedTags),
+          removeFromIndexes(doc, removedTags),
+          addToIndexes(doc, addedTags),
         ]);
       } catch (error) {
         console.log(error);
         return false;
       }
     } else {
-      return false;
+      return null;
     }
   };
 
   exp.numerologyArticleTagging = functions.firestore
     .document('articles/{document}')
-    .onWrite(tagging('article'));
+    .onWrite(indexing('article', 'tags'));
 
   exp.numerologyPageTagging = functions.firestore
     .document('pages/{document}')
-    .onWrite(tagging('page'));
+    .onWrite(indexing('page', 'tags'));
 
-  exp.numerologyArticles = functions.firestore
+  exp.numerologyArticleCollection = functions.firestore
     .document('articles/{document}')
-    .onWrite(counter('articles'));
+    .onWrite(indexing('article', 'collections'));
 
-  exp.numerologyPages = functions.firestore
+  exp.numerologyPageCollection = functions.firestore
     .document('pages/{document}')
-    .onWrite(counter('pages'));
+    .onWrite(indexing('page', 'collections'));
+
+  exp.numerologyArticleStart = functions.firestore
+    .document('articles/{document}')
+    .onWrite(indexing('article', 'start'));
+
+  exp.numerologyPageStart = functions.firestore
+    .document('pages/{document}')
+    .onWrite(indexing('page', 'start'));
 };

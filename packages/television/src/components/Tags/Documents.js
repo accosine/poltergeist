@@ -76,6 +76,7 @@ const CollectionHeadline = styled('h1', {
   textAlign: 'center',
 });
 
+// TODO: use type to differentiate between articles and pages
 const Articles = ({ documents, tag, config }) => (
   <div>
     <CollectionHeadline>
@@ -96,13 +97,19 @@ const Articles = ({ documents, tag, config }) => (
           <Article>
             <Date>{formatDate(date, 'DD. MMMM YYYY', 'de')}</Date>
             <Headline>
-              <Collection
-                href={`/${config.article.collections[collection].slug}`}
-              >
-                {collection}
-              </Collection>{' '}
+              {config.article.collections[collection] ? (
+                <Collection
+                  href={`/${config.article.collections[collection].slug}`}
+                >
+                  {collection}
+                </Collection>
+              ) : null}
               <A
-                href={`/${config.article.collections[collection].slug}/${slug}`}
+                href={`/${
+                  config.article.collections[collection]
+                    ? config.article.collections[collection].slug + '/'
+                    : ''
+                }${slug}`}
               >
                 {headline}
               </A>

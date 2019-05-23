@@ -115,7 +115,7 @@ module.exports = config => {
       const PAGE_PREFIX = 'page__';
       const ARTICLE_PREFIX = 'article__';
       const slugsSnapshot = await tags.doc(tag).get();
-      const slugs = slugsSnapshot.exists ? slugsSnapshot.data().pagination : [];
+      const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
 
       if (!slugs.length) {
         throw new Error('404');
@@ -130,6 +130,7 @@ module.exports = config => {
         throw new Error('404');
       }
 
+      // TODO: add type (article/page) to doc
       const refs = pageSlugs.map(slug =>
         slug.startsWith(PAGE_PREFIX)
           ? pages.doc(slug.slice(PAGE_PREFIX.length))
