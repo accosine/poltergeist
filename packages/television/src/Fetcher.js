@@ -1,45 +1,41 @@
 module.exports = config => {
   const pagerSize = config.pager.size;
   return {
-    start: (articles, ledger, page) =>
-      Promise.all([
-        ledger
-          .doc('counter')
-          .get()
-          .then(snapshot =>
-            Object.values(snapshot.data().articles).reduce((acc, x) => acc + x)
-          ),
-        articles
-          .select(
-            'collection',
-            'date',
-            'slug',
-            'headline',
-            'subline',
-            'picture',
-            'attribution',
-            'alt'
-          )
-          .where('published', '==', true)
-          .orderBy('typeSequence')
-          .startAt((page - 1) * pagerSize + 1)
-          .limit(parseInt(pagerSize, 10))
-          .get(),
-      ]).then(([articleCount, documentSnapshots]) => {
-        if (!documentSnapshots.docs.length) {
-          throw new Error('404');
-        }
-        return {
-          articles: documentSnapshots.docs.map(article => article.data()),
-          frontmatter: {
-            pagination: {
-              currentPage: parseInt(page, 10),
-              pagerSize,
-              articleCount,
-            },
+    start: async (index, articles, getAll, page) => {
+      const ARTICLE_PREFIX = 'article__';
+      const slugsSnapshot = await index.doc('all').get();
+      const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
+
+      if (!slugs.length) {
+        throw new Error('404');
+      }
+
+      const pageSlugs = slugs.slice(
+        (page - 1) * pagerSize,
+        (page - 1) * pagerSize + pagerSize
+      );
+
+      if (!pageSlugs.length) {
+        throw new Error('404');
+      }
+
+      // TODO: add type (article/page) to doc
+      const refs = pageSlugs
+        .filter(slug => slug.startsWith(ARTICLE_PREFIX))
+        .map(slug => articles.doc(slug.slice(ARTICLE_PREFIX.length)));
+
+      const articleDocs = await getAll(refs);
+      return {
+        articles: articleDocs.map(article => article.data()),
+        frontmatter: {
+          pagination: {
+            currentPage: parseInt(page, 10),
+            pagerSize,
+            articleCount: refs.length,
           },
-        };
-      }),
+        },
+      };
+    },
 
     page: (pages, slug) =>
       pages
@@ -73,48 +69,47 @@ module.exports = config => {
           }
         }),
 
-    portal: (articles, collection, ledger, page) =>
-      Promise.all([
-        ledger
-          .doc('counter')
-          .get()
-          .then(snapshot => snapshot.data().articles[collection]),
-        articles
-          .select(
-            'slug',
-            'headline',
-            'subline',
-            'picture',
-            'attribution',
-            'alt'
-          )
-          .where('collection', '==', collection)
-          .where('published', '==', true)
-          .orderBy('collectionSequence')
-          .startAt((page - 1) * pagerSize + 1)
-          .limit(parseInt(pagerSize, 10))
-          .get(),
-      ]).then(([articleCount, documentSnapshots]) => {
-        if (Math.ceil(articleCount / pagerSize) < page) {
-          throw new Error('404');
-        }
-        return {
-          articles: documentSnapshots.docs.map(article => article.data()),
-          frontmatter: {
-            collection,
-            pagination: {
-              currentPage: parseInt(page, 10),
-              pagerSize,
-              articleCount,
-            },
-          },
-        };
-      }),
+    portal: async (collection, index, articles, getAll, page) => {
+      const ARTICLE_PREFIX = 'article__';
+      const slugsSnapshot = await index.doc(collection).get();
+      const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
 
-    tagged: async (tag, tags, articles, pages, firestore, page) => {
+      if (!slugs.length) {
+        throw new Error('404');
+      }
+
+      const pageSlugs = slugs.slice(
+        (page - 1) * pagerSize,
+        (page - 1) * pagerSize + pagerSize
+      );
+
+      if (!pageSlugs.length) {
+        throw new Error('404');
+      }
+
+      // TODO: add type (article/page) to doc
+      const refs = pageSlugs
+        .filter(slug => slug.startsWith(ARTICLE_PREFIX))
+        .map(slug => articles.doc(slug.slice(ARTICLE_PREFIX.length)));
+
+      const articleDocs = await getAll(refs);
+      return {
+        articles: articleDocs.map(article => article.data()),
+        frontmatter: {
+          collection,
+          pagination: {
+            currentPage: parseInt(page, 10),
+            pagerSize,
+            articleCount: refs.length,
+          },
+        },
+      };
+    },
+
+    tagged: async (tag, index, articles, pages, getAll, page) => {
       const PAGE_PREFIX = 'page__';
       const ARTICLE_PREFIX = 'article__';
-      const slugsSnapshot = await tags.doc(tag).get();
+      const slugsSnapshot = await index.doc(tag).get();
       const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
 
       if (!slugs.length) {
@@ -137,7 +132,7 @@ module.exports = config => {
           : articles.doc(slug.slice(ARTICLE_PREFIX.length))
       );
 
-      const taggedDocs = await firestore.getAll(...refs);
+      const taggedDocs = await getAll(refs);
       return {
         documents: taggedDocs.map(doc => doc.data()),
         frontmatter: {

@@ -41,7 +41,7 @@ module.exports = (exp, functions, admin) => {
   const ledger = firestore.collection('ledger');
   const articles = firestore.collection('articles');
   const pages = firestore.collection('pages');
-  const tags = firestore.collection('indexes/tags/pagination');
+  // const tags = firestore.collection('indexes/tags/pagination');
 
   app.use(cors);
   app.use((req, res, next) => {
@@ -66,7 +66,12 @@ module.exports = (exp, functions, admin) => {
   app.get(`/(${paginationRegex})?`, (req, res) => {
     const page = parseInt(req.params.page, 10) || 1;
     fetcher
-      .start(articles, ledger, page)
+      .start(
+        firestore.collection('indexes/start/pagination'),
+        articles,
+        refs => firestore.getAll(...refs),
+        page
+      )
       .then(data => res.send(theme.start(data)))
       .catch(err => {
         console.error(err);
@@ -80,7 +85,13 @@ module.exports = (exp, functions, admin) => {
     app.get(`/${collectionPath}(/${paginationRegex})?`, (req, res) => {
       const page = parseInt(req.params.page, 10) || 1;
       fetcher
-        .portal(articles, collection, ledger, page)
+        .portal(
+          collection,
+          firestore.collection('indexes/collections/pagination'),
+          articles,
+          refs => firestore.getAll(...refs),
+          page
+        )
         .then(data => res.send(theme.portal(data)))
         .catch(err => {
           console.log(err);
@@ -108,7 +119,14 @@ module.exports = (exp, functions, admin) => {
   app.get(`/${tagPath}/(:tag)(/${paginationRegex})?`, (req, res) => {
     const page = parseInt(req.params.page, 10) || 1;
     fetcher
-      .tagged(req.params.tag, tags, articles, pages, firestore, page)
+      .tagged(
+        req.params.tag,
+        firestore.collection('indexes/tags/pagination'),
+        articles,
+        pages,
+        refs => firestore.getAll(...refs),
+        page
+      )
       .then(data => res.send(theme.tagged(data)))
       .catch(err => {
         console.log(err);
