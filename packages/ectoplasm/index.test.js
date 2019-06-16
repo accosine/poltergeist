@@ -60,7 +60,12 @@ describe('start route', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.text).toBe(text);
-    expect(fetcher).toBeCalledWith('articles', 'ledger', 1);
+    expect(fetcher).toBeCalledWith(
+      'indexes/start/pagination',
+      'articles',
+      expect.any(Function),
+      1
+    );
     expect(theme).toBeCalledWith(data);
   });
 
@@ -74,7 +79,12 @@ describe('start route', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.text).toBe(text);
-    expect(fetcher).toBeCalledWith('articles', 'ledger', 2);
+    expect(fetcher).toBeCalledWith(
+      'indexes/start/pagination',
+      'articles',
+      expect.any(Function),
+      2
+    );
     expect(theme).toBeCalledWith(data);
   });
 
@@ -88,7 +98,12 @@ describe('start route', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.text).toBe(text);
-    expect(fetcher).toBeCalledWith('articles', 'ledger', 11);
+    expect(fetcher).toBeCalledWith(
+      'indexes/start/pagination',
+      'articles',
+      expect.any(Function),
+      11
+    );
     expect(theme).toBeCalledWith(data);
   });
 });
@@ -104,7 +119,13 @@ describe('portal route', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.text).toBe(text);
-    expect(fetcher).toBeCalledWith('articles', 'collection1', 'ledger', 1);
+    expect(fetcher).toBeCalledWith(
+      'collection1',
+      'indexes/collections/pagination',
+      'articles',
+      expect.any(Function),
+      1
+    );
     expect(theme).toBeCalledWith(data);
   });
 
@@ -118,7 +139,13 @@ describe('portal route', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.text).toBe(text);
-    expect(fetcher).toBeCalledWith('articles', 'collection1', 'ledger', 2);
+    expect(fetcher).toBeCalledWith(
+      'collection1',
+      'indexes/collections/pagination',
+      'articles',
+      expect.any(Function),
+      2
+    );
     expect(theme).toBeCalledWith(data);
   });
 
@@ -132,7 +159,13 @@ describe('portal route', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.text).toBe(text);
-    expect(fetcher).toBeCalledWith('articles', 'collection1', 'ledger', 11);
+    expect(fetcher).toBeCalledWith(
+      'collection1',
+      'indexes/collections/pagination',
+      'articles',
+      expect.any(Function),
+      11
+    );
     expect(theme).toBeCalledWith(data);
   });
 });
@@ -182,10 +215,10 @@ describe('tag route', () => {
     expect(response.text).toBe(text);
     expect(fetcher).toBeCalledWith(
       'tag1',
-      'tags',
+      'indexes/tags/pagination',
       'articles',
       'pages',
-      expect.objectContaining({ collection: expect.any(Function) }),
+      expect.any(Function),
       1
     );
     expect(theme).toBeCalledWith(data);
@@ -203,10 +236,10 @@ describe('tag route', () => {
     expect(response.text).toBe(text);
     expect(fetcher).toBeCalledWith(
       'tag1',
-      'tags',
+      'indexes/tags/pagination',
       'articles',
       'pages',
-      expect.objectContaining({ collection: expect.any(Function) }),
+      expect.any(Function),
       2
     );
     expect(theme).toBeCalledWith(data);
@@ -224,10 +257,10 @@ describe('tag route', () => {
     expect(response.text).toBe(text);
     expect(fetcher).toBeCalledWith(
       'tag1',
-      'tags',
+      'indexes/tags/pagination',
       'articles',
       'pages',
-      expect.objectContaining({ collection: expect.any(Function) }),
+      expect.any(Function),
       11
     );
     expect(theme).toBeCalledWith(data);
