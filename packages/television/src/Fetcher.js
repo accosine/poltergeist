@@ -2,7 +2,6 @@ module.exports = config => {
   const pagerSize = config.pager.size;
   return {
     start: async (index, articles, getAll, page) => {
-      const ARTICLE_PREFIX = 'article__';
       const slugsSnapshot = await index.doc('all').get();
       const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
 
@@ -21,8 +20,8 @@ module.exports = config => {
 
       // TODO: add type (article/page) to doc
       const refs = pageSlugs
-        .filter(slug => slug.startsWith(ARTICLE_PREFIX))
-        .map(slug => articles.doc(slug.slice(ARTICLE_PREFIX.length)));
+        .filter(slug => slug.kind === 'article')
+        .map(({ slug }) => articles.doc(slug));
 
       const articleDocs = await getAll(refs);
       return {
@@ -70,8 +69,7 @@ module.exports = config => {
         }),
 
     portal: async (collection, index, articles, getAll, page) => {
-      const ARTICLE_PREFIX = 'article__';
-      const slugsSnapshot = await index.doc(collection).get();
+      const slugsSnapshot = await index.doc('all').get();
       const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
 
       if (!slugs.length) {
@@ -89,14 +87,13 @@ module.exports = config => {
 
       // TODO: add type (article/page) to doc
       const refs = pageSlugs
-        .filter(slug => slug.startsWith(ARTICLE_PREFIX))
-        .map(slug => articles.doc(slug.slice(ARTICLE_PREFIX.length)));
+        .filter(slug => slug.kind === 'article')
+        .map(({ slug }) => articles.doc(slug));
 
       const articleDocs = await getAll(refs);
       return {
         articles: articleDocs.map(article => article.data()),
         frontmatter: {
-          collection,
           pagination: {
             currentPage: parseInt(page, 10),
             pagerSize,
@@ -107,8 +104,6 @@ module.exports = config => {
     },
 
     tagged: async (tag, index, articles, pages, getAll, page) => {
-      const PAGE_PREFIX = 'page__';
-      const ARTICLE_PREFIX = 'article__';
       const slugsSnapshot = await index.doc(tag).get();
       const slugs = slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
 
@@ -126,10 +121,8 @@ module.exports = config => {
       }
 
       // TODO: add type (article/page) to doc
-      const refs = pageSlugs.map(slug =>
-        slug.startsWith(PAGE_PREFIX)
-          ? pages.doc(slug.slice(PAGE_PREFIX.length))
-          : articles.doc(slug.slice(ARTICLE_PREFIX.length))
+      const refs = pageSlugs.map(({ slug, kind }) =>
+        kind === 'article' ? articles.doc(slug) : pages.doc(slug)
       );
 
       const taggedDocs = await getAll(refs);

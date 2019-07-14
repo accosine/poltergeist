@@ -11,6 +11,7 @@ module.exports = (exp, functions, admin) => {
     // removes or adds the given document's slug to all passed indexes
     const indexTransaction = action => (doc, keys = []) =>
       firestore.runTransaction(async t => {
+        const now = new Date();
         await Promise.all(
           keys.map(async key => {
             const ref = firestore
@@ -20,12 +21,24 @@ module.exports = (exp, functions, admin) => {
 
             // filter and add or only filter the document from the index array
             // depending on method
-            const newSlugs = [
-              ...(action === 'add' ? [kind + '__' + doc.slug] : []),
-              ...((index && index.slugs) || []).filter(
-                s => s !== kind + '__' + doc.slug
-              ),
-            ];
+            let newSlugs = [];
+            if (action === 'update') {
+              newSlugs = ((index && index.slugs) || []).map(s =>
+                s.kind === kind && s.slug === doc.slug
+                  ? { ...s, modified: now }
+                  : s
+              );
+            } else {
+              newSlugs = [
+                ...(action === 'add'
+                  ? [{ kind, slug: doc.slug, modified: now }]
+                  : []),
+                ...((index && index.slugs) || []).filter(
+                  s => s.kind !== kind || s.slug !== doc.slug
+                ),
+              ];
+            }
+
             if (newSlugs.length) {
               if (index) {
                 await t.update(ref, { slugs: newSlugs });
@@ -40,6 +53,7 @@ module.exports = (exp, functions, admin) => {
       });
     const removeFromIndexes = indexTransaction('remove');
     const addToIndexes = indexTransaction('add');
+    const updateIndexes = indexTransaction('update');
     const docBefore = change.before.exists ? change.before.data() : null;
     const doc = change.after.exists ? change.after.data() : null;
 
@@ -93,19 +107,23 @@ module.exports = (exp, functions, admin) => {
       change.before.exists &&
       change.after.exists
     ) {
-      // TODO: support collections and start?
-      if (indexKey === 'collections' || indexKey === 'start') {
-        return null;
-      }
-      const tagsBefore = docBefore.tags || [];
-      const tagsAfter = doc.tags || [];
-      const removedTags = diff(tagsBefore, tagsAfter);
-      const addedTags = diff(tagsAfter, tagsBefore);
       try {
-        return Promise.all([
-          removeFromIndexes(doc, removedTags),
-          addToIndexes(doc, addedTags),
-        ]);
+        if (indexKey === 'collections') {
+          return addToIndexes(doc, [doc.collection]);
+        } else if (indexKey === 'start') {
+          return addToIndexes(doc, ['all']);
+        } else if (indexKey === 'tags') {
+          const tagsBefore = docBefore.tags || [];
+          const tagsAfter = doc.tags || [];
+          const removedTags = diff(tagsBefore, tagsAfter);
+          const addedTags = diff(tagsAfter, tagsBefore);
+          return Promise.all([
+            removeFromIndexes(doc, removedTags),
+            addToIndexes(doc, addedTags),
+          ]);
+        } else {
+          return null;
+        }
       } catch (error) {
         console.log(error);
         return false;

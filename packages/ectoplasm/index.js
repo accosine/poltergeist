@@ -41,7 +41,6 @@ module.exports = (exp, functions, admin) => {
   const ledger = firestore.collection('ledger');
   const articles = firestore.collection('articles');
   const pages = firestore.collection('pages');
-  // const tags = firestore.collection('indexes/tags/pagination');
 
   app.use(cors);
   app.use((req, res, next) => {
