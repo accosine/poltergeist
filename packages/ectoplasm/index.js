@@ -62,6 +62,19 @@ module.exports = (exp, functions, admin) => {
 
   const paginationRegex = ':page([2-9]|[1-9]\\d+)';
 
+  // pages (incl. start)
+  // serverless
+  // tags
+  app.get(`/sitemap.xml`, (req, res) => {
+    fetcher
+      .sitemap(firestore.collection('indexes/start/pagination'))
+      .then(data => res.send(theme.sitemap(data)))
+      .catch(err => {
+        console.error(err);
+        res.status(500).send('Something broke!');
+      });
+  });
+
   app.get(`/(${paginationRegex})?`, (req, res) => {
     const page = parseInt(req.params.page, 10) || 1;
     fetcher

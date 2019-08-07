@@ -224,10 +224,37 @@ const start = config => ({ articles, frontmatter }) => {
   return html(head, body);
 };
 
+// TODO: tags
+const sitemap = config => index => `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="//${config.domain}/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>${config.protocol}://${
+  config.domain
+}/sitemap-pages.xml</loc><lastmod>${index
+  .filter(x => x.kind === 'page')
+  .sort()
+  .slice(-1)[0]
+  .modified.toISOString()}</lastmod></url>
+  ${Object.keys(config.article.collections)
+    .map(
+      collection =>
+        `<url><loc>${config.protocol}://${
+          config.domain
+        }/sitemap-${collection}.xml</loc><lastmod>${index
+          .filter(x => x.kind === 'article')
+          .filter(x => x.collection === collection)
+          .sort()
+          .slice(-1)[0]
+          .modified.toISOString()}</lastmod></url>`
+    )
+    .join('\n')}
+</urlset>`;
+
 export default (config, plugins) => ({
   article: article(config, plugins),
   portal: portal(config),
   tagged: tagged(config),
   start: start(config),
   page: page(config, plugins),
+  sitemap: sitemap(config),
 });

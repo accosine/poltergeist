@@ -31,7 +31,14 @@ module.exports = (exp, functions, admin) => {
             } else {
               newSlugs = [
                 ...(action === 'add'
-                  ? [{ kind, slug: doc.slug, modified: now }]
+                  ? [
+                      {
+                        kind,
+                        slug: doc.slug,
+                        collection: doc.collection,
+                        modified: now,
+                      },
+                    ]
                   : []),
                 ...((index && index.slugs) || []).filter(
                   s => s.kind !== kind || s.slug !== doc.slug

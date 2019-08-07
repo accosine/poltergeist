@@ -138,5 +138,10 @@ module.exports = config => {
         },
       };
     },
+
+    sitemap: async index => {
+      const slugsSnapshot = await index.doc('all').get();
+      return slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
+    },
   };
 };
