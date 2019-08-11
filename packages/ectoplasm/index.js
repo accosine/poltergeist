@@ -75,6 +75,16 @@ module.exports = (exp, functions, admin) => {
       });
   });
 
+  app.get(`/sitemap-pages.xml`, (req, res) => {
+    fetcher
+      .sitemap(firestore.collection('indexes/start/pagination'))
+      .then(data => res.send(theme.sitemapPages(data)))
+      .catch(err => {
+        console.error(err);
+        res.status(500).send('Something broke!');
+      });
+  });
+
   app.get(`/(${paginationRegex})?`, (req, res) => {
     const page = parseInt(req.params.page, 10) || 1;
     fetcher
@@ -123,6 +133,19 @@ module.exports = (exp, functions, admin) => {
           if (err.message === '404') {
             return res.status(404).send('Page not found');
           }
+          res.status(500).send('Something broke!');
+        });
+    });
+
+    app.get(`/sitemap-${collectionPath}.xml`, (req, res) => {
+      fetcher
+        .sitemapCollection(
+          firestore.collection('indexes/collections/pagination'),
+          collection
+        )
+        .then(data => res.send(theme.sitemapCollection(data)))
+        .catch(err => {
+          console.error(err);
           res.status(500).send('Something broke!');
         });
     });

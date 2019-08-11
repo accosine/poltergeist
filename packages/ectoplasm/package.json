@@ -1,6 +1,6 @@
 {
   "name": "@poltergeist/ectoplasm",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",

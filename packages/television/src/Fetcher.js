@@ -143,5 +143,10 @@ module.exports = config => {
       const slugsSnapshot = await index.doc('all').get();
       return slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
     },
+
+    sitemapCollection: async (index, collection) => {
+      const slugsSnapshot = await index.doc(collection).get();
+      return slugsSnapshot.exists ? slugsSnapshot.data().slugs : [];
+    },
   };
 };

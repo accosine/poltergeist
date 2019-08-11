@@ -232,22 +232,55 @@ const sitemap = config => index => `<?xml version="1.0" encoding="UTF-8"?>
   config.domain
 }/sitemap-pages.xml</loc><lastmod>${index
   .filter(x => x.kind === 'page')
-  .sort()
-  .slice(-1)[0]
+  .sort()[0]
   .modified.toISOString()}</lastmod></url>
-  ${Object.keys(config.article.collections)
+  ${Object.entries(config.article.collections)
     .map(
-      collection =>
+      ([collection, { slug }]) =>
         `<url><loc>${config.protocol}://${
           config.domain
-        }/sitemap-${collection}.xml</loc><lastmod>${index
+        }/sitemap-${slug}.xml</loc><lastmod>${index
           .filter(x => x.kind === 'article')
           .filter(x => x.collection === collection)
-          .sort()
-          .slice(-1)[0]
+          .sort()[0]
           .modified.toISOString()}</lastmod></url>`
     )
-    .join('\n')}
+    .join('\n  ')}
+</urlset>`;
+
+const sitemapCollection = config => index => `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="//${config.domain}/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>${config.protocol}://${config.domain}/${
+  index[0].collection
+}</loc><lastmod>${index.sort()[0].modified.toISOString()}</lastmod></url>
+  ${index
+    .sort()
+    .map(
+      ({ collection, slug, modified }) =>
+        `<url><loc>${config.protocol}://${
+          config.domain
+        }/${collection}/${slug}</loc><lastmod>${modified.toISOString()}</lastmod></url>`
+    )
+    .join('\n  ')}
+</urlset>`;
+
+const sitemapPages = config => index => `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="//${config.domain}/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>${config.protocol}://${
+  config.domain
+}/</loc><lastmod>${index.sort()[0].modified.toISOString()}</lastmod></url>
+  ${index
+    .filter(x => x.kind === 'page')
+    .sort()
+    .map(
+      ({ collection, slug, modified }) =>
+        `<url><loc>${config.protocol}://${
+          config.domain
+        }/${slug}</loc><lastmod>${modified.toISOString()}</lastmod></url>`
+    )
+    .join('\n  ')}
 </urlset>`;
 
 export default (config, plugins) => ({
@@ -257,4 +290,6 @@ export default (config, plugins) => ({
   start: start(config),
   page: page(config, plugins),
   sitemap: sitemap(config),
+  sitemapCollection: sitemapCollection(config),
+  sitemapPages: sitemapPages(config),
 });
