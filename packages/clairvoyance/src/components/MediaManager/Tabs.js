@@ -13,7 +13,6 @@ const styleSheet = theme => ({
     zIndex: 1,
   },
   tabContainer: {
-    // padding: `${theme.spacing.unit * 3}px 0`,
     overflow: 'hidden',
     flex: 1,
   },

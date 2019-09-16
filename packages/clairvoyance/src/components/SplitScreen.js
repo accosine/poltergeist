@@ -28,7 +28,7 @@ const styleSheet = theme => ({
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
   frontmatter: {
     padding: 4,

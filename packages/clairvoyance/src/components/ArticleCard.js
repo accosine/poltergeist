@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex',
     width: '80vw',
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing(2),
     justifyContent: 'space-between',
     cursor: 'pointer',
     transition: 'box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out',

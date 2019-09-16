@@ -18,12 +18,12 @@ import {
 
 const useStyles = makeStyles(theme => ({
   tabContainer: {
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
     overflow: 'scroll',
     width: '100%',
   },
   root: {
-    marginTop: 2 * theme.spacing.unit,
+    marginTop: theme.spacing(2),
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',

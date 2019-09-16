@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
-    padding: theme.spacing.unit + 'px 0',
+    padding: theme.spacing(1, 0),
   },
 }));
 

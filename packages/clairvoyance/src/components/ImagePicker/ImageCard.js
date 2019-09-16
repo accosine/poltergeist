@@ -12,7 +12,7 @@ import config from '../../config.js';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing.unit * 1,
+    margin: theme.spacing(1),
     transition: 'box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out',
   },
   selected: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     width: 350,
-    borderRadius: theme.spacing.unit * 3,
+    borderRadius: theme.spacing(3),
   },
   headline: {
     textOverflow: 'ellipsis',

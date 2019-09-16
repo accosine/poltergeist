@@ -1,4 +1,3 @@
-import './bootstrap'; // temporary material-ui style system installation step
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'typeface-roboto';
@@ -9,14 +8,13 @@ import { FirebaseProvider } from './firebase';
 import App from './App';
 
 const Main = () => (
-  <React.StrictMode>
-    <ThemeProvider>
-      <FirebaseProvider>
-        <CssBaseline />
-        <App />
-      </FirebaseProvider>
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider>
+    <FirebaseProvider>
+      <CssBaseline />
+      <App />
+    </FirebaseProvider>
+  </ThemeProvider>
 );
 
-ReactDOM.unstable_createRoot(document.getElementById('root')).render(<Main />);
+// ReactDOM.unstable_createRoot(document.getElementById('root')).render(<Main />);
+ReactDOM.render(<Main />, document.getElementById('root'));

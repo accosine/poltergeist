@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styleSheet = theme => ({
   button: {
     bottom: 0,
-    margin: 3 * theme.spacing.unit,
+    margin: theme.spacing(3),
     position: 'fixed',
     zIndex: 1300,
   },

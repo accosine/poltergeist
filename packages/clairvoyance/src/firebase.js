@@ -72,17 +72,14 @@ export const useFirestoreCollectionSubscription = collection => {
   const [elements, setElements] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(
-    () => {
-      setLoading(true);
-      // return unsubscribe function
-      return firestore.collection(collection).onSnapshot(snapshot => {
-        setElements(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        setLoading(false);
-      });
-    },
-    [collection]
-  );
+  useEffect(() => {
+    setLoading(true);
+    // return unsubscribe function
+    return firestore.collection(collection).onSnapshot(snapshot => {
+      setElements(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      setLoading(false);
+    });
+  }, [collection, firestore]);
   return [elements, loading];
 };
 

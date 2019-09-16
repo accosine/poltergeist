@@ -18,7 +18,7 @@ const Icon = () => <img height="14" src={icon} alt="Gfycat" />;
 
 const styleSheet = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(),
   },
 });
 

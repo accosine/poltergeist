@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import FixedButton from './FixedButton';
 import CreateIcon from '@material-ui/icons/Create';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
+import useScrollInfo from 'react-element-scroll-hook';
 import { useFirebaseContext } from '../firebase';
+import useInfiniteScroll from '../useInfiniteScroll';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 2 * theme.spacing.unit,
+    marginTop: theme.spacing(2),
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    overflowY: 'scroll',
     height: 0,
     flex: 1,
+  },
+  list: {
+    overflowY: 'scroll',
+    padding: 20,
   },
   loading: {
     position: 'fixed',
@@ -25,54 +29,60 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 2;
 
-// TODO: Keep in mind to prefill the <InfiniteScroll> component until it overflows
 // TODO: pagination/search
 const CardList = ({ collection, CardComponent, path, history }) => {
   const classes = useStyles();
-  // TODO: Don't use subscriptions for article listing, use lazy loading
   const { firestore } = useFirebaseContext();
-  const [elements, setElements] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [lastElement, setLastElement] = useState(null);
 
-  const fetchElements = async () => {
-    console.log('fetch elements');
-    let query = firestore.collection(collection).orderBy('date');
-    if (lastElement) {
-      query = query.startAfter(lastElement);
-    }
-    query = query.limit(PAGE_SIZE);
+  const [elements, setElements] = useState([]);
+  // const scrollRef = useRef(null);
 
-    const snapshots = await query.get();
+  const [{ y: scrollInfoY }, scrollRef] = useScrollInfo();
 
-    setElements([
-      ...elements,
-      ...snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() })),
-    ]);
-    setLastElement(snapshots.docs[snapshots.docs.length - 1]);
-    setHasMore(snapshots.docs.length !== 0);
-  };
+  const fetchElements = React.useCallback(
+    async function fetchElements() {
+      console.log('callback');
+      setIsFetching(true);
+      let query = firestore.collection(collection).orderBy('date');
+      if (lastElement) {
+        query = query.startAfter(lastElement);
+      }
+      query = query.limit(PAGE_SIZE);
+      const snapshots = await query.get();
 
-  useEffect(
-    () => {
-      fetchElements();
+      setElements(e => [
+        ...e,
+        ...snapshots.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+      ]);
+      setLastElement(snapshots.docs[snapshots.docs.length - 1]);
+      setHasMore(snapshots.docs.length !== 0);
+      setIsFetching(false);
     },
-    [collection]
+    [collection, firestore, lastElement]
   );
 
+  // React.useEffect(() => {
+  //   console.log(scrollInfoY);
+  //   if (!isFetching && hasMore && scrollInfoY.percentage >= 0.9) {
+  //     fetchElements();
+  //   }
+  // }, [scrollInfoY, fetchElements, hasMore, isFetching]);
+
+  React.useEffect(() => {
+    console.log(scrollInfoY);
+    if (!isFetching && hasMore && scrollInfoY.className === 'no-scroll-y') {
+      fetchElements();
+    }
+  }, [scrollInfoY, fetchElements, hasMore, isFetching]);
+
   return (
-    <div id="scroll-target" className={classes.root}>
-      <InfiniteScroll
-        dataLength={elements.length}
-        next={fetchElements}
-        hasMore={hasMore}
-        loader={<LinearProgress className={classes.loading} />}
-        scrollableTarget="scroll-target"
-        className={classes.list}
-        style={{ overflow: 'unset' }}
-      >
+    <div className={classes.root}>
+      <div ref={scrollRef} className={classes.list}>
         {elements.map(({ slug, ...props }) => (
           <CardComponent
             key={slug}
@@ -80,7 +90,8 @@ const CardList = ({ collection, CardComponent, path, history }) => {
             {...props}
           />
         ))}
-      </InfiniteScroll>
+      </div>
+      {/*isFetching && <LinearProgress className={classes.loading} /> */}
 
       <FixedButton component={Link} to={path} position="right">
         <CreateIcon />

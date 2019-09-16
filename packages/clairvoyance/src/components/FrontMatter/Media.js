@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => ({
   controls: {
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
   previewContainer: {
     display: 'flex',
@@ -52,13 +52,13 @@ const useStyles = makeStyles(theme => ({
     margin: 2,
   },
   avatar: {
-    margin: 2 * theme.spacing.unit,
+    margin: theme.spacing(2),
     width: 130,
     height: 130,
   },
   cover: {
-    width: 130 + 2 * theme.spacing.unit,
-    height: 130 + 2 * theme.spacing.unit,
+    width: 130 + theme.spacing(2),
+    height: 130 + theme.spacing(2),
   },
   playIcon: {
     height: 38,

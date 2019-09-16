@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -16,17 +16,15 @@ const FrontMatterTextfield = ({
   multiline = false,
   rows = 1,
   rowsMax = 1,
-  disableCollection,
   ...props
 }) => {
   const classes = useStyles();
   return (
     <TextField
-      {...props}
       className={classes.textField}
       id={id}
       label={id}
-      value={props[id]}
+      value={props[id] || ''}
       onChange={event => onChange({ [id]: event.target.value })}
       margin="normal"
       type={inputType}

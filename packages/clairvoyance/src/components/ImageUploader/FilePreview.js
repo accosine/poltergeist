@@ -13,7 +13,7 @@ import ChipInput from '../FrontMatter/ChipInput';
 
 const styleSheet = theme => ({
   root: {
-    padding: theme.spacing.unit * 1,
+    padding: theme.spacing(1),
   },
   card: {
     position: 'relative',
@@ -36,7 +36,7 @@ const styleSheet = theme => ({
     width: '100%',
   },
   input: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   headline: {
     textOverflow: 'ellipsis',
