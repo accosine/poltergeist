@@ -1,6 +1,6 @@
 {
   "name": "@poltergeist/television",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "a theme for poltergeist",
   "main": "dist/index.js",
   "bin": {
@@ -10,8 +10,8 @@
     "common-tags": "^1.7.2",
     "marksy": "^6.0.3",
     "moment": "^2.22.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "styletron-engine-atomic": "^1.0.5",
     "styletron-react": "^4.2.2"
   },

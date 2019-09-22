@@ -18,34 +18,40 @@ const styleSheet = {
 
 const Iframe = ({ html, classes }) => {
   const containerEl = useRef(null);
-  const createIframe = useCallback(() => {
-    const iframe = document.createElement('iframe');
-    iframe.setAttribute('class', classnames(classes.iframe, classes.hidden));
-    iframe.setAttribute('title', 'preview');
-    return iframe;
-  }, [classes.hidden, classes.iframe]);
+  const createIframe = useCallback(
+    () => {
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('class', classnames(classes.iframe, classes.hidden));
+      iframe.setAttribute('title', 'preview');
+      return iframe;
+    },
+    [classes.hidden, classes.iframe]
+  );
   const [scrollTop, setScrollTop] = useState(0);
-  useEffect(() => {
-    const iframe = createIframe();
-    containerEl.current.appendChild(iframe);
-    const iframeDocument = iframe.contentDocument;
+  useEffect(
+    () => {
+      const iframe = createIframe();
+      containerEl.current.appendChild(iframe);
+      const iframeDocument = iframe.contentDocument;
 
-    iframeDocument.open();
+      iframeDocument.open();
 
-    iframe.contentWindow.onload = () => {
-      if (containerEl.current.children.length > 1) {
-        containerEl.current.removeChild(containerEl.current.firstChild);
-      }
-      iframe.className = classes.iframe;
-      iframe.contentWindow.scrollTo(0, scrollTop);
-    };
-    iframeDocument.addEventListener('scroll', event =>
-      setScrollTop(event.target.scrollingElement.scrollTop)
-    );
+      iframe.contentWindow.onload = () => {
+        if (containerEl.current.children.length > 1) {
+          containerEl.current.removeChild(containerEl.current.firstChild);
+        }
+        iframe.className = classes.iframe;
+        iframe.contentWindow.scrollTo(0, scrollTop);
+      };
+      iframeDocument.addEventListener('scroll', event =>
+        setScrollTop(event.target.scrollingElement.scrollTop)
+      );
 
-    iframeDocument.write(html);
-    iframeDocument.close();
-  }, [html, classes.iframe, createIframe, scrollTop]);
+      iframeDocument.write(html);
+      iframeDocument.close();
+    },
+    [html, classes.iframe, createIframe]
+  );
 
   return <div className={classes.container} ref={containerEl} />;
 };

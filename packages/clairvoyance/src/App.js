@@ -37,15 +37,11 @@ const App = () => {
                 path="/editor/:kind(page|article)/:slug?"
                 component={SplitScreen}
               />
-              <Route path="/articles" component={Articles} redirectTo="/" />
-              <Route path="/pages" component={Pages} redirectTo="/" />
-              <Route path="/users" component={Users} redirectTo="/" />
+              <Route path="/articles" component={Articles} />
+              <Route path="/pages" component={Pages} />
+              <Route path="/users" component={Users} />
             </>
-          ) : (
-            <>
-              <Redirect to="/" />
-            </>
-          )}
+          ) : null}
         </div>
       </Suspense>
     </Router>
