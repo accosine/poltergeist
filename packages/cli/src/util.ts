@@ -57,7 +57,7 @@ export const getProjectId = async () => {
   let projectId;
   if (projectIds.length > 1) {
     projectId = (await prompt<{ projectId: string }>({
-      type: 'Select',
+      type: 'select',
       name: 'projectId',
       message: 'Which project?',
       choices: projectIds,
@@ -66,13 +66,13 @@ export const getProjectId = async () => {
     projectId = projectIds[0];
   }
   try {
-    await client.use(projectId, {});
+    client.use(projectId, {});
   } catch (error) {
     if (
       error.message.startsWith('Command requires authentication, please run')
     ) {
       await initializeAndEnsureAuth(projectId);
-      await client.use(projectId, {});
+      client.use(projectId, {});
     } else {
       throw error;
     }
@@ -106,7 +106,7 @@ export const initializeAndEnsureAuth = async (projectId: string) => {
     initializeApp(projectId);
   } catch (error) {
     if (error.code === 'app/invalid-credential') {
-      await client.login({ localhost: false });
+      client.login({ localhost: false });
       ensureDefaultCredentials();
       initializeApp(projectId);
     } else {

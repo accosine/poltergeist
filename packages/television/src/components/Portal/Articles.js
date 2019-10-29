@@ -87,7 +87,7 @@ const Articles = ({ articles, collection, config }) => (
       ({ picture, attribution, alt, slug, headline, subline, date }) => (
         <section key={slug}>
           <Article>
-            <Date>{formatDate(date, 'DD. MMMM YYYY', 'de')}</Date>
+            <Date>{formatDate(date, 'YYYY-MM-DD', 'en')}</Date>
             <ArticleHeadline>
               <A
                 href={`/${config.article.collections[collection].slug}/${slug}`}

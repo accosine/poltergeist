@@ -52,7 +52,7 @@ export default ({
       collections[collection].slug
     }/${slug}/`,
     description: description,
-    datePublished: formatDate(date, 'YYYY-MM-DD', 'de'),
+    datePublished: formatDate(date, 'YYYY-MM-DD', 'en'),
     author: {
       '@type': 'Person',
       name: authors[author].name,
@@ -80,7 +80,7 @@ export default ({
     },
   };
   if (datemodified) {
-    schema.dateModified = formatDate(datemodified, 'YYYY-MM-DD', 'de');
+    schema.dateModified = formatDate(datemodified, 'YYYY-MM-DD', 'en');
   }
 
   switch (type) {

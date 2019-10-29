@@ -283,7 +283,7 @@ const sitemapPages = config => index => `<?xml version="1.0" encoding="UTF-8"?>
     .join('\n  ')}
 </urlset>`;
 
-export default (config, plugins) => ({
+export default (config, plugins = []) => ({
   article: article(config, plugins),
   portal: portal(config),
   tagged: tagged(config),

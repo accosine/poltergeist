@@ -95,7 +95,7 @@ const Articles = ({ documents, tag, config }) => (
       }) => (
         <section key={slug}>
           <Article>
-            <Date>{formatDate(date, 'DD. MMMM YYYY', 'de')}</Date>
+            <Date>{formatDate(date, 'YYYY-MM-DD', 'en')}</Date>
             <Headline>
               {config.article.collections[collection] ? (
                 <Collection

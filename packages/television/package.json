@@ -32,11 +32,13 @@
     "eslint-plugin-react": "^7.8.2",
     "fs-extra": "^7.0.1",
     "jest": "^24.7.1",
+    "nodemon": "^1.19.3",
     "preval.macro": "^1.0.2",
     "react-test-renderer": "^16.4.2",
     "svg-spritemap": "0.0.2"
   },
   "scripts": {
+    "dev": "nodemon --ignore dist --exec 'npm run prepare; node dev.js'",
     "prepare": "babel src -d dist",
     "test": "jest"
   },

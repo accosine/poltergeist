@@ -1,263 +1,36 @@
 [
   {
-    "articles": [
-      {
-        "alt": "Darum solltest Du Serien kaufen!",
-        "attribution": "Stefan Schreier",
-        "headline": "Raubkopierern gehört die digitale Hand abgehackt!",
-        "subline":
-          "Darum solltest Du „Game Of Thrones“ & Co. kaufen statt illegal herunterzuladen!",
-        "picture": "darum-serien-kaufen.jpg",
-        "slug": "darum-solltest-du-game-of-thrones-kaufen"
-      },
-      {
-        "headline": "Rezension - Findet Dorie",
-        "subline": "Frische Gedanken zum Film",
-        "picture": "mircoohl_findet_dorie.jpg",
-        "slug": "findet-dorie-rezension",
-        "alt": "you see nothing",
-        "attribution": ""
-      },
-      {
-        "alt": "Kritik Tote Mädchen lügen nicht",
-        "attribution": "unsplash.com / Xavier Sotomayor",
-        "headline": "Kritik zu Tote Mädchen lügen nicht",
-        "subline":
-          "Warum die Netflix-Serie schlecht und gleichzeitig großartig ist!",
-        "picture": "tote-maedchen-luegen-nicht-160417.jpg",
-        "slug": "kritik-zu-tote-maedchen-luegen-nicht"
-      },
-      {
-        "picture": "lalaland-1-20170125.jpg",
-        "slug": "la-la-land-rezension-vom-mut-zu-traeumen",
-        "alt":
-          "Mia und Sebastian versuchen, in Los Angeles das große Glück zu finden.",
-        "attribution": "© Studiocanal",
-        "headline": "Vom Mut zu Träumen",
-        "subline":
-          "Ein Meisterwerk: Mit großartigen Schauspielern und einem Soundtrack zum Dahinschmelzen erzählt „La La Land“ von Hoffnungen und zerbrochenen Träumen."
-      },
-      {
-        "alt":
-          "Die Linguistin Louise Banks (Amy Adams) nimmt im Raumschiff Kontakt zu den Außerirdischen auf.",
-        "attribution": "© Sony Pictures Releasing GmbH",
-        "headline": "Mit Außerirdischen sprechen",
-        "subline":
-          "Bei dem Versuch, Außerirdische zu verstehen, entdeckt Amy Adams in Arrival die Macht von Sprache und Kommunikation.",
-        "picture": "arrival-2016-12-02.jpg",
-        "slug": "rezension-arrival-mit-ausserirdischen-sprechen"
-      }
-    ],
-    "collection": "fernsehen"
-  },
-  {
-    "articles": [
-      {
-        "alt": "hier ist Käsekuchen zu sehen",
-        "attribution": "Sabrina Kolba",
-        "headline": "Ultimatives Käsekuchenrezept",
-        "subline":
-          "Mit diesem Rezept findet garantiert jede Single-Frau einen Mann!",
-        "picture": "bester-kaesekuchen-rezept.jpg",
-        "slug": "bestes-kaesekuchen-rezept"
-      }
-    ],
-    "collection": "essen"
-  },
-  {
-    "articles": [
-      {
-        "alt": "Hört endlich auf, euren Hund wie ein Kind zu behandeln!",
-        "attribution": "unsplash.com / Simone Dalmeri",
-        "headline": "Hört endlich auf, euren Hund wie ein Kind zu behandeln!",
-        "subline":
-          "Und leckt um Himmels Willen nicht von der selben Kugel Eis!",
-        "picture": "161108_hund.jpg",
-        "slug": "hunde-wie-kinder-behandeln"
-      },
-      {
-        "alt": "Once im Vergleich zu Tinder",
-        "attribution": "getonce.com / Pressebild",
-        "headline": "Meine Erfahrungen mit der Dating-App Once",
-        "subline":
-          "Warum die Idee dahinter gut, aber Tinder trotzdem besser ist!",
-        "picture": "161107_once_titel.jpg",
-        "slug": "vorteile-von-once-gegenueber-tinder"
-      }
-    ],
-    "collection": "herz"
-  },
-  {
-    "articles": [
-      {
-        "picture": "charly-bit-my-finger-20161021.jpg",
-        "slug": "erfolgreicher-als-jedes-katzenvideo",
-        "alt": "Charly beißt in den Finger seines Bruders",
-        "attribution": "CC BY 2.0 - Geoffrey Fairchild",
-        "headline": "Charlie beißt in den Finger seines Bruders",
-        "subline": "Und jeder Mensch mit Geschwistern kennt die Situation"
-      }
-    ],
-    "collection": "lustig"
-  },
-  {
-    "articles": [
-      {
-        "headline": "10 Songs, die Du gehört haben musst, bevor Du stirbst!",
-        "subline": "Vom \"Lied der Erlösung\" bis zum \"Hallelujah\"",
-        "picture": "schallplatten-bob-marley-the-beatles-20161027.jpg",
-        "slug": "10-songs-die-du-gehoert-haben-musst-bevor-du-stirbst",
-        "alt": "Schallplatten von Bob Marley und den Beatles",
-        "attribution": "Kevin Baumann"
-      }
-    ],
-    "collection": "musik"
-  },
-  {
-    "articles": [
-      {
-        "alt": "Flow-Chart der dir der Auswahl deines Studiums hilft probieren",
-        "attribution": "",
-        "headline": "In fünf Minuten zum perfekten Studiengang",
-        "subline": "Finde deine Begabung",
-        "picture": "flow-chart-emoji-20161124.jpg",
-        "slug": "was-soll-ich-studieren"
-      }
-    ],
-    "collection": "studium"
-  },
-  {
-    "articles": [
-      {
-        "picture": "kassetten-20161124.jpg",
-        "slug": "zeitreise-in-die-achtziger-jahre",
-        "alt": "Kassetten",
-        "attribution": "",
-        "headline": "Das hattest du in den Achtzigern besser griffbereit",
-        "subline":
-          "Eine Liste an Gegenständen, die mal unsere größten Schätze waren"
-      }
-    ],
-    "collection": "nostalgie"
-  },
-  {
-    "articles": [
-      {
-        "alt": "Überlebst Du eine Atombombenexplosion in Deiner Stadt?",
-        "attribution": "unsplash.com / Dawn Arnfield",
-        "headline": "Diese Karte zeigt Dir, ob Du eine Atombombe überlebst!",
-        "subline": "Wirst Du direkt verdampfen oder verbrennst Du qualvoll?",
-        "picture": "161111_explosion.jpg",
-        "slug": "ueberlebst-du-wenn-eine-atombombe-explodiert"
-      }
-    ],
-    "collection": "technologie"
-  },
-  {
-    "articles": [
-      {
-        "picture": "carmel-by-the-sea-01.jpg",
-        "slug": "rundreise-durch-kalifornien-auf-pacific-coast-highway-one",
-        "alt": "Carmel by the Sea",
-        "attribution": "Duncan Kolba",
-        "headline": "Auf dieser Traumstraße Amerikas ist der Weg das Ziel",
-        "subline": "Reisebericht vom Highway One an der US Westküste"
-      }
-    ],
-    "collection": "reisen"
-  },
-  {
-    "articles": [
-      {
-        "alt": "Ein Honigdachs, dem alles egal ist",
-        "attribution": "CC BY 2.0 - Anup Shah",
-        "headline": "Warum der Honigdachs ein cooles Tier ist",
-        "subline": "Ihm ist einfach alles egal",
-        "picture": "honey-badger-20160122.jpg",
-        "slug": "honigdachse-sind-die-besseren-menschen"
-      }
-    ],
-    "collection": "natur"
-  },
-  {
-    "articles": [
-      {
-        "headline": "Die Moderevolution",
-        "subline":
-          "Immer schneller, immer billiger? In Zeiten von Fast Fashion fordert die Bewegung Fashion Revolution mehr Transparenz, Fairness und Nachhaltigkeit in der Modeindustrie.",
-        "picture": "fashion-revolution-week-2017-04-23.jpg",
-        "slug": "fashion-revolution-week-2017-who-made-my-clothes",
-        "alt":
-          "Mehr Transparenz in der Fashionindustrie ist das Ziel der Fashion Revolution Week.",
-        "attribution": "Nina Noodt"
-      },
-      {
-        "alt": "Taj Mahal als Horrorvision per Deep Learning",
-        "attribution": "CC BY-NC 2.0 Louis Vest",
-        "headline": "So sieht es aus, wenn ein Computer Alpträume hat",
-        "subline": "Horrorbilder durch künstliche Intelligenz",
-        "picture": "taj-mahal-horror-20161124.jpg",
-        "slug": "gruselige-bilder-mit-deep-learning"
-      },
-      {
-        "alt": "Der Widerstand gegen Trump wächst.",
-        "attribution": "",
-        "headline": "Wie man sich gegen Trump wehrt",
-        "subline":
-          "Im April starten Studierende der Harvard-Universität einen Widerstandskurs gegen die Trump-Regierung. Jeder kann teilnehmen.",
-        "picture": "resistance-school-2017-04-04.jpg",
-        "slug": "resistance-school-harvard-grabs-back"
-      }
-    ],
-    "collection": "zukunft"
-  },
-  {
-    "articles": [
-      {
-        "picture": "analsex-lieben-lernen-20161102.jpg",
-        "slug": "analsex-lieben-lernen",
-        "alt": "Po in sexy Lingerie",
-        "attribution": "CC BY-NC-ND 2.0 Frederic Dewulf",
-        "headline": "Analsex lieben lernen",
-        "subline": "Eine Einführung in die abenteuerliche Welt des Analsex"
-      }
-    ],
-    "collection": "sex"
-  },
-  {
-    "articles": [
-      {
-        "headline": "Da riecht es einfach nach Fußballgeschichte",
-        "subline": "Beim Groundhopping schlagen Fanherzen höher",
-        "picture": "groundblogging_2.jpg",
-        "slug": "groundhopping-fussball-stadion",
-        "alt": "Fußballstadion",
-        "attribution": ""
-      },
-      {
-        "picture": "dodgeball-20160911.jpg",
-        "slug": "voelkerball-ist-die-beste-sportart-der-welt",
-        "alt": "Völkerball",
-        "attribution": "",
-        "headline": "Die beste Sportart der Welt",
-        "subline": "Völkerball wird total unterschätzt"
-      }
-    ],
-    "collection": "sport"
-  },
-  {
-    "articles": [
-      {
-        "headline": "Die beste Konsole ALLER Zeiten",
-        "subline":
-          "Warum Nintendo mit dem NES-Reboot doch einen Fehler gemacht hat",
-        "picture":
-          "nes-nintendo-classic-mini-nintendo-entertainment-system-20161112.jpg",
-        "slug": "nes-erfolgreicher-als-nintendo-switch",
-        "alt": "Nintendo Classic Mini Nintendo Entertainment System -",
-        "attribution": "Nintendo of Europe"
-      }
-    ],
-    "collection": "games"
+    "published": false,
+    "content": "what do you see is what you get.\n\nall editors suck.\n\nProposing a new way of thinking in web editors.\n\n– All JavaScript has to be on the webpage\n– no remote procedure calls, no PHP, wasm is ok\n– everything that is needed to run to the page should be available off-line\n\nAnd has the nice trade-off that there are a lot of components already available. This means that you don’t have to build your own gallery components or sliders. Basically do not have to reinvent the wheel.\n\ntext re-presentation in ...",
+    "date": "2019-10-07",
+    "datemodified": "2019-10-07",
+    "title": "All website editors suck",
+    "author": "duncankolba",
+    "description": "Proposing a new way of thinking in web editors",
+    "collection": "architecture",
+    "headline": "A good editor is hard to build",
+    "subline": "From wysiwyg to wysiwym and beyond",
+    "layout": "publication",
+    "type": "article",
+    "picture": "",
+    "attribution": "",
+    "alt": "",
+    "slug": "best-cms-editor-ever",
+    "ingredients": [],
+    "instructions": "",
+    "preptime": "",
+    "cooktime": "",
+    "recipeyield": "",
+    "servingsize": "",
+    "calories": "",
+    "fatcontent": "",
+    "itemtype": "",
+    "itemname": "",
+    "director": "",
+    "releasedate": "",
+    "wikipediaurl": "",
+    "rating": "",
+    "verdict": "",
+    "reviewbody": ""
   }
 ]

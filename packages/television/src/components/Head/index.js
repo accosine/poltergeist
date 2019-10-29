@@ -88,10 +88,10 @@ const Head = ({
     <meta name="author" content={config.organization.name} />
     <meta name="copyright" content={config.organization.name} />
     <meta name="email" content={config.organization.email} />
-    <meta name="date" content={formatDate(date, 'YYYY-MM-DD', 'de')} />
+    <meta name="date" content={formatDate(date, 'YYYY-MM-DD', 'en')} />
     <meta
       name="last-modified"
-      content={formatDate(datemodified, 'YYYY-MM-DD', 'de')}
+      content={formatDate(datemodified, 'YYYY-MM-DD', 'en')}
     />
     <meta name="description" content={description} />
     <SocialmediaMeta

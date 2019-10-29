@@ -8,7 +8,7 @@ import { ensureDirSync, writeFileSync } from 'fs-extra';
 export const exportFirestore = async (foldername: string) => {
   const firestore = admin.firestore();
   firestore.settings({ timestampsInSnapshots: true });
-  const collections = await firestore.getCollections();
+  const collections = await firestore.listCollections();
   const data = {};
   for (let collection of collections) {
     const test = await firestore.collection(collection.id).get();
@@ -75,7 +75,7 @@ export default async (
 
     if (accounts || backupAll) {
       console.log('exporting authentication users');
-      await exportAuthenticationUsers(
+      exportAuthenticationUsers(
         path.join(resolveApp(foldername), 'accounts.json')
       );
     }

@@ -9,7 +9,7 @@ import { readFileSync, readdirSync } from 'fs-extra';
 
 export const deleteFirestore = async () => {
   try {
-    await client.firestore.delete('', { allCollections: true });
+    client.firestore.delete('', { allCollections: true });
   } catch (error) {
     console.log(error);
     if (error.message !== 'Unable to list collection IDs') {
@@ -17,24 +17,32 @@ export const deleteFirestore = async () => {
     }
   }
 };
+
 export const importFirestore = async (foldername: string) => {
   const data = JSON.parse(readFileSync(foldername, 'utf8'));
   const firestore = admin.firestore();
   firestore.settings({ timestampsInSnapshots: true });
 
-  Object.entries(data).forEach(([collection, value]) => {
-    Object.entries(value).forEach(async ([name, content]) => {
-      try {
-        console.log('set', collection, name);
-        await firestore
-          .collection(collection)
-          .doc(name)
-          .set(content);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  });
+  Object.entries(data).forEach(
+    ([collection, value]: [
+      string,
+      { [key: string]: admin.firestore.DocumentData }
+    ]) => {
+      Object.entries(value).forEach(
+        async ([name, content]: [string, admin.firestore.DocumentData]) => {
+          try {
+            console.log('set', collection, name);
+            await firestore
+              .collection(collection)
+              .doc(name)
+              .set(content);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
+    }
+  );
 };
 
 export const deleteAuthenticationUsers = async () => {
@@ -56,20 +64,22 @@ export const importStorage = (projectId: string, foldername: string) => {
   const bucket = storage.bucket(`gs://${projectId}.appspot.com`);
   // TODO: progress
   const files = readdirSync(foldername);
-  files
-    .filter(file => !file.endsWith('.metadata'))
-    .forEach(async file => {
-      try {
-        const { shouldResize, ...metadata } = JSON.parse(
-          readFileSync(path.join(foldername, file + '.metadata'), 'utf8')
-        );
-        await bucket.upload(path.join(foldername, file), {
-          metadata: { metadata },
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    });
+  return Promise.all(
+    files
+      .filter(file => !file.endsWith('.metadata'))
+      .map(async file => {
+        try {
+          const { shouldResize, ...metadata } = JSON.parse(
+            readFileSync(path.join(foldername, file + '.metadata'), 'utf8')
+          );
+          await bucket.upload(path.join(foldername, file), {
+            metadata: { metadata },
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      })
+  );
 };
 
 // delete and restore firestore
@@ -138,3 +148,6 @@ export default async (
     console.log(error);
   }
 };
+
+// TOOD: get env vars from firebase and save to config.json (default) or $FILENAME
+// TOOD: restore env vars from config.json (default) or $FILENAME to firebase

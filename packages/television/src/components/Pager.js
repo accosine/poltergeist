@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from 'styletron-react';
 
 import { withTheme } from '../util/ThemeContext';
@@ -102,12 +101,6 @@ const Pager = ({
       )}
     </Container>
   );
-};
-
-Pager.propTypes = {
-  currentPage: PropTypes.number.isRequired,
-  pagerSize: PropTypes.number.isRequired,
-  articleCount: PropTypes.number.isRequired,
 };
 
 export default Pager;

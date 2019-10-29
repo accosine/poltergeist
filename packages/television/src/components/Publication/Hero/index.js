@@ -144,39 +144,38 @@ export default ({
       )}
       {kind === 'article' && (
         <Time dateTime={formatDate(date, 'YYYY-MM-DD', 'en')}>
-          {formatDate(date, 'DD. MMMM YYYY', 'de')}
+          {formatDate(date, 'YYYY-MM-DD', 'en')}
         </Time>
       )}
     </Container>
-    {kind === 'article' &&
-      picture && (
-        <Picture>
-          <AmpImg
-            width={4}
-            height={3}
-            src={oneLine`${config.media}${addSizeSuffix(
-              picture,
-              config.images.small.suffix
-            )}${config.mediasuffix}`}
-            srcset={oneLine`${config.media}${addSizeSuffix(
-              picture,
-              config.images.large.suffix
-            )}${config.mediasuffix} ${config.images.large.size},
+    {kind === 'article' && picture && (
+      <Picture>
+        <AmpImg
+          width={4}
+          height={3}
+          src={oneLine`${config.media}${addSizeSuffix(
+            picture,
+            config.images.small.suffix
+          )}${config.mediasuffix}`}
+          srcset={oneLine`${config.media}${addSizeSuffix(
+            picture,
+            config.images.large.suffix
+          )}${config.mediasuffix} ${config.images.large.size},
                   ${config.media}${addSizeSuffix(
-              picture,
-              config.images.medium.suffix
-            )}${config.mediasuffix} ${config.images.medium.size},
+            picture,
+            config.images.medium.suffix
+          )}${config.mediasuffix} ${config.images.medium.size},
                   ${config.media}${addSizeSuffix(
-              picture,
-              config.images.small.suffix
-            )}${config.mediasuffix} ${config.images.small.size}`}
-            alt={alt}
-            attribution={attribution}
-            layout="responsive"
-          />
-          <PictureAttribution>{attribution}</PictureAttribution>
-        </Picture>
-      )}
+            picture,
+            config.images.small.suffix
+          )}${config.mediasuffix} ${config.images.small.size}`}
+          alt={alt}
+          attribution={attribution}
+          layout="responsive"
+        />
+        <PictureAttribution>{attribution}</PictureAttribution>
+      </Picture>
+    )}
     {subline && <Subline $collection={collection}>{subline}</Subline>}
   </Fragment>
 );
