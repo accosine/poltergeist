@@ -1,59 +1,72 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
-import classnames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useEffect, useRef } from 'react';
 
-const styleSheet = {
-  container: {
-    height: '100%',
-  },
-  iframe: {
-    width: '100%',
-    height: '100%',
-    border: 0,
-  },
-  hidden: {
-    display: 'none',
-  },
+const styles = {
+  iframe: 'width: 100%; height: 100%; border: 0;',
+  hidden: 'display: none;',
 };
 
-const Iframe = ({ html, classes }) => {
+const Iframe = ({ html = '', ...props }) => {
   const containerEl = useRef(null);
-  const createIframe = useCallback(
-    () => {
-      const iframe = document.createElement('iframe');
-      iframe.setAttribute('class', classnames(classes.iframe, classes.hidden));
-      iframe.setAttribute('title', 'preview');
-      return iframe;
-    },
-    [classes.hidden, classes.iframe]
-  );
-  const [scrollTop, setScrollTop] = useState(0);
-  useEffect(
-    () => {
-      const iframe = createIframe();
-      containerEl.current.appendChild(iframe);
-      const iframeDocument = iframe.contentDocument;
+  const latestScrollTop = useRef(0);
 
-      iframeDocument.open();
+  useEffect(() => {
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute(
+      'style',
+      styles.iframe + ' ' + styles.hidden
+    );
 
-      iframe.contentWindow.onload = () => {
-        if (containerEl.current.children.length > 1) {
-          containerEl.current.removeChild(containerEl.current.firstChild);
-        }
-        iframe.className = classes.iframe;
-        iframe.contentWindow.scrollTo(0, scrollTop);
-      };
-      iframeDocument.addEventListener('scroll', event =>
-        setScrollTop(event.target.scrollingElement.scrollTop)
+    containerEl.current.appendChild(iframe);
+
+    // remove old child(ren), make newest child visible and restore scroll position
+    const onLoad = () => {
+      while (containerEl.current.children.length > 1) {
+        containerEl.current.removeChild(
+          containerEl.current.firstChild
+        );
+      }
+      iframe.setAttribute('style', styles.iframe);
+      iframe.contentWindow.scrollTo(
+        0,
+        latestScrollTop.current
       );
+    };
+    const onScroll = event => {
+      latestScrollTop.current =
+        event.target.scrollingElement.scrollTop;
+    };
 
-      iframeDocument.write(html);
-      iframeDocument.close();
-    },
-    [html, classes.iframe, createIframe]
+    iframe.contentDocument.open();
+
+    iframe.contentWindow.addEventListener('load', onLoad);
+    iframe.contentDocument.addEventListener(
+      'scroll',
+      onScroll
+    );
+
+    iframe.contentDocument.write(html);
+    iframe.contentDocument.close();
+
+    return () => {
+      // cleanup event listeners of old iframes
+      iframe.contentWindow.removeEventListener(
+        'load',
+        onLoad
+      );
+      iframe.contentWindow.removeEventListener(
+        'scroll',
+        onScroll
+      );
+    };
+  }, [html, latestScrollTop]);
+
+  return (
+    <div
+      style={{ height: '100%' }}
+      {...props}
+      ref={containerEl}
+    />
   );
-
-  return <div className={classes.container} ref={containerEl} />;
 };
 
-export default withStyles(styleSheet)(Iframe);
+export default Iframe;
