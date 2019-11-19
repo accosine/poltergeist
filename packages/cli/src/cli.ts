@@ -35,6 +35,7 @@ program
 
 program
   .command('backup [destination]')
+  .option('--configuration', 'backup configuration')
   .option('--firestore', 'backup Firestore')
   .option('--storage', 'backup storage')
   .option('--accounts', 'backup accounts')
@@ -43,6 +44,7 @@ program
 
 program
   .command('restore [source]')
+  .option('--configuration', 'restore configuration')
   .option('--firestore', 'restore Firestore')
   .option('--storage', 'restore storage')
   .option('--accounts', 'restore accounts')

@@ -6,6 +6,31 @@ import { Storage } from '@google-cloud/storage';
 import { getProjectId, resolveApp, initializeAndEnsureAuth } from '../util';
 import * as admin from 'firebase-admin';
 import { readFileSync, readdirSync } from 'fs-extra';
+import { setVariablesRecursive } from 'firebase-tools/lib/functionsConfig';
+
+const deepMap = (obj: any, cb: (v: unknown, k: string) => unknown) => {
+  const out = {};
+  Object.keys(obj).forEach(k => {
+    let val;
+    if (obj[k] !== null && typeof obj[k] === 'object') {
+      val = deepMap(obj[k], cb);
+    } else {
+      val = cb(obj[k], k);
+    }
+    out[k] = val;
+  });
+  return out;
+};
+
+export const restoreConfiguration = (projectId: string, foldername: string) => {
+  const data = JSON.parse(readFileSync(foldername, 'utf8'));
+  return setVariablesRecursive(
+    projectId,
+    'application3',
+    null,
+    deepMap(data.application, a => Array.isArray(a) ? {...a} : a)
+  );
+};
 
 export const deleteFirestore = async () => {
   try {
@@ -45,9 +70,13 @@ export const importFirestore = async (foldername: string) => {
   );
 };
 
-export const deleteAuthenticationUsers = async () => {
-  // TODO: wait for https://github.com/firebase/firebase-tools/issues/595
-};
+// TODO: does not exit properly (revisit after upgrading firebase-admin)
+export const deleteAuthenticationUsers = async () =>
+  Promise.all(
+    (await admin.auth().listUsers()).users.map(({ uid }) =>
+      admin.auth().deleteUser(uid)
+    )
+  );
 
 export const importAuthenticationUsers = async (foldername: string) =>
   client.auth.upload(foldername, {});
@@ -88,10 +117,16 @@ export const importStorage = (projectId: string, foldername: string) => {
 export default async (
   foldername: string,
   {
+    configuration,
     firestore,
     storage,
     accounts,
-  }: { firestore?: boolean; storage?: boolean; accounts?: boolean }
+  }: {
+    configuration?: boolean;
+    firestore?: boolean;
+    storage?: boolean;
+    accounts?: boolean;
+  }
 ): Promise<void> => {
   if (
     !(await prompt<{ confirmed: boolean }>([
@@ -110,11 +145,19 @@ export default async (
 
   console.log('  - now restoring');
 
-  const restoreAll = !firestore && !storage && !accounts;
+  const restoreAll = !configuration && !firestore && !storage && !accounts;
 
   try {
     const projectId = await getProjectId();
     await initializeAndEnsureAuth(projectId);
+
+    if (configuration || restoreAll) {
+      console.log('restoring configuration');
+      await restoreConfiguration(
+        projectId,
+        path.join(resolveApp(foldername), 'config.json')
+      );
+    }
 
     if (firestore || restoreAll) {
       console.log('restoring firestore');

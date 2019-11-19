@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import { Storage } from '@google-cloud/storage';
 import * as client from 'firebase-tools';
 import { getProjectId, initializeAndEnsureAuth, resolveApp } from '../util';
+import { materializeAll } from 'firebase-tools/lib/functionsConfig';
 import { ensureDirSync, writeFileSync } from 'fs-extra';
 
 export const exportFirestore = async (foldername: string) => {
@@ -44,20 +45,36 @@ export const exportStorage = async (projectId: string, foldername: string) => {
 export const exportAuthenticationUsers = (foldername: string) =>
   client.auth.export(foldername, { format: 'json' });
 
+export const exportConfiguration = async (
+  projectId: string,
+  foldername: string
+) =>
+  writeFileSync(
+    foldername,
+    JSON.stringify(await materializeAll(projectId), null, 2)
+  );
+
+// export configuration
 // export firestore collections
 // export authentication users
 // export storage files
 export default async (
   foldername: string,
   {
+    configuration,
     firestore,
     storage,
     accounts,
-  }: { firestore?: boolean; storage?: boolean; accounts?: boolean }
+  }: {
+    configuration?: boolean;
+    firestore?: boolean;
+    storage?: boolean;
+    accounts?: boolean;
+  }
 ): Promise<void> => {
   console.log('  - now exporting');
-
-  const backupAll = !firestore && !storage && !accounts;
+  // If no arguments are provided everything is false and should get backed up
+  const backupAll = !configuration && !firestore && !storage && !accounts;
 
   ensureDirSync(foldername);
 
@@ -65,6 +82,14 @@ export default async (
 
   try {
     await initializeAndEnsureAuth(projectId);
+
+    if (configuration || backupAll) {
+      console.log('exporting configuration');
+      await exportConfiguration(
+        projectId,
+        path.join(resolveApp(foldername), 'config.json')
+      );
+    }
 
     if (firestore || backupAll) {
       console.log('exporting firestore');

@@ -11,20 +11,18 @@ declare module 'firebase-tools/lib/logger' {
 
 declare module 'firebase-tools/lib/ensureDefaultCredentials' {
   function ensureDefaultCredentials(): void;
-  namespace ensureDefaultCredentials {
-
-  }
+  namespace ensureDefaultCredentials {}
   export = ensureDefaultCredentials;
+}
+
+declare module 'firebase-tools/lib/functionsConfig' {
+  export const materializeAll: (projectId: string) => any;
 }
 
 declare module 'firebase-tools' {
   export const use: (projectId: string, options: object) => void;
 
-  export const login: (
-    options: {
-      localhost: boolean;
-    }
-  ) => void;
+  export const login: (options: { localhost: boolean }) => void;
 
   export const auth: {
     upload: (dataFile: string, {}) => void;
